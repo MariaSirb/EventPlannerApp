@@ -1,0 +1,48 @@
+﻿@page
+@model EventPlannerApp.Pages.Photographs.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Photograph[0].PhotographName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Photograph[0].PhotographPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Photograph[0].PhotographImage)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Photograph) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhotographName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhotographPrice)
+            </td>
+            <td>
+               <img src="data:image/jpg;base64, @item.PhotographImage" width="120px" height="120px" />
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,60 @@
+﻿@page
+@model EventPlannerApp.Pages.Locations.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Location[0].LocationImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location[0].LocationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location[0].Adress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location[0].MaximumCapacity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location[0].LocationPrice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Location) {
+        <tr>
+            <td>
+                    <img src="data:image/jpg;base64, @item.LocationImage" width="120px" height="120px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaximumCapacity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocationPrice)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

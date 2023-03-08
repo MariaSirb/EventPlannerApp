@@ -1,0 +1,44 @@
+﻿@page
+@model EventPlannerApp.Pages.Musics.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Music</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Music.DjName" class="control-label"></label>
+                <input asp-for="Music.DjName" class="form-control" />
+                <span asp-validation-for="Music.DjName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Music.DjPrice" class="control-label"></label>
+                <input asp-for="Music.DjPrice" class="form-control" />
+                <span asp-validation-for="Music.DjPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Music.DjImageFile" class="control-label"></label>
+                <input asp-for="Music.DjImageFile" class="form-control" />
+                <span asp-validation-for="Music.DjImageFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

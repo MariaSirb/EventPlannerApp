@@ -1,0 +1,45 @@
+﻿@page
+@model EventPlannerApp.Pages.Photographs.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Photograph</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Photograph.ID" />
+            <div class="form-group">
+                <label asp-for="Photograph.PhotographName" class="control-label"></label>
+                <input asp-for="Photograph.PhotographName" class="form-control" />
+                <span asp-validation-for="Photograph.PhotographName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Photograph.PhotographPrice" class="control-label"></label>
+                <input asp-for="Photograph.PhotographPrice" class="form-control" />
+                <span asp-validation-for="Photograph.PhotographPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Photograph.PhotographImage" class="control-label"></label>
+                <input asp-for="Photograph.PhotographImage" class="form-control" />
+                <span asp-validation-for="Photograph.PhotographImage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
