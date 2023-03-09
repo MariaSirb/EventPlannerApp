@@ -25,6 +25,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.MyEvent[0].EventType.EventTypeName)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MyEvent[0].Location.LocationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MyEvent[0].Music.DjName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MyEvent[0].Photograph.PhotographName)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -42,6 +51,15 @@
             </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.EventType.EventTypeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location.LocationName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Music.DjName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Photograph.PhotographName)
                 </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |

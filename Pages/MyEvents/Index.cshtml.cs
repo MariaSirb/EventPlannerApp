@@ -27,6 +27,9 @@ namespace EventPlannerApp.Pages.MyEvents
             {
                 MyEvent = await _context.MyEvent
                     .Include(b=>b.EventType)
+                    .Include(b=>b.Location)
+                    .Include(b=>b.Music)
+                    .Include(b=>b.Photograph)
                     .ToListAsync();
             }
         }

@@ -37,7 +37,12 @@ namespace EventPlannerApp.Pages.MyEvents
                 return NotFound();
             }
             MyEvent = myevent;
+
             ViewData["EventTypeID"] = new SelectList(_context.Set<EventType>(), "ID", "EventTypeName");
+            ViewData["LocationID"] = new SelectList(_context.Set<Location>(), "ID", "LocationName");
+            ViewData["MusicID"] = new SelectList(_context.Set<Music>(), "ID", "DjName");
+            ViewData["PhotographID"] = new SelectList(_context.Set<Photograph>(), "ID", "PhotographName");
+
             return Page();
         }
 

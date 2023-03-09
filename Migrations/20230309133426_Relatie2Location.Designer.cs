@@ -4,6 +4,7 @@ using EventPlannerApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventPlannerApp.Migrations
 {
     [DbContext(typeof(EventPlannerAppContext))]
-    partial class EventPlannerAppContextModelSnapshot : ModelSnapshot
+    [Migration("20230309133426_Relatie2Location")]
+    partial class Relatie2Location
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,12 +45,6 @@ namespace EventPlannerApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("MusicID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PhotographID")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
@@ -57,10 +53,6 @@ namespace EventPlannerApp.Migrations
                     b.HasIndex("EventTypeID");
 
                     b.HasIndex("LocationID");
-
-                    b.HasIndex("MusicID");
-
-                    b.HasIndex("PhotographID");
 
                     b.ToTable("MyEvent");
                 });
@@ -217,21 +209,9 @@ namespace EventPlannerApp.Migrations
                         .WithMany("MyEvents")
                         .HasForeignKey("LocationID");
 
-                    b.HasOne("EventPlannerApp.Models.Services.Music", "Music")
-                        .WithMany("MyEvents")
-                        .HasForeignKey("MusicID");
-
-                    b.HasOne("EventPlannerApp.Models.Services.Photograph", "Photograph")
-                        .WithMany("MyEvents")
-                        .HasForeignKey("PhotographID");
-
                     b.Navigation("EventType");
 
                     b.Navigation("Location");
-
-                    b.Navigation("Music");
-
-                    b.Navigation("Photograph");
                 });
 
             modelBuilder.Entity("EventPlannerApp.Models.Services.Menu", b =>
@@ -256,16 +236,6 @@ namespace EventPlannerApp.Migrations
             modelBuilder.Entity("EventPlannerApp.Models.Services.MenuType", b =>
                 {
                     b.Navigation("Menues");
-                });
-
-            modelBuilder.Entity("EventPlannerApp.Models.Services.Music", b =>
-                {
-                    b.Navigation("MyEvents");
-                });
-
-            modelBuilder.Entity("EventPlannerApp.Models.Services.Photograph", b =>
-                {
-                    b.Navigation("MyEvents");
                 });
 #pragma warning restore 612, 618
         }

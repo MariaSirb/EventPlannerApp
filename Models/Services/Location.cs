@@ -16,7 +16,7 @@ namespace EventPlannerApp.Models.Services
         public int MaximumCapacity { get; set; }
         public decimal LocationPrice { get; set; }
 
-        
+        public ICollection<MyEvent>? MyEvents { get; set; }
 
     }
 }

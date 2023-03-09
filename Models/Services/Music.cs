@@ -13,5 +13,7 @@ namespace EventPlannerApp.Models.Services
 
         [NotMapped]
         public IFormFile DjImageFile { get; set; }
+
+        public ICollection<MyEvent>? MyEvents { get; set; }
     }
 }

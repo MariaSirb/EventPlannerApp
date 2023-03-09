@@ -17,5 +17,6 @@ namespace EventPlannerApp.Models.Services
         public int? MenuTypeID { get; set; }
         public MenuType? MenuType { get; set; }
 
+        public ICollection<MyEventMenu>? MyEventMenues { get; set; }
     }
 }

@@ -12,5 +12,7 @@ namespace EventPlannerApp.Models.Services
         [NotMapped]
         public IFormFile PhotographImageFile { get; set; }
 
+        public ICollection<MyEvent>? MyEvents { get; set; }
+
     }
 }

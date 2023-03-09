@@ -35,6 +35,24 @@
                 <span asp-validation-for="MyEvent.EventTypeID" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="MyEvent.LocationID" class="control-label">Locatia</label>
+                <select asp-for="MyEvent.LocationID" class="form-control" asp-items="ViewBag.LocationID">
+                </select>
+                <span asp-validation-for="MyEvent.LocationID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MyEvent.MusicID" class="control-label">Musica</label>
+                <select asp-for="MyEvent.MusicID" class="form-control" asp-items="ViewBag.MusicID">
+                </select>
+                <span asp-validation-for="MyEvent.MusicID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MyEvent.PhotographID" class="control-label">Photo</label>
+                <select asp-for="MyEvent.PhotographID" class="form-control" asp-items="ViewBag.PhotographID">
+                </select>
+                <span asp-validation-for="MyEvent.PhotographID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
