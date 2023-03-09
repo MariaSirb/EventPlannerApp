@@ -22,6 +22,34 @@ namespace EventPlannerApp.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("EventPlannerApp.Models.MyEvent", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("EventTypeID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Mention")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("EventTypeID");
+
+                    b.ToTable("MyEvent");
+                });
+
             modelBuilder.Entity("EventPlannerApp.Models.Services.EventType", b =>
                 {
                     b.Property<int>("ID")
@@ -164,6 +192,15 @@ namespace EventPlannerApp.Migrations
                     b.ToTable("Photograph");
                 });
 
+            modelBuilder.Entity("EventPlannerApp.Models.MyEvent", b =>
+                {
+                    b.HasOne("EventPlannerApp.Models.Services.EventType", "EventType")
+                        .WithMany("MyEvents")
+                        .HasForeignKey("EventTypeID");
+
+                    b.Navigation("EventType");
+                });
+
             modelBuilder.Entity("EventPlannerApp.Models.Services.Menu", b =>
                 {
                     b.HasOne("EventPlannerApp.Models.Services.MenuType", "MenuType")
@@ -171,6 +208,11 @@ namespace EventPlannerApp.Migrations
                         .HasForeignKey("MenuTypeID");
 
                     b.Navigation("MenuType");
+                });
+
+            modelBuilder.Entity("EventPlannerApp.Models.Services.EventType", b =>
+                {
+                    b.Navigation("MyEvents");
                 });
 
             modelBuilder.Entity("EventPlannerApp.Models.Services.MenuType", b =>

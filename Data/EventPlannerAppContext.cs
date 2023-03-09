@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using EventPlannerApp.Models.Services;
+using EventPlannerApp.Models;
 
 namespace EventPlannerApp.Data
 {
@@ -25,5 +26,7 @@ namespace EventPlannerApp.Data
         public DbSet<EventPlannerApp.Models.Services.Menu> Menu { get; set; }
 
         public DbSet<EventPlannerApp.Models.Services.MenuType> MenuType { get; set; }
+
+        public DbSet<EventPlannerApp.Models.MyEvent> MyEvent { get; set; }
     }
 }
