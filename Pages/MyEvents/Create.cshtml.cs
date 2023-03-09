@@ -9,10 +9,11 @@ using EventPlannerApp.Data;
 using EventPlannerApp.Models;
 using System.Security.Policy;
 using EventPlannerApp.Models.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace EventPlannerApp.Pages.MyEvents
 {
-    public class CreateModel : PageModel
+    public class CreateModel : MyEventMenuesPageModel
     {
         private readonly EventPlannerApp.Data.EventPlannerAppContext _context;
 
@@ -28,25 +29,50 @@ namespace EventPlannerApp.Pages.MyEvents
             ViewData["MusicID"] = new SelectList(_context.Set<Music>(), "ID", "DjName");
             ViewData["PhotographID"] = new SelectList(_context.Set<Photograph>(), "ID", "PhotographName");
 
+            var myevent = new MyEvent();
+            myevent.MyEventMenues = new List<MyEventMenu>();
+            PopulateAssignedMenuData(_context, myevent);
+
             return Page();
         }
 
         [BindProperty]
         public MyEvent MyEvent { get; set; }
-        
+
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(string[] selectedMenues)
         {
-          if (!ModelState.IsValid)
+            var newMyEvent = new MyEvent();
+            if (selectedMenues != null)
             {
-                return Page();
+                newMyEvent.MyEventMenues = new List<MyEventMenu>();
+                foreach (var cat in selectedMenues)
+                {
+                    var catToAdd = new MyEventMenu
+                    {
+                        MenuID = int.Parse(cat)
+                    };
+                    newMyEvent.MyEventMenues.Add(catToAdd);
+                }
             }
-
+            MyEvent.MyEventMenues = newMyEvent.MyEventMenues;
             _context.MyEvent.Add(MyEvent);
             await _context.SaveChangesAsync();
+              return RedirectToPage("./Index");
+        
+         PopulateAssignedMenuData(_context, newMyEvent);
+            return Page();
 
-            return RedirectToPage("./Index");
-        }
+        //if (!ModelState.IsValid)
+        //  {
+        //      return Page();
+        //  }
+
+        //  _context.MyEvent.Add(MyEvent);
+        //  await _context.SaveChangesAsync();
+
+        //  return RedirectToPage("./Index");
+    }
     }
 }

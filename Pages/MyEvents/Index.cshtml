@@ -34,12 +34,20 @@
             <th>
                 @Html.DisplayNameFor(model => model.MyEvent[0].Photograph.PhotographName)
             </th>
+             <th>
+                @Html.DisplayNameFor(model => model.MyEvent[0].MyEventMenues)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.MyEvent) {
-        <tr>
+@foreach (var item in Model.MyEventD.MyEvents) {
+            string selectedRow = "";
+            if (item.ID == Model.MyEventID)
+            {
+                selectedRow = "table-success";
+            }
+        <tr class="@selectedRow">
             <td>
                 @Html.DisplayFor(modelItem => item.StartDate)
             </td>
@@ -61,6 +69,14 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Photograph.PhotographName)
                 </td>
+                    <td>
+                    @{
+                        foreach (var menu in item.MyEventMenues)
+                        {
+                            @menu.Menu.ID @: @menu.Menu.ItemName <br/>
+                        }
+                    }
+             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |

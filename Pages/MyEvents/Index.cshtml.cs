@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using EventPlannerApp.Data;
 using EventPlannerApp.Models;
+using EventPlannerApp.Models.Services;
+using System.Net;
 
 namespace EventPlannerApp.Pages.MyEvents
 {
@@ -20,18 +22,41 @@ namespace EventPlannerApp.Pages.MyEvents
         }
 
         public IList<MyEvent> MyEvent { get;set; } = default!;
+        public MyEventData MyEventD { get; set; }
+        public int MyEventID { get; set; }
+        public int MenuID { get; set; }
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(int? id, int? myeventID)
         {
-            if (_context.MyEvent != null)
+            MyEventD = new MyEventData();
+
+            MyEventD.MyEvents = await _context.MyEvent
+            .Include(b => b.EventType)
+            .Include(b=>b.Location)
+            .Include(b=>b.Music)
+            .Include(b=>b.Photograph)
+            .Include(b => b.MyEventMenues)
+            .ThenInclude(b => b.Menu)
+            .AsNoTracking()
+            .ToListAsync();
+
+            if (id != null)
             {
-                MyEvent = await _context.MyEvent
-                    .Include(b=>b.EventType)
-                    .Include(b=>b.Location)
-                    .Include(b=>b.Music)
-                    .Include(b=>b.Photograph)
-                    .ToListAsync();
+                MyEventID = id.Value;
+                MyEvent myevent = MyEventD.MyEvents
+                .Where(i => i.ID == id.Value).Single();
+                MyEventD.Menues = myevent.MyEventMenues.Select(s => s.Menu);
             }
+
+            //if (_context.MyEvent != null)
+            //{
+            //    MyEvent = await _context.MyEvent
+            //        .Include(b=>b.EventType)
+            //        .Include(b=>b.Location)
+            //        .Include(b=>b.Music)
+            //        .Include(b=>b.Photograph)
+            //        .ToListAsync();
+            //}
         }
     }
 }

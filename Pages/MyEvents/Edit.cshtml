@@ -54,6 +54,33 @@
                 <span asp-validation-for="MyEvent.PhotographID" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <div class="table">
+                    <table>
+                       <tr>
+                          @{
+                             int cnt = 0;
+                             foreach (var cat in Model.AssignedMenuDataList)
+                             {
+                             if (cnt++ % 3 == 0)
+                             {
+                             @:</tr><tr>
+                             }
+                             @:<td>
+                                 <input type="checkbox"
+                                        name="selectedMenues"
+                                        value="@cat.MenuID"
+                                        @(Html.Raw(cat.Assigned ? "checked=\"checked\"" : "")) />
+                                 @cat.MenuID @: @cat.Name
+                             @:</td>
+                       }
+                       @:</tr>
+                 }
+             </table>
+          </div>
+           </div>
+
+
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
