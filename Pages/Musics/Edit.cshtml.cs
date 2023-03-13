@@ -43,6 +43,7 @@ namespace EventPlannerApp.Pages.Musics
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            
             if (!ModelState.IsValid)
             {
                 return Page();
@@ -59,7 +60,7 @@ namespace EventPlannerApp.Pages.Musics
                 if (!MusicExists(Music.ID))
                 {
                     return NotFound();
-                }
+               }
                 else
                 {
                     throw;

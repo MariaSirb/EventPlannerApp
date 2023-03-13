@@ -30,6 +30,12 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Menu.ItemImage)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Menu.MenuType.TypeName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Menu.MenuType.TypeName)
+        </dd>
     </dl>
     
     <form method="post">

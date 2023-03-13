@@ -29,7 +29,9 @@ namespace EventPlannerApp.Pages.Menues
                 return NotFound();
             }
 
-            var menu = await _context.Menu.FirstOrDefaultAsync(m => m.ID == id);
+            var menu = await _context.Menu
+                .Include(c=>c.MenuType)
+                .FirstOrDefaultAsync(m => m.ID == id);
 
             if (menu == null)
             {

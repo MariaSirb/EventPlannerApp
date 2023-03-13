@@ -28,7 +28,13 @@ namespace EventPlannerApp.Pages.MyEvents
                 return NotFound();
             }
 
-            var myevent = await _context.MyEvent.FirstOrDefaultAsync(m => m.ID == id);
+            var myevent = await _context.MyEvent
+                .Include(b => b.EventType)
+                .Include(b => b.Location)
+                .Include(b => b.Music)
+                .Include(b => b.Photograph)
+                .Include(b => b.MyEventMenues)
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (myevent == null)
             {
                 return NotFound();
