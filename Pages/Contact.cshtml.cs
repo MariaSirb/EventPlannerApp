@@ -29,8 +29,8 @@ namespace EventPlannerApp.Pages
             message.IsBodyHtml = true;
             message.Body = "<p>Name: " + name + "</p" + "<p>Email: " + email + "</p" + "<p>Message: " + message1 + "</p";
 
-            smtpClient.Port = 43923; //aici punem hosting provider
-            smtpClient.Host = "vnb vksnrf"; //si aici ceva cu hosting provider
+            smtpClient.Port = 587; //aici punem hosting provider
+            smtpClient.Host = "sirbmaria27@gmail.com"; //si aici ceva cu hosting provider
             smtpClient.EnableSsl = true;
             smtpClient.UseDefaultCredentials = false;
             smtpClient.Credentials = new NetworkCredential();

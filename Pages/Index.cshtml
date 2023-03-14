@@ -4,7 +4,64 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+    .display-4{
+        color: palegoldenrod;
+        text-align: left;
+        font-family: Garamond, serif;
+        font-style: italic;
+        position:relative;
+    }
+    p{
+        color: palegoldenrod;
+        text-align:center;
+        font-family: Garamond, serif;
+        font-size: 18px;
+        letter-spacing: 2px;
+        word-spacing: 2px;
+        font-style: normal;
+        font-variant: normal;
+        font-style:italic;
+    }
+    body{
+        background-color:black;
+    }
+    .left{
+        /*display: block;*/
+        margin-left: auto;
+      /*  margin-right: 90%;*/
+        width: 30%;
+        height:40%;
+    }
+    .butoane {
+        text-align: center;
+        }
+</style>
+<html>
+    <head>
+
+    </head>
+    <body>
+<div class="text-left">
+    <h5 class="display-4">Welcome to... 
+        <br />
+    </h5>
+        
+        <img align="left" src="~/image/logo2.png" alt="Logo" class="left" />
+
+        <p align="center">Do you have an important event in your life and you don't know where to start with the organization? Well, we are here to help you!</p>
+        <p align="center">We have over 5 years of experience in the field and we organize personalized events up to the smallest detail so much of an exceptional team, having over time thousands of customers satisfied with our services.</p>
+        <p align="center">You can find us both in Cluj Napoca and in Zalau with a lot of surprises: from parties with different topics, corporate events, increased or birthdays, we create a small story from your long -awaited event! </p>
+
+        <br />
+        <br />
+        <br />
+
+     <p class="butoane">
+          <button type="button" class="btn btn-outline-warning" asp-area="" asp-page="/Pages/Party/Party">Party</button>
+          <button type="button" class="btn btn-outline-warning" asp-area="" asp-page="/Pages/Party/Party">Corporate event</button>
+          <button type="button" class="btn btn-outline-warning" asp-area="" asp-page="/Pages/Party/Party">18th Birthday Party</button>
+        </p>
 </div>
+</body>
+</html>

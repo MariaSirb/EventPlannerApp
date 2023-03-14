@@ -1,6 +1,113 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EventPlannerApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"> @*asta pentru a importa icons pentru navbar*@
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/EventPlannerApp.styles.css" asp-append-version="true" />
+
+    <style>
+        .sigla{
+            border-radius:50%;
+            width: 60px;
+            height: 60px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark @*bg-dark*@ px-0" style="background-color:black">
+            <div class="container-fluid">
+                <a class="navbar-brand me-2" style="color:darkgoldenrod" asp-page="/Index"><img align="center" src="~/image/logo2.png" alt="sigla" class="sigla"/></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarColor02">
+                    <ul class="navbar-nav me-auto">
+
+                        <li class="nav-item m-2" style="text-decoration:underline; color:darkgoldenrod">
+                            <a class="nav-link" style="color:darkgoldenrod" asp-area="" asp-page="/Party">Parties</a>
+                        </li>
+
+                        <li class="nav-item m-2" style="text-decoration:underline; color:darkgoldenrod">
+                            <a class="nav-link" style="color:darkgoldenrod" asp-area="" asp-page="/CorporateEvent"> Corporate events</a>
+                        </li>
+
+                        <li class="nav-item m-2" style="text-decoration:underline; color:darkgoldenrod">
+                            <a class="nav-link" style="color:darkgoldenrod" asp-area="" asp-page="/18thBirthday"> 18th Birthday Parties</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle m-2" style="color:darkgoldenrod" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="bi bi-balloon-heart-fill"></i>Services
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" asp-area="" asp-page="/EventTypes/Index"><i class="bi bi-1-circle-fill"></i>Events types</a>
+                                <a class="dropdown-item" asp-area="" asp-page="/Locations/Index"><i class="bi bi-2-circle-fill"></i>Locations</a>
+                                <a class="dropdown-item" asp-area="" asp-page="/Menues/Index"><i class="bi bi-3-circle-fill"></i>Menu</a>
+                                <a class="dropdown-item" asp-area="" asp-page="/Photographs/Index"><i class="bi bi-4-circle-fill"></i>Photohraphs</a>
+                                <a class="dropdown-item" asp-area="" asp-page="/Musics/Index"><i class="bi bi-5-circle-fill"></i>Music</a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item m-2">
+                            <a class="nav-link" style="color:darkgoldenrod" asp-area="" asp-page="/Contact"><i class="bi bi-person-lines-fill"></i>Contact us</a>
+                        </li>
+                        <li class="nav-item m-2">
+                            <a class="nav-link" style="color:darkgoldenrod" asp-area="" asp-page="/Calendar"><i class="bi bi-calendar-date-fill"></i>Calendar</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle m-2" style="color:darkgoldenrod" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="bi bi-people-fill"></i>
+                                Profile
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" asp-area="" asp-page="/Login"><i class="bi bi-box-arrow-right"></i>Log in</a>
+                                <a class="dropdown-item" asp-area="" asp-page="/Register"><i class="bi bi-r-square-fill"></i>Register</a>
+                                <a class="dropdown-item" asp-area="" asp-page="/Profile"><i class="bi bi-person-lines-fill"></i>My profile</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+
+                        <input class="form-control me-sm-2" style="color:darkgoldenrod; font-weight:600; background-color:black; border-color:darkgoldenrod" type="search" placeholder="Search">
+                        <button class="btn btn-secondary my-2 my-sm-0" style="color:black;background-color:darkgoldenrod; border-color:darkgoldenrod" asp-area="" asp-page="/MyEvents/Index">
+                            <i class="bi bi-pencil-fill"></i>Create your event
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted" style="background-color: black /*#caced1*/; color: darkgoldenrod">
+        <div class="text-center" style="background-color: rgba(0, 0, 0, 0.2); color:darkgoldenrod; font-weight:600">
+            Event Planner @DateTime.Now.Year -
+            <a class="text-decoration-underline" style="color:palegoldenrod" asp-area="" asp-page="/Index">  Sparkling event</a>
+        </div>
+    </footer>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+
+@*<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - EventPlannerApp</title>
@@ -62,5 +169,5 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
-</body>
+</body>*@
 </html>

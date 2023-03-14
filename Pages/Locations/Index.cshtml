@@ -4,7 +4,22 @@
 @{
     ViewData["Title"] = "Index";
 }
+<style>
+    .icon-yellow{
+        color: yellow;
+    }
+    .icon-blue {
+        color: cornflowerblue;
+    }
 
+    .icon-red {
+        color: red;
+    }
+
+    .icon-pink {
+        color: lightpink;
+    }
+</style>
 <h1>Index</h1>
 
 <p>
@@ -50,9 +65,10 @@
                 @Html.DisplayFor(modelItem => item.LocationPrice)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                    <a asp-page="./Edit" asp-route-id="@item.ID"><i class="bi bi-pencil-square fa-7x icon-yellow"></i></a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID"><i class="bi bi-clipboard-check-fill icon-blue fa-10x"></i></a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID"><i class="bi bi-trash icon-red fa-10x"></i></a> |
+                    <a asp-page="./Favourite" asp-route-id="@item.ID"><i class="bi bi-bookmark-heart-fill icon-pink fa-10x"></i></a>
             </td>
         </tr>
 }

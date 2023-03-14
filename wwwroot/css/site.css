@@ -15,4 +15,11 @@ html {
 
 body {
   margin-bottom: 60px;
+  background-color:black;
+  font-family: sans-serif;
+  color:palegoldenrod;
+}
+.table {
+    font-family: sans-serif;
+    color: palegoldenrod;
 }
