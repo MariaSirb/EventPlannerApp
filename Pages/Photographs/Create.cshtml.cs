@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using EventPlannerApp.Data;
 using EventPlannerApp.Models.Services;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace EventPlannerApp.Pages.Photographs
 {
+    [Authorize(Roles = "Admin")]
     public class CreateModel : PageModel
     {
         private readonly EventPlannerApp.Data.EventPlannerAppContext _context;

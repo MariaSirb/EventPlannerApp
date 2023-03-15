@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using EventPlannerApp.Data;
 using EventPlannerApp.Models.Services;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace EventPlannerApp.Pages.Locations
 {
+    [Authorize(Roles = "Admin")]
     public class DeleteModel : PageModel
     {
         private readonly EventPlannerApp.Data.EventPlannerAppContext _context;

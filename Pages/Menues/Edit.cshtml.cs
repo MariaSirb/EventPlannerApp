@@ -9,9 +9,12 @@ using Microsoft.EntityFrameworkCore;
 using EventPlannerApp.Data;
 using EventPlannerApp.Models.Services;
 using EventPlannerApp.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace EventPlannerApp.Pages.Menues
 {
+    [Authorize(Roles = "Admin")]
     public class EditModel : PageModel
     {
         private readonly EventPlannerApp.Data.EventPlannerAppContext _context;
