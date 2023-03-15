@@ -28,5 +28,7 @@ namespace EventPlannerApp.Data
         public DbSet<EventPlannerApp.Models.Services.MenuType> MenuType { get; set; }
 
         public DbSet<EventPlannerApp.Models.MyEvent> MyEvent { get; set; }
+
+        public DbSet<EventPlannerApp.Models.Client> Client { get; set; }
     }
 }

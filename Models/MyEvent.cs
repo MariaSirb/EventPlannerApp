@@ -39,5 +39,10 @@ namespace EventPlannerApp.Models
         //Relatie cu Menu
 
         public ICollection<MyEventMenu>? MyEventMenues { get; set; }
+
+        //Relatia cu clientii
+
+        public int? ClientID { get; set; }
+        public Client? Client { get; set; }
     }
 }

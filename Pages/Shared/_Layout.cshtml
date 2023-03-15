@@ -60,14 +60,17 @@
                         <li class="nav-item m-2">
                             <a class="nav-link" style="color:darkgoldenrod" asp-area="" asp-page="/Calendar"><i class="bi bi-calendar-date-fill"></i>Calendar</a>
                         </li>
+
+                         <partial name="_LoginPartial"/> 
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle m-2" style="color:darkgoldenrod" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                 <i class="bi bi-people-fill"></i>
-                                Profile
+                                Administration
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" asp-area="" asp-page="/Login"><i class="bi bi-box-arrow-right"></i>Log in</a>
-                                <a class="dropdown-item" asp-area="" asp-page="/Register"><i class="bi bi-r-square-fill"></i>Register</a>
+                                <a class="dropdown-item" asp-area="" asp-page="/Clients/Index"><i class="bi bi-box-arrow-right"></i>Clients</a>
+                                <a class="dropdown-item" asp-area="" asp-page="/AdminPage"><i class="bi bi-r-square-fill"></i>Admin</a>
                                 <a class="dropdown-item" asp-area="" asp-page="/Profile"><i class="bi bi-person-lines-fill"></i>My profile</a>
                             </div>
                         </li>

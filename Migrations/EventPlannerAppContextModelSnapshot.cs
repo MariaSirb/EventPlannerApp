@@ -22,6 +22,35 @@ namespace EventPlannerApp.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("EventPlannerApp.Models.Client", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<string>("Adress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Client");
+                });
+
             modelBuilder.Entity("EventPlannerApp.Models.MyEvent", b =>
                 {
                     b.Property<int>("ID")
@@ -29,6 +58,9 @@ namespace EventPlannerApp.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<int?>("ClientID")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
@@ -53,6 +85,8 @@ namespace EventPlannerApp.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("ClientID");
 
                     b.HasIndex("EventTypeID");
 
@@ -232,6 +266,10 @@ namespace EventPlannerApp.Migrations
 
             modelBuilder.Entity("EventPlannerApp.Models.MyEvent", b =>
                 {
+                    b.HasOne("EventPlannerApp.Models.Client", "Client")
+                        .WithMany("MyEvents")
+                        .HasForeignKey("ClientID");
+
                     b.HasOne("EventPlannerApp.Models.Services.EventType", "EventType")
                         .WithMany("MyEvents")
                         .HasForeignKey("EventTypeID");
@@ -247,6 +285,8 @@ namespace EventPlannerApp.Migrations
                     b.HasOne("EventPlannerApp.Models.Services.Photograph", "Photograph")
                         .WithMany("MyEvents")
                         .HasForeignKey("PhotographID");
+
+                    b.Navigation("Client");
 
                     b.Navigation("EventType");
 
@@ -283,6 +323,11 @@ namespace EventPlannerApp.Migrations
                     b.Navigation("Menu");
 
                     b.Navigation("MyEvent");
+                });
+
+            modelBuilder.Entity("EventPlannerApp.Models.Client", b =>
+                {
+                    b.Navigation("MyEvents");
                 });
 
             modelBuilder.Entity("EventPlannerApp.Models.MyEvent", b =>

@@ -51,7 +51,7 @@ namespace EventPlannerApp.Pages.MyEvents
             ViewData["LocationID"] = new SelectList(_context.Set<Location>(), "ID", "LocationName");
             ViewData["MusicID"] = new SelectList(_context.Set<Music>(), "ID", "DjName");
             ViewData["PhotographID"] = new SelectList(_context.Set<Photograph>(), "ID", "PhotographName");
-
+            ViewData["ClientID"] = new SelectList(_context.Client, "ID", "FullName");
             return Page();
         }
 

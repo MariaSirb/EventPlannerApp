@@ -37,6 +37,7 @@ namespace EventPlannerApp.Pages.MyEvents
             .Include(b=>b.Photograph)
             .Include(b => b.MyEventMenues)
             .ThenInclude(b => b.Menu)
+            .Include(b=>b.Client)
             .AsNoTracking()
             .ToListAsync();
 

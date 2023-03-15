@@ -34,6 +34,7 @@ namespace EventPlannerApp.Pages.MyEvents
                 .Include(b => b.Music)
                 .Include(b => b.Photograph)
                 .Include(b => b.MyEventMenues)
+                .Include(b=>b.Client)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (myevent == null)
             {
