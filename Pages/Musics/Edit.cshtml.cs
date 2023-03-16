@@ -46,11 +46,24 @@ namespace EventPlannerApp.Pages.Musics
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            
-            if (!ModelState.IsValid)
+            byte[] bytes = null;
+            if (Music.DjImageFile != null)
             {
-                return Page();
+                using (Stream fs = Music.DjImageFile.OpenReadStream())
+                {
+                    using (BinaryReader br = new BinaryReader(fs))
+                    {
+                        bytes = br.ReadBytes((Int32)fs.Length);
+                    }
+
+                }
+                Music.DjImage = Convert.ToBase64String(bytes, 0, bytes.Length);
+
             }
+            //if (!ModelState.IsValid)
+            //{
+            //    return Page();
+            //}
 
             _context.Attach(Music).State = EntityState.Modified;
 

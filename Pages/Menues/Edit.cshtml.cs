@@ -49,10 +49,24 @@ namespace EventPlannerApp.Pages.Menues
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            byte[] bytes = null;
+            if (Menu.ItemImageFile != null)
             {
-                return Page();
+                using (Stream fs = Menu.ItemImageFile.OpenReadStream())
+                {
+                    using (BinaryReader br = new BinaryReader(fs))
+                    {
+                        bytes = br.ReadBytes((Int32)fs.Length);
+                    }
+
+                }
+                Menu.ItemImage = Convert.ToBase64String(bytes, 0, bytes.Length);
+
             }
+            //if (!ModelState.IsValid)
+            //{
+            //    return Page();
+            //}
 
             _context.Attach(Menu).State = EntityState.Modified;
 

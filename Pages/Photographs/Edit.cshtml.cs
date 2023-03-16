@@ -46,10 +46,25 @@ namespace EventPlannerApp.Pages.Photographs
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+
+            byte[] bytes = null;
+            if (Photograph.PhotographImageFile != null)
             {
-                return Page();
+                using (Stream fs = Photograph.PhotographImageFile.OpenReadStream())
+                {
+                    using (BinaryReader br = new BinaryReader(fs))
+                    {
+                        bytes = br.ReadBytes((Int32)fs.Length);
+                    }
+
+                }
+                Photograph.PhotographImage = Convert.ToBase64String(bytes, 0, bytes.Length);
+
             }
+            //if (!ModelState.IsValid)
+            //{
+            //    return Page();
+            //}
 
             _context.Attach(Photograph).State = EntityState.Modified;
 

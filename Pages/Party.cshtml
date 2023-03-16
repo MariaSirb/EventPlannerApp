@@ -4,187 +4,60 @@
     ViewData["Title"] = "Party page";
 }
 
-<!DOCTYPE html>
 <html>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-    body {
-        font-family: Arial;
-        margin: 0;
-    }
+<head>
 
-    * {
-        box-sizing: border-box;
-    }
+    <h2 style="text-align:center">Elegance and ...</h2>
+    <br />
 
-    img {
-        vertical-align: middle;
-        
-    }
-
-    /* Position the image container (needed to position the left and right arrows) */
-    .container {
-        position: relative;
-    }
-
-    /* Hide the images by default */
-    .mySlides {
-        display: none;
-    }
-
-    /* Add a pointer when hovering over the thumbnail images */
-    .cursor {
-        cursor: pointer;
-    }
-
-    /* Next & previous buttons */
-    .prev,
-    .next {
-        cursor: pointer;
-        position: absolute;
-        top: 40%;
-        width: auto;
-        padding: 16px;
-        margin-top: -50px;
-        color: white;
-        font-weight: bold;
-        font-size: 20px;
-        border-radius: 0 3px 3px 0;
-        user-select: none;
-        -webkit-user-select: none;
-    }
-
-    /* Position the "next button" to the right */
-    .next {
-        right: 0;
-        border-radius: 3px 0 0 3px;
-    }
-
-        /* On hover, add a black background color with a little bit see-through */
-        .prev:hover,
-        .next:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-
-    /* Container for image text */
-    .caption-container {
-        text-align: center;
-        background-color: #222;
-        padding: 2px 16px;
-        color: white;
-    }
-
-    .row:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-
-    /* Six columns side by side */
-    .column {
-        float: left;
-        width: 16.66%;
-    }
-
-    /* Add a transparency effect for thumnbail images */
-    .demo {
-        opacity: 0.6;
-    }
-
-        .active,
-        .demo:hover {
-            opacity: 1;
-        }
-</style>
+</head>
 <body>
-
-    <h2 style="text-align:center">Some memories from our parties</h2>
-
-    <div class="container">
-        <div class="mySlides">
-            <img src="~/image/party/p1.jpg" style="width:50%">          
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 6"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="6" aria-label="Slide 7"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="7" aria-label="Slide 8"></button>
         </div>
-
-        <div class="mySlides">
-            <img src="~/image/party/p2.jpg" style="width:50%" > 
-                        
-        </div>
-        <div class="mySlides">
-            <img src="~/image/party/p3.jpg" style="width:50%">
-        </div>
-
-        <div class="mySlides">
-            <img src="~/image/party/p4.jpg" style="width:50%">
-        </div>
-
-        <div class="mySlides">
-            <img src="~/image/party/p5.jpg" style="width:50%">
-        </div>
-
-        <div class="mySlides">
-            <img src="~/image/party/p6.jpg" style="width:50%">
-        </div>
-
-        <a class="prev" onclick="plusSlides(-1)">❮</a>
-        <a class="next" onclick="plusSlides(1)">❯</a>
-
-        <div class="caption-container">
-            <p id="caption"></p>
-        </div>
-
-        <div class="row">
-            <div class="column">
-                <img class="demo cursor" src="~/image/party/p1.jpg" style="width:50%" onclick="currentSlide(1)" alt="Brilliant Balroom Party">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="~/image/party/p 1.jpg" class="d-block w-50" alt="imagine 1" style="margin:0 auto">
             </div>
-            <div class="column">
-                <img class="demo cursor" src="~/image/party/p2.jpg" style="width:50%" onclick="currentSlide(2)" alt="Maria's birthday'">
+            <div class="carousel-item">
+                <img src="~/image/party/p 2.jpg" class="d-block w-50" alt="imagine 2" style="margin:0 auto">
             </div>
-            <div class="column">
-                <img class="demo cursor" src="~/image/party/p3.jpg" style="width:50%" onclick="currentSlide(3)" alt="Mihai's Baby shower">
+            <div class="carousel-item">
+                <img src="~/image/party/p 3.jpg" class="d-block w-50" alt="imagine 3" style="margin:0 auto">
             </div>
-            <div class="column">
-                <img class="demo cursor" src="~/image/party/p4.jpg" style="width:50%" onclick="currentSlide(4)" alt="Surprise birthday party">
+            <div class="carousel-item">
+                <img src="~/image/party/p 4.jpg" class="d-block w-50" alt="imagine 4" style="margin:0 auto">
             </div>
-            <div class="column">
-                <img class="demo cursor" src="~/image/party/p5.jpg" style="width:50%" onclick="currentSlide(5)" alt="Alex's birthday">
+            <div class="carousel-item">
+                <img src="~/image/party/p 5.jpg" class="d-block w-50" alt="imagine 5" style="margin:0 auto">
             </div>
-            <div class="column">
-                <img class="demo cursor" src="~/image/party/p6.jpg" style="width:50%" onclick="currentSlide(6)" alt="Welcome back to school party">
+            <div class="carousel-item">
+                <img src="~/image/party/p 6.jpg" class="d-block w-50" alt="imagine 6" style="margin:0 auto">
             </div>
+            <div class="carousel-item">
+                <img src="~/image/party/p 7.jpg" class="d-block w-50" alt="imagine 7" style="margin:0 auto">
+            </div>
+            <div class="carousel-item">
+                <img src="~/image/party/p 8.jpg" class="d-block w-50" alt="imagine 8" style="margin:0 auto">
+            </div>
+           
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
-
-    <script>
-        let slideIndex = 1;
-        showSlides(slideIndex);
-
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
-        }
-
-        function showSlides(n) {
-            let i;
-            let slides = document.getElementsByClassName("mySlides");
-            let dots = document.getElementsByClassName("demo");
-            let captionText = document.getElementById("caption");
-            if (n > slides.length) { slideIndex = 1 }
-            if (n < 1) { slideIndex = slides.length }
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
-            slides[slideIndex - 1].style.display = "block";
-            dots[slideIndex - 1].className += " active";
-            captionText.innerHTML = dots[slideIndex - 1].alt;
-        }
-    </script>
-
 </body>
 </html>

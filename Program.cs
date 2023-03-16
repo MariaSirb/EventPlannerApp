@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using EventPlannerApp.Data;
 using Microsoft.AspNetCore.Identity;
+using static NuGet.Packaging.PackagingConstants;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAuthorization(options =>
@@ -13,6 +15,7 @@ builder.Services.AddAuthorization(options =>
 // Add services to the container.
 builder.Services.AddRazorPages(options =>
 {
+    options.Conventions.AuthorizeFolder("/MyEvents");
     options.Conventions.AuthorizeFolder("/Clients", "AdminPolicy");
     options.Conventions.AuthorizeFolder("/MenuTypes");
     options.Conventions.AllowAnonymousToPage("/Eventypes/Delete");

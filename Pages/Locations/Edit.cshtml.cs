@@ -46,10 +46,25 @@ namespace EventPlannerApp.Pages.Locations
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+
+            byte[] bytes = null;
+            if (Location.LocationImageFile != null)
             {
-                return Page();
+                using (Stream fs = Location.LocationImageFile.OpenReadStream())
+                {
+                    using (BinaryReader br = new BinaryReader(fs))
+                    {
+                        bytes = br.ReadBytes((Int32)fs.Length);
+                    }
+
+                }
+                Location.LocationImage = Convert.ToBase64String(bytes, 0, bytes.Length);
+
             }
+            //if (!ModelState.IsValid)
+            //{
+            //    return Page();
+            //}
 
             _context.Attach(Location).State = EntityState.Modified;
 
