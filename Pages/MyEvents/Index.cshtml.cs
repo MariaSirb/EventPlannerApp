@@ -9,12 +9,17 @@ using EventPlannerApp.Data;
 using EventPlannerApp.Models;
 using EventPlannerApp.Models.Services;
 using System.Net;
+using Microsoft.AspNetCore.Identity;
+
 
 namespace EventPlannerApp.Pages.MyEvents
 {
     public class IndexModel : PageModel
     {
         private readonly EventPlannerApp.Data.EventPlannerAppContext _context;
+
+        // urm linie pentru client - aia sa apara evenimentele fiecarui client in parte si adminul sa le vada pe toate
+        private readonly string ADMIN_EMAIL = "admin@gmail.com";
 
         public IndexModel(EventPlannerApp.Data.EventPlannerAppContext context)
         {
@@ -40,6 +45,11 @@ namespace EventPlannerApp.Pages.MyEvents
             .Include(b=>b.Client)
             .AsNoTracking()
             .ToListAsync();
+
+            //urmatoarele 3 linii pentru client/admin - aia sa apara evenimentele fiecarui client in parte si adminul sa le vada pe toate
+            var userEmail = User.Identity.Name;
+            if (userEmail != ADMIN_EMAIL) 
+                MyEventD.MyEvents = MyEventD.MyEvents.Where(myEvent => myEvent.Client?.Email == userEmail);
 
             if (id != null)
             {

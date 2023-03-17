@@ -10,6 +10,7 @@ namespace EventPlannerApp.Models.Services
         MyEvent myevent)
         {
             var allMenues = context.Menu;
+            var x = context.MyEvent;
             var myeventMenues = new HashSet<int>(
             myevent.MyEventMenues.Select(c => c.MenuID)); 
             AssignedMenuDataList = new List<AssignedMenuData>();
@@ -23,6 +24,25 @@ namespace EventPlannerApp.Models.Services
                 });
             }
         }
+
+       // public void PopulateAssignedMenuData(EventPlannerAppContext context,
+       //string userID)
+       // {
+
+       //     var allMenues = context.Menu;
+       //     var x = context.MyEvent.Where(x => x.ClientID == userID);
+       //     myevent.MyEventMenues.Select(c => c.MenuID));
+       //     AssignedMenuDataList = new List<AssignedMenuData>();
+       //     foreach (var cat in allMenues)
+       //     {
+       //         AssignedMenuDataList.Add(new AssignedMenuData
+       //         {
+       //             MenuID = cat.ID,
+       //             Name = cat.ItemName,
+       //             Assigned = myeventMenues.Contains(cat.ID)
+       //         });
+       //     }
+       // }
         public void UpdateMyEventMenues(EventPlannerAppContext context,
         string[] selectedMenues, MyEvent myeventToUpdate)
         {
