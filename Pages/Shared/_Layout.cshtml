@@ -20,29 +20,25 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark @*bg-dark*@ px-0" style="background-color:darkgray">
+        <nav class="navbar navbar-expand-lg navbar-dark @*bg-dark*@ px-0" style="background-color:#a48f9b">
             <div class="container-fluid">
-                <a class="navbar-brand me-2" style="color:darkgoldenrod" asp-page="/Index"><img align="center" src="~/image/logo2.png" alt="sigla" class="sigla"/></a>
+                <a class="navbar-brand me-2" style="color:#644c5a" asp-page="/Index"><img align="center" src="~/image/logo.png" alt="sigla" class="sigla" /></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarColor02">
                     <ul class="navbar-nav me-auto">
 
-                        <li class="nav-item m-2" style="text-decoration:underline; color:darkgoldenrod">
-                            <a class="nav-link" style="color:darkgoldenrod" asp-area="" asp-page="/Party">Parties</a>
+                        <li class="nav-item m-2" style="text-decoration:underline; color:#644c5a">
+                            <a class="nav-link" style="color:#644c5a" asp-area="" asp-page="/About"> About us</a>
                         </li>
 
-                        <li class="nav-item m-2" style="text-decoration:underline; color:darkgoldenrod">
-                            <a class="nav-link" style="color:darkgoldenrod" asp-area="" asp-page="/CorporateEvent"> Corporate events</a>
-                        </li>
-
-                        <li class="nav-item m-2" style="text-decoration:underline; color:darkgoldenrod">
-                            <a class="nav-link" style="color:darkgoldenrod" asp-area="" asp-page="/Birthday"> 18th Birthday Parties</a>
+                        <li class="nav-item m-2" style="text-decoration:underline; color:#644c5a">
+                            <a class="nav-link" style="color:#644c5a" asp-area="" asp-page="/CorporateEvent"> Photos</a>
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle m-2" style="color:darkgoldenrod" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle m-2" style="color:#644c5a" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                 <i class="bi bi-balloon-heart-fill"></i>Services
                             </a>
                             <div class="dropdown-menu">
@@ -55,16 +51,26 @@
                         </li>
 
                         <li class="nav-item m-2">
-                            <a class="nav-link" style="color:darkgoldenrod" asp-area="" asp-page="/Contact"><i class="bi bi-person-lines-fill"></i>Contact us</a>
+                            <a class="nav-link" style="color:#644c5a" asp-area="" asp-page="/Contact"><i class="bi bi-person-lines-fill"></i>Contact us</a>
                         </li>
                         <li class="nav-item m-2">
-                            <a class="nav-link" style="color:darkgoldenrod" asp-area="" asp-page="/Calendar"><i class="bi bi-calendar-date-fill"></i>Calendar</a>
+                            <a class="nav-link" style="color:#644c5a" asp-area="" asp-page="/Calendar"><i class="bi bi-calendar-date-fill"></i>Calendar</a>
                         </li>
 
-                         <partial name="_LoginPartial"/> 
+                         @*<partial name="_LoginPartial"/> *@
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle m-2" style="color:darkgoldenrod" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle m-2" style="color:#644c5a" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="bi bi-people-fill"></i>
+                                Profil
+                            </a>
+                            <div class="dropdown-menu">
+                                <partial name="_LoginPartial" />
+                                <a class="dropdown-item" asp-area="" asp-page="/Profile"><i class="bi bi-person-lines-fill"></i>My profile</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle m-2" style="color:#644c5a" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                 <i class="bi bi-people-fill"></i>
                                 Administration
                             </a>
@@ -72,14 +78,13 @@
                                 <partial name="_LoginPartial" />
                                 <a class="dropdown-item" asp-area="" asp-page="/Clients/Index"><i class="bi bi-box-arrow-right"></i>Clients</a>
                                 <a class="dropdown-item" asp-area="" asp-page="/AdminPage"><i class="bi bi-r-square-fill"></i>Admin</a>
-                                <a class="dropdown-item" asp-area="" asp-page="/Profile"><i class="bi bi-person-lines-fill"></i>My profile</a>
                             </div>
                         </li>
                     </ul>
                     <form class="d-flex">
 
-                        <input class="form-control me-sm-2" style="color:darkgoldenrod; font-weight:600; background-color:black; border-color:darkgoldenrod" type="search" placeholder="Search">
-                        <button class="btn btn-secondary my-2 my-sm-0" style="color:black;background-color:darkgoldenrod; border-color:darkgoldenrod" asp-area="" asp-page="/MyEvents/Index">
+                        <input class="form-control me-sm-2" style="color:#644c5a; font-weight:600; background-color:black; border-color:#7d5f71" type="search" placeholder="Search">
+                        <button class="btn btn-secondary my-2 my-sm-0" style="color:black;background-color:#644c5a; border-color:#7d5f71" asp-area="" asp-page="/MyEvents/Index">
                             <i class="bi bi-pencil-fill"></i>Create your event
                         </button>
                     </form>
@@ -95,10 +100,10 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted" style="background-color: black /*#caced1*/; color: darkgoldenrod">
-        <div class="text-center" style="background-color: rgba(0, 0, 0, 0.2); color:darkgoldenrod; font-weight:600">
+    <footer class="border-top footer text-muted" style="background-color: #a48f9b; ">
+        <div class="text-center" style="background-color: #a48f9b; color:#644c5a; font-weight:600">
             Event Planner @DateTime.Now.Year -
-            <a class="text-decoration-underline" style="color:palegoldenrod" asp-area="" asp-page="/Index">  Sparkling event</a>
+            <a class="text-decoration-underline" style="color:#644c5a" asp-area="" asp-page="/Index">  Select Event</a>
         </div>
     </footer>
 
@@ -109,69 +114,4 @@
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
-
-
-@*<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - EventPlannerApp</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/EventPlannerApp.styles.css" asp-append-version="true" />
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Sparkling Event</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/EventTypes/Index">EventTypes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Locations/Index">Locations</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Musics/Index">Musics</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Photographs/Index">Photographs</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Menues/Index">Menues</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/MenuTypes/Index">Menu Types</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/MyEvents/Index">Create your event</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - EventPlannerApp - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
-    </footer>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-
-    @await RenderSectionAsync("Scripts", required: false)
-</body>*@
 </html>

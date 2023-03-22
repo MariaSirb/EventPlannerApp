@@ -4,7 +4,92 @@
     ViewData["Title"] = "Contact";
 }
 
-<div class="container">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact us page</title>
+
+    <!--Boxicon CSS CDN-->
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+    <!--stylesheet CSS-->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="wrapper___container">
+            <div class="container__col">
+                <div class="contact__title xs__screen">
+                    <h3>Get in Touch</h3>
+                    <p>How can we help you?</p>
+                </div>
+                <form action="" class="contact__form">
+                    <div class="contact__form__item">
+                        <label for="">Name</label>
+                        <input type="text" placeholder="Enter your name">
+                    </div>
+                    <div class="contact__form__item">
+                        <label for="">Email</label>
+                        <input type="email" name="" id="" placeholder="Enter your email">
+                    </div>
+                    <div class="contact__form__item">
+                        <label for="">Message</label>
+                        <textarea name="" id=""  rows="5" placeholder="Enter your message"></textarea>
+                    </div>
+                    <button class="contact__form__submit">Submit</button>
+                </form>
+            </div>
+            <div class="container__col">
+                <div class="contact__title xm__screen">
+                    <h3>Get in Touch</h3>
+                    <p>We are here to help you! How can we help?</p>
+                </div>
+
+                <div class="contact__info___list">
+                    <div class="contact__info__list__items">
+                        <i class='bx bxs-map'></i>
+                        <p><a href="https://www.google.com/maps/d/viewer?mid=1IebEObFn7OscaZR7duxSuNZCmyk&hl=en&ll=46.772216878081785%2C23.582302999999982&z=14">Cluj Napoca</a></p>
+                    </div>
+                    <div class="contact__info__list__items">
+                        <i class='bx bxs-phone-call'></i>
+                        <p><a href="tel:0756429081">0756429081</a></p>
+                    </div>
+                    <div class="contact__info__list__items">
+                        <i class='bx bxs-envelope-open' ></i>
+                        <p><a href="mailto:sirbmaria27@gmail.com">sirbmaria27@gmail.com</a></p>
+                    </div>
+                    <br />
+              <ul class="social-media-list">
+                    <li>
+                        <a  class="contact-icon">
+                            <i class="bi bi-facebook" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a  class="contact-icon">
+                             <i class="bi bi-twitter" aria-hidden="true"></i>
+                        </a>
+                        </li>                                    
+                    <li>
+                        <a class="contact-icon">
+                            <i class="bi bi-instagram" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+
+                </div>
+            </div>
+        </div>       
+    </div>
+   
+</body>
+</html>
+
+
+@*<div class="container">
 
     <div class="row">
         <div class="col-sm-6">
@@ -35,4 +120,4 @@
         </div>
 
     </div>
-</div>
+</div>*@

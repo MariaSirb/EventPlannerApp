@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace EventPlannerApp.Pages
 {
-    public class BirthdayModel : PageModel
+    public class AboutModel : PageModel
     {
-        private readonly ILogger<BirthdayModel> _logger;
+        private readonly ILogger<AboutModel> _logger;
 
-        public BirthdayModel(ILogger<BirthdayModel> logger)
+        public AboutModel(ILogger<AboutModel> logger)
         {
             _logger = logger;
         }

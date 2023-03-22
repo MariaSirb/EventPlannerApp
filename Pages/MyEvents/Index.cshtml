@@ -9,6 +9,8 @@
 
 <p>
     <a asp-page="Create">Create New</a>
+    Buton care sa filtreze alea pe care o dat fav ( join )
+   @* <a asp-page="">Show fav</a>*@
 </p>
 <table class="table">
     <thead>
@@ -87,6 +89,34 @@
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                
+                  @* <form method="post">
+                        @*<input type="hidden" asp-for="@item.ID" />
+                        <input type="hidden" asp-for="@item.ClientID" />
+                        <a asp-action="AddToFavourite">Add to fav</a>                        
+                    </form>*@   
+
+
+                    @*<form class="form" method="post">
+                        <input type="hidden" name="EventID" value="@item.ID" />
+                        <input type="hidden" name="IDClient" value="@item.ClientID" />
+                        <input type="submit" asp-page-handler="AddToFavourite" />
+                        
+                    </form>*@
+
+                    @*<form asp-action="AddToFavourite" method="post">
+                        <input type="hidden" name="EventID" value="@item.ID" />
+                        <input type="hidden" name="IDClient" value="@item.ClientID" />
+                    <button type="submit">Add</button>
+                    </form>*@
+
+@*                    <a asp-page-handler="AddToFavourite" asp-route-id="@item.ID" asp-route-ClientID="@item.ClientID" class="btn btn-primary" type="button" style="border-color: inherit">Add to fav</a>
+*@
+                    <form method="post">
+                        <input type="hidden" name="EventID" value="@item.ID" />
+                        <input type="hidden" name="ClientID" value="@item.ClientID" />
+                        <input type="submit" value="Add to favourite">
+                    </form>
             </td>
         </tr>
 }

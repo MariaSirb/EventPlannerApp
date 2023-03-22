@@ -40,6 +40,21 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
      .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<LibraryIdentityContext>();
 
+
+// Logare si cu contul de la google
+
+//var services = builder.Services;
+//var configuration = builder.Configuration;
+
+//services.AddAuthentication().AddGoogle(googleOptions =>
+//{
+//    googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
+//});
+
+
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

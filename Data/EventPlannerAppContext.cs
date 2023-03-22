@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using EventPlannerApp.Models.Services;
 using EventPlannerApp.Models;
+using EventPlannerApp.Models.Favourite;
 
 namespace EventPlannerApp.Data
 {
@@ -30,5 +31,13 @@ namespace EventPlannerApp.Data
         public DbSet<EventPlannerApp.Models.MyEvent> MyEvent { get; set; }
 
         public DbSet<EventPlannerApp.Models.Client> Client { get; set; }
+
+        public DbSet<EventPlannerApp.Models.Favourite.FavouriteClientEvent> FavouriteClientEvent{ get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<FavouriteClientEvent>()
+                .HasKey(c => new { c.ClientId, c.MyEventId });
+        }
     }
+
 }

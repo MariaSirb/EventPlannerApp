@@ -10,7 +10,7 @@ using EventPlannerApp.Models;
 using EventPlannerApp.Models.Services;
 using System.Net;
 using Microsoft.AspNetCore.Identity;
-
+using EventPlannerApp.Models.Favourite;
 
 namespace EventPlannerApp.Pages.MyEvents
 {
@@ -68,6 +68,26 @@ namespace EventPlannerApp.Pages.MyEvents
             //        .Include(b=>b.Photograph)
             //        .ToListAsync();
             //}
+        }
+
+
+        public IActionResult OnPost()
+        {
+            var EventID = Request.Form["EventID"];
+            var ClientID = Request.Form["ClientID"];
+
+            var FavEvent = new FavouriteClientEvent();
+            FavEvent.MyEventId = Int32.Parse(EventID);
+            FavEvent.ClientId = Int32.Parse(ClientID);
+
+            if (!_context.FavouriteClientEvent.Contains(FavEvent))
+            {
+                _context.FavouriteClientEvent.Add(FavEvent);
+                _context.SaveChanges();
+            }
+
+            return RedirectToPage("./Index");
+
         }
     }
 }

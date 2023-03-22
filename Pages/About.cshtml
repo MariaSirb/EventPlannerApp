@@ -1,0 +1,113 @@
+﻿@page
+@model EventPlannerApp.Pages.AboutModel
+@{
+    ViewData["Title"] = "About page";
+}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.column {
+  float: left;
+  width: 33.3%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 8px;
+  
+}
+
+.about-section {
+  padding: 50px;
+  text-align: center;
+  background-color:none;
+  color: lightgray;
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+/*
+.title {
+  color: #4f3734;
+}*/
+
+</style>
+</head>
+
+    <body>
+<div class="about-section">
+
+  <h1>About Us </h1>
+        <p>Do you have an important event in your company and you don't know where to start with the organization? Well, we are here to help you!</p>
+        <p>We have over 5 years of experience in the field and we organize personalized events for different companies up to the smallest detail so much of an exceptional team, having over time thousands of customers satisfied with our services.</p>
+        <p>You can find us both in Cluj Napoca and in Zalau with a lot of surprises!</p>
+</div>
+
+    <h2 style="text-align:center; color:#4f3734">Some members of our amazing team</h2>
+<br />
+<div class="row">
+  <div class="column">
+    <div class="card">
+                <img src="~/image/aboutpage/member1.jpg" alt="Jane" style="width:100%">
+        <div class="container" style="color:lightgray; background-color:#7d5f71">
+        <h2>Jane Smith</h2>
+        <p class="title">CEO</p>
+        <p>Hardworking, Jane supervises the entire team and communicates with you constantly to give you an event exactly as you wanted</p>
+        <p>janesmith@example.com</p>
+        <br />
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <img src="~/image/aboutpage/member2.jpg" alt="Sara" style="width:100%">
+        <div class="container" style="color:lightgray; background-color:#7d5f71">
+        <h2>Sara Ross</h2>
+        <p class="title">Art Planner</p>
+        <p>Well organized and with a well-established schedule, Sara makes sure that all the moments of your event are done exactly as you want on time</p>
+        <p>rossSara@example.com</p>
+        <br />
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+        <img src="~/image/aboutpage/member3.jpg" alt="John" style="width:100%">
+        <div class="container" style="color:lightgray; background-color:#7d5f71">
+        <h2>John Doller</h2>
+        <p class="title">Media and Designer</p>
+        <p>John is an example of pure creativity. He comes up with the best ideas and suggestions and takes care to customize everything for you exactly as you want</p>
+        <p>johnDoller@example.com</p>
+        <br />
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

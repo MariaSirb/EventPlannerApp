@@ -4,6 +4,7 @@ using EventPlannerApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventPlannerApp.Migrations
 {
     [DbContext(typeof(EventPlannerAppContext))]
-    partial class EventPlannerAppContextModelSnapshot : ModelSnapshot
+    [Migration("20230322133213_FavouriteClientEvent1")]
+    partial class FavouriteClientEvent1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,21 +51,6 @@ namespace EventPlannerApp.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Client");
-                });
-
-            modelBuilder.Entity("EventPlannerApp.Models.Favourite.FavouriteClientEvent", b =>
-                {
-                    b.Property<int>("ClientId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MyEventId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ClientId", "MyEventId");
-
-                    b.HasIndex("MyEventId");
-
-                    b.ToTable("FavouriteClientEvent");
                 });
 
             modelBuilder.Entity("EventPlannerApp.Models.MyEvent", b =>
@@ -277,25 +264,6 @@ namespace EventPlannerApp.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Photograph");
-                });
-
-            modelBuilder.Entity("EventPlannerApp.Models.Favourite.FavouriteClientEvent", b =>
-                {
-                    b.HasOne("EventPlannerApp.Models.Client", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EventPlannerApp.Models.MyEvent", "MyEvent")
-                        .WithMany()
-                        .HasForeignKey("MyEventId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Client");
-
-                    b.Navigation("MyEvent");
                 });
 
             modelBuilder.Entity("EventPlannerApp.Models.MyEvent", b =>
