@@ -32,8 +32,7 @@ namespace EventPlannerApp.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
-        private readonly EventPlannerApp.Data.EventPlannerAppContext
-_context;
+        private readonly EventPlannerApp.Data.EventPlannerAppContext _context;
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
