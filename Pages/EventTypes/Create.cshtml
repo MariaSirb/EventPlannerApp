@@ -4,31 +4,51 @@
 @{
     ViewData["Title"] = "Create";
 }
+<style>
+   /* .btn-primary {
+    color: #3e2f38;
+    background-color: #a48f9b;
+    border-color: #d8cfd4;
+    }
+*/
+   
 
-<h1>Create</h1>
+</style>
 
-<h4>EventType</h4>
+<h1>Create a new event type</h1>
+
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="row" >
+    <div class="col-md-4" >
+        <form method="post" >
+            <div asp-validation-summary="ModelOnly" class="text-danger" ></div>
             <div class="form-group">
-                <label asp-for="EventType.EventTypeName" class="control-label"></label>
+                <label asp-for="EventType.EventTypeName" class="control-label" ></label>
                 <input asp-for="EventType.EventTypeName" class="form-control" />
                 <span asp-validation-for="EventType.EventTypeName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label asp-for="EventType.EventDescription" class="control-label"></label>
+                <input asp-for="EventType.EventDescription" class="form-control" />
+                <span asp-validation-for="EventType.EventDescription" class="text-danger"></span>
+            </div>
+            <hr />
+            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" style="background-color:#a48f9b; border-color:#d8cfd4" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to the list</a>
 </div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+
+          

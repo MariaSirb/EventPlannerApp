@@ -29,10 +29,15 @@ body {
 @charset "utf-8";
 /* CSS Document */
 
-
+/* a e pentru create new*/
 a {
     text-decoration: none;
+    color: #3e2f38;
+    font-weight:bolder;
 }
+    a:hover {
+        color: #a48f9b;
+    }
 
 .social a {
     padding: 20px;
