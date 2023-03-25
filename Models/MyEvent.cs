@@ -2,6 +2,7 @@
 using EventPlannerApp.Models.Services;
 using MessagePack;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EventPlannerApp.Models
 {
@@ -44,5 +45,10 @@ namespace EventPlannerApp.Models
 
         public int? ClientID { get; set; }
         public Client? Client { get; set; }
+
+        //[NotMapped]
+        //public bool AddedToFav { get; set; }
+
+
     }
 }

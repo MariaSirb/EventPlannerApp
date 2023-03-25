@@ -31,20 +31,35 @@ namespace EventPlannerApp.Pages.MyEvents
         public int MyEventID { get; set; }
         public int MenuID { get; set; }
 
-        public async Task OnGetAsync(int? id, int? myeventID)
+        public async Task OnGetAsync(int? id, int? myeventID, bool? showFavourite)
         {
             MyEventD = new MyEventData();
 
-            MyEventD.MyEvents = await _context.MyEvent
-            .Include(b => b.EventType)
-            .Include(b=>b.Location)
-            .Include(b=>b.Music)
-            .Include(b=>b.Photograph)
+           
+            var events = _context.MyEvent
+                  .Include(b => b.EventType)
+            .Include(b => b.Location)
+            .Include(b => b.Music)
+            .Include(b => b.Photograph)
             .Include(b => b.MyEventMenues)
             .ThenInclude(b => b.Menu)
-            .Include(b=>b.Client)
-            .AsNoTracking()
-            .ToListAsync();
+            .Include(b => b.Client)
+            .AsNoTracking();
+
+
+            if (showFavourite != null && showFavourite == true)
+            {
+                events = events.Join(_context.FavouriteClientEvent, e => e.ID,
+                f => f.MyEventId, (firstentity, secondentity) => new
+                {
+                    MyEvent = firstentity,
+                    FavouriteClientEvent = secondentity
+                }).Select(entity => entity.MyEvent);
+            }
+
+          
+            MyEventD.MyEvents = await events.ToListAsync();
+
 
             //urmatoarele 3 linii pentru client/admin - aia sa apara evenimentele fiecarui client in parte si adminul sa le vada pe toate
             var userEmail = User.Identity.Name;
