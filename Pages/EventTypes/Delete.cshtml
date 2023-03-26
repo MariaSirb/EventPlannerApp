@@ -5,12 +5,16 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete an event type</h1>
+<h1>Delete this event type</h1>
 
-<h3>Are you sure you want to delete this?</h3>
 <div>
     
     <hr />
+    <div>
+
+        <a asp-page="Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to the list</a>
+    </div>
+    <br />
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.EventType.EventTypeName)
@@ -26,9 +30,11 @@
         </dd>
     </dl>
     <hr />
+    <h3>Are you sure you want to delete this?</h3>
+
     <form method="post">
         <input type="hidden" asp-for="EventType.ID" />
-        <input type="submit" value="Delete" class="btn btn-danger" style="background-color:#a48f9b; border-color:#d8cfd4" /> |
-        <a asp-page="./Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to List</a>
-    </form>
+        <input type="submit" value="Delete" class="btn btn-danger" style=" width:150px; margin:20px auto 0; border-radius:30px" /> 
+@*        <a asp-page="./Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to List</a>
+*@    </form>
 </div>

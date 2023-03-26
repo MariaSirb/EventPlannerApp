@@ -20,7 +20,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark @*bg-dark*@ px-0" style="background-color:#a48f9b">
+        <nav class="navbar navbar-expand-lg navbar-dark @*bg-dark*@ px-0" style="background-color:#a48f9b;">
             <div class="container-fluid">
                 <a class="navbar-brand me-2" style="color:#644c5a" asp-page="/Index"><img align="center" src="~/image/logo.png" alt="sigla" class="sigla" /></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,9 +82,9 @@
                         </li>
                     </ul>
                     <form class="d-flex">
-
-                        <input class="form-control me-sm-2" style="color:#644c5a; font-weight:600; background-color:black; border-color:#7d5f71" type="search" placeholder="Search">
-                        <button class="btn btn-secondary my-2 my-sm-0" style="color:black;background-color:#644c5a; border-color:#7d5f71" asp-area="" asp-page="/MyEvents/Index">
+                       
+                     <input class="form-control me-sm-2" style="color:#644c5a; font-weight:600; background-color:black; border-color:#7d5f71" type="search"  placeholder="Search">
+                     <button class="btn btn-secondary my-2 my-sm-0" style="color:black;background-color:#644c5a; border-color:#7d5f71" asp-area="" asp-page="/MyEvents/Index">
                             <i class="bi bi-pencil-fill"></i>Create your event
                         </button>
                     </form>
@@ -115,3 +115,5 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+        

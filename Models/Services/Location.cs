@@ -16,9 +16,9 @@ namespace EventPlannerApp.Models.Services
         public string LocationName { get; set; }
         [Display(Name = "Location Adress")]
         public string Adress { get; set; }
-        [Display(Name = "Maximum Capacitz")]
+        [Display(Name = "Maximum Capacity")]
         public int MaximumCapacity { get; set; }
-        [Display(Name = "Location Price")]
+        [Display(Name = "Location Price/event")]
         public decimal LocationPrice { get; set; }
 
         public ICollection<MyEvent>? MyEvents { get; set; }

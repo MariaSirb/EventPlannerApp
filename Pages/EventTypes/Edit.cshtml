@@ -5,9 +5,14 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1>Edit this event type</h1>
 
 <hr />
+<div>
+
+    <a asp-page="Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to the list</a>
+</div>
+<br />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
@@ -25,15 +30,15 @@
             </div>
             <hr />
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" style="background-color:#a48f9b; border-color:#d8cfd4" />
+                <input type="submit" value="Save" class="btn btn-primary" style="background-color:#a48f9b; border-color:#d8cfd4; width:150px; margin:20px auto 0; border-radius:30px" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
+@*<div>
     <a asp-page="./Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to List</a>
-</div>
+</div>*@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

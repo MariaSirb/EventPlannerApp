@@ -10,6 +10,11 @@
 <div>
     
     <hr />
+    <div>
+
+        <a asp-page="Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to the list</a>
+    </div>
+    <br />
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.EventType.EventTypeName)
@@ -27,6 +32,6 @@
     <hr />
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.EventType?.ID">Edit</a> |
-    <a asp-page="./Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to List</a>
-</div>
+    <a asp-page="./Edit" asp-route-id="@Model.EventType?.ID">Edit</a> 
+@*    <a asp-page="./Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to List</a>
+*@</div>

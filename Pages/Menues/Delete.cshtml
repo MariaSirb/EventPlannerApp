@@ -5,12 +5,15 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete</h1>
+<h1>Delete an item</h1>
 
-<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Menu</h4>
+    
     <hr />
+    <div>
+        <a asp-page="./Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to List</a>
+    </div>
+    <br />
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Menu.ItemName)
@@ -37,10 +40,12 @@
             @Html.DisplayFor(model => model.Menu.MenuType.TypeName)
         </dd>
     </dl>
-    
+    <hr />
+    <h3>Are you sure you want to delete item from the menu?</h3>
+
     <form method="post">
         <input type="hidden" asp-for="Menu.ID" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="./Index">Back to List</a>
-    </form>
+        <input type="submit" value="Delete" class="btn btn-danger" style=" width:150px; margin:20px auto 0; border-radius:30px" /> |
+@*        <a asp-page="./Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to List</a>
+*@    </form>
 </div>

@@ -5,11 +5,14 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Details about this event</h1>
 
 <div>
-    <h4>MyEvent</h4>
     <hr />
+    <div>
+        <a asp-page="./Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to List</a>
+    </div>
+    <br />
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.MyEvent.StartDate)
@@ -66,8 +69,9 @@
             @Html.DisplayFor(model => model.MyEvent.Client.FullName)
         </dd>
     </dl>
+    <hr />
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.MyEvent?.ID">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
-</div>
+    <a asp-page="./Edit" asp-route-id="@Model.MyEvent?.ID">Edit</a> | |
+@*    <a asp-page="./Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to List</a>
+*@</div>
