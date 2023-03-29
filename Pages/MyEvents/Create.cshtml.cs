@@ -63,10 +63,12 @@ namespace EventPlannerApp.Pages.MyEvents
                     newMyEvent.MyEventMenues.Add(catToAdd);
                 }
             }
-            //if (newMyEvent.EndDate < newMyEvent.StartDate)
-            //{
-            //    return RedirectToPage("./Index");
-            //}
+
+            // Restrictie 1 la Data
+            if (MyEvent.EndDate < MyEvent.StartDate)
+            {
+              return RedirectToPage("./Create");
+            }
             MyEvent.MyEventMenues = newMyEvent.MyEventMenues;
             _context.MyEvent.Add(MyEvent);
             await _context.SaveChangesAsync();
