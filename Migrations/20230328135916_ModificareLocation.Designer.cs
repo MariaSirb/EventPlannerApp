@@ -4,6 +4,7 @@ using EventPlannerApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventPlannerApp.Migrations
 {
     [DbContext(typeof(EventPlannerAppContext))]
-    partial class EventPlannerAppContextModelSnapshot : ModelSnapshot
+    [Migration("20230328135916_ModificareLocation")]
+    partial class ModificareLocation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -377,7 +379,7 @@ namespace EventPlannerApp.Migrations
             modelBuilder.Entity("EventPlannerApp.Models.Services.Location", b =>
                 {
                     b.HasOne("EventPlannerApp.Models.Client", "Client")
-                        .WithMany("Locations")
+                        .WithMany()
                         .HasForeignKey("ClientID");
 
                     b.Navigation("Client");
@@ -413,8 +415,6 @@ namespace EventPlannerApp.Migrations
 
             modelBuilder.Entity("EventPlannerApp.Models.Client", b =>
                 {
-                    b.Navigation("Locations");
-
                     b.Navigation("MyEvents");
                 });
 

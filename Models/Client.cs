@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using EventPlannerApp.Models.Services;
+using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
 namespace EventPlannerApp.Models
@@ -21,5 +22,6 @@ namespace EventPlannerApp.Models
         }
 
         public ICollection<MyEvent>? MyEvents { get; set; }
+
     }
 }

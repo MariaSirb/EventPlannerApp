@@ -131,6 +131,8 @@
 
 @*                    <a asp-page-handler="AddToFavourite" asp-route-id="@item.ID" asp-route-ClientID="@item.ClientID" class="btn btn-primary" type="button" style="border-color: inherit">Add to fav</a>
 *@
+
+@*Aici facem butonul pentru Add to favourite!*@
                     <form method="post">
                         <input type="hidden" name="EventID" value="@item.ID" />
                         <input type="hidden" name="ClientID" value="@item.ClientID" />

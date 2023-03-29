@@ -4,6 +4,7 @@ using EventPlannerApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventPlannerApp.Migrations
 {
     [DbContext(typeof(EventPlannerAppContext))]
-    partial class EventPlannerAppContextModelSnapshot : ModelSnapshot
+    [Migration("20230328133206_FavouriteLocation")]
+    partial class FavouriteLocation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -162,9 +164,6 @@ namespace EventPlannerApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ClientID")
-                        .HasColumnType("int");
-
                     b.Property<string>("LocationImage")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -180,8 +179,6 @@ namespace EventPlannerApp.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("ClientID");
 
                     b.ToTable("Location");
                 });
@@ -374,15 +371,6 @@ namespace EventPlannerApp.Migrations
                     b.Navigation("Photograph");
                 });
 
-            modelBuilder.Entity("EventPlannerApp.Models.Services.Location", b =>
-                {
-                    b.HasOne("EventPlannerApp.Models.Client", "Client")
-                        .WithMany("Locations")
-                        .HasForeignKey("ClientID");
-
-                    b.Navigation("Client");
-                });
-
             modelBuilder.Entity("EventPlannerApp.Models.Services.Menu", b =>
                 {
                     b.HasOne("EventPlannerApp.Models.Services.MenuType", "MenuType")
@@ -413,8 +401,6 @@ namespace EventPlannerApp.Migrations
 
             modelBuilder.Entity("EventPlannerApp.Models.Client", b =>
                 {
-                    b.Navigation("Locations");
-
                     b.Navigation("MyEvents");
                 });
 

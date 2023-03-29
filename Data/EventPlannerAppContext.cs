@@ -33,11 +33,18 @@ namespace EventPlannerApp.Data
         public DbSet<EventPlannerApp.Models.Client> Client { get; set; }
 
         public DbSet<EventPlannerApp.Models.Favourite.FavouriteClientEvent> FavouriteClientEvent{ get; set; }
+        public DbSet<EventPlannerApp.Models.Favourite.FavouriteClientLocation> FavouriteClientLocation { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<FavouriteClientEvent>()
                 .HasKey(c => new { c.ClientId, c.MyEventId });
+
+            modelBuilder.Entity<FavouriteClientLocation>()
+                .HasKey(c => new { c.ClientId, c.LocationId });
         }
+
+        
     }
 
 }
