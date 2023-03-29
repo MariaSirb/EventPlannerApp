@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using EventPlannerApp.Data;
+using EventPlannerApp.Models;
 namespace EventPlannerApp.Models.Services
 {
     public class MyEventMenuesPageModel : PageModel

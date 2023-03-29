@@ -69,6 +69,7 @@ namespace EventPlannerApp.Pages.MyEvents
             {
               return RedirectToPage("./Create");
             }
+
             MyEvent.MyEventMenues = newMyEvent.MyEventMenues;
             _context.MyEvent.Add(MyEvent);
             await _context.SaveChangesAsync();

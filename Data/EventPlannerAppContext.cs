@@ -34,6 +34,8 @@ namespace EventPlannerApp.Data
 
         public DbSet<EventPlannerApp.Models.Favourite.FavouriteClientEvent> FavouriteClientEvent{ get; set; }
         public DbSet<EventPlannerApp.Models.Favourite.FavouriteClientLocation> FavouriteClientLocation { get; set; }
+        public DbSet<EventPlannerApp.Models.Favourite.FavouriteClientMusic> FavouriteClientMusic { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -42,9 +44,11 @@ namespace EventPlannerApp.Data
 
             modelBuilder.Entity<FavouriteClientLocation>()
                 .HasKey(c => new { c.ClientId, c.LocationId });
-        }
 
-        
+            modelBuilder.Entity<FavouriteClientMusic>()
+               .HasKey(c => new { c.ClientId, c.MusicId });
+        }
+       
     }
 
 }

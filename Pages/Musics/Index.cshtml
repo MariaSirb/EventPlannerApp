@@ -24,7 +24,10 @@
 <h1>Music</h1>
 
 <p>
-    <a asp-page="Create">Add a new Dj</a>
+    <a asp-page="Create">Add a new Dj</a> | |
+    <a asp-page="Index" asp-route-showFavourite="@true">Show favourite</a> | |
+    <a asp-page="./Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to List</a>
+
 </p>
 <table class="table">
     <thead>
@@ -57,9 +60,16 @@
                     <a asp-page="./Edit" asp-route-id="@item.ID"><i class="bi bi-pencil-square fa-7x icon-yellow"></i></a> |
                     <a asp-page="./Details" asp-route-id="@item.ID"><i class="bi bi-clipboard-check-fill icon-green fa-10x"></i></a> |
                     <a asp-page="./Delete" asp-route-id="@item.ID"><i class="bi bi-trash icon-red fa-10x"></i></a> |
-                    <a asp-page="./Favourite" asp-route-id="@item.ID"><i class="bi bi-bookmark-heart-fill icon-pink fa-10x"></i></a>
 
-            </td>
+                        <form method="post" >
+                            <input type="hidden" name="MusicID" value="@item.ID" />
+                            @*<input type="hidden" name="ClientID" value="@item.ClientID" />*@
+                            <input type="submit" value="Add to favourite" class="btn btn-primary" style="background-color:#a48f9b; border-color:#d8cfd4; width:150px; margin:20px auto 0; border-radius:30px">
+                        </form>
+                    
+                
+                
+                </td>
         </tr>
 }
     </tbody>
