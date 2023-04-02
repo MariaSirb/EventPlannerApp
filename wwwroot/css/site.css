@@ -195,5 +195,20 @@ a {
         text-align: center;
     }
 }
+/*Pentru butoanele de label CRUD
+*/
+.icon-yellow {
+    color: yellow;
+}
 
+.icon-green {
+    color: #8A9A5B;
+}
 
+.icon-red {
+    color: red;
+}
+
+.icon-pink {
+    color: lightpink;
+}

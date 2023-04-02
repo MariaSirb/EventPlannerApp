@@ -35,7 +35,8 @@ namespace EventPlannerApp.Data
         public DbSet<EventPlannerApp.Models.Favourite.FavouriteClientEvent> FavouriteClientEvent{ get; set; }
         public DbSet<EventPlannerApp.Models.Favourite.FavouriteClientLocation> FavouriteClientLocation { get; set; }
         public DbSet<EventPlannerApp.Models.Favourite.FavouriteClientMusic> FavouriteClientMusic { get; set; }
-
+        public DbSet<EventPlannerApp.Models.Favourite.FavouriteClientPhotograph> FavouriteClientPhotograph { get; set; }
+        public DbSet<EventPlannerApp.Models.Favourite.FavouriteClientMenu> FavouriteClientMenu { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -47,6 +48,12 @@ namespace EventPlannerApp.Data
 
             modelBuilder.Entity<FavouriteClientMusic>()
                .HasKey(c => new { c.ClientId, c.MusicId });
+
+            modelBuilder.Entity<FavouriteClientPhotograph>()
+              .HasKey(c => new { c.ClientId, c.PhotographId });
+
+            modelBuilder.Entity<FavouriteClientMenu>()
+             .HasKey(c => new { c.ClientId, c.MenuId });
         }
        
     }

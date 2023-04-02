@@ -4,30 +4,22 @@
 @{
     ViewData["Title"] = "Index";
 }
-<style>
-    .icon-yellow {
-        color: yellow;
-    }
-
-    .icon-green {
-        color: #8A9A5B;
-    }
-
-    .icon-red {
-        color: red;
-    }
-
-    .icon-pink {
-        color: lightpink;
-    }
-</style>
 <h1>Music</h1>
 
 <p>
-    <a asp-page="Create">Add a new Dj</a> | |
+    @*<a asp-page="Create">Add a new Dj</a> | |
     <a asp-page="Index" asp-route-showFavourite="@true">Show favourite</a> | |
     <a asp-page="./Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to List</a>
-
+*@
+<button type="button" class="btn btn-outline-dark">
+        <a class= asp-area ="" asp-page="Create">Add a Dj</a> 
+    </button> | | 
+    <button type="button" class="btn btn-outline-dark">
+        <a class= asp-area="" asp-page="Index" asp-route-showFavourite="@true">Show favourites</a>
+    </button> | |
+    <button type="button" class="btn btn-outline-dark">
+        <a class= asp-area ="" asp-page="./Index">Back to List</a> 
+    </button>
 </p>
 <table class="table">
     <thead>

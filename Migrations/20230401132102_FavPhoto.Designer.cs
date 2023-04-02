@@ -4,6 +4,7 @@ using EventPlannerApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventPlannerApp.Migrations
 {
     [DbContext(typeof(EventPlannerAppContext))]
-    partial class EventPlannerAppContextModelSnapshot : ModelSnapshot
+    [Migration("20230401132102_FavPhoto")]
+    partial class FavPhoto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -79,21 +81,6 @@ namespace EventPlannerApp.Migrations
                     b.HasIndex("LocationId");
 
                     b.ToTable("FavouriteClientLocation");
-                });
-
-            modelBuilder.Entity("EventPlannerApp.Models.Favourite.FavouriteClientMenu", b =>
-                {
-                    b.Property<int>("ClientId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MenuId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ClientId", "MenuId");
-
-                    b.HasIndex("MenuId");
-
-                    b.ToTable("FavouriteClientMenu");
                 });
 
             modelBuilder.Entity("EventPlannerApp.Models.Favourite.FavouriteClientMusic", b =>
@@ -379,25 +366,6 @@ namespace EventPlannerApp.Migrations
                     b.Navigation("Client");
 
                     b.Navigation("Location");
-                });
-
-            modelBuilder.Entity("EventPlannerApp.Models.Favourite.FavouriteClientMenu", b =>
-                {
-                    b.HasOne("EventPlannerApp.Models.Client", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EventPlannerApp.Models.Services.Menu", "Menu")
-                        .WithMany()
-                        .HasForeignKey("MenuId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Client");
-
-                    b.Navigation("Menu");
                 });
 
             modelBuilder.Entity("EventPlannerApp.Models.Favourite.FavouriteClientMusic", b =>

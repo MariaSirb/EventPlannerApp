@@ -4,30 +4,23 @@
 @{
     ViewData["Title"] = "Index";
 }
-<style>
-    .icon-yellow {
-        color: yellow;
-    }
 
-    .icon-green {
-        color: #8A9A5B;
-    }
-
-    .icon-red {
-        color: red;
-    }
-
-    .icon-pink {
-        color: lightpink;
-    }
-</style>
 <h1>My events</h1>
 
 <p>
-    <a asp-page="Create">Add a new event</a> | |
+   @* <a asp-page="Create">Add a new event</a> | |
     <a asp-page="Index" asp-route-showFavourite="@true">Show favourite</a> | |
     <a asp-page="./Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to List</a>
-
+*@
+    <button type="button" class="btn btn-outline-dark">
+        <a class= asp-area ="" asp-page="Create">Add a new Event</a>
+    </button> | |
+    <button type="button" class="btn btn-outline-dark">
+        <a class= asp-area ="" asp-page="Index" asp-route-showFavourite="@true">Show favourites</a>
+    </button> | |
+    <button type="button" class="btn btn-outline-dark">
+        <a class= asp-area ="" asp-page="./Index">Back to List</a>
+    </button>
 
 </p>
 <table class="table">
@@ -108,31 +101,7 @@
                 <a asp-page="./Details" asp-route-id="@item.ID"><i class="bi bi-clipboard-check-fill icon-green fa-10x"></i></a> |
                 <a asp-page="./Delete" asp-route-id="@item.ID"><i class="bi bi-trash icon-red fa-10x"></i></a> |
                 
-                
-                  @* <form method="post">
-                        @*<input type="hidden" asp-for="@item.ID" />
-                        <input type="hidden" asp-for="@item.ClientID" />
-                        <a asp-action="AddToFavourite">Add to fav</a>                        
-                    </form>*@   
-
-
-                    @*<form class="form" method="post">
-                        <input type="hidden" name="EventID" value="@item.ID" />
-                        <input type="hidden" name="IDClient" value="@item.ClientID" />
-                        <input type="submit" asp-page-handler="AddToFavourite" />
-                        
-                    </form>*@
-
-                    @*<form asp-action="AddToFavourite" method="post">
-                        <input type="hidden" name="EventID" value="@item.ID" />
-                        <input type="hidden" name="IDClient" value="@item.ClientID" />
-                    <button type="submit">Add</button>
-                    </form>*@
-
-@*                    <a asp-page-handler="AddToFavourite" asp-route-id="@item.ID" asp-route-ClientID="@item.ClientID" class="btn btn-primary" type="button" style="border-color: inherit">Add to fav</a>
-*@
-
-@*Aici facem butonul pentru Add to favourite!*@
+            
                     <form method="post">
                         <input type="hidden" name="EventID" value="@item.ID" />
                         <input type="hidden" name="ClientID" value="@item.ClientID" />

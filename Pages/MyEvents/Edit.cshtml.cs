@@ -88,7 +88,12 @@ namespace EventPlannerApp.Pages.MyEvents
                 await _context.SaveChangesAsync();
                 return RedirectToPage("./Index");
             }
-            //Apelam UpdateBookCategories pentru a aplica informatiile din checkboxuri la entitatea Books care
+
+            //if (MyEvent.EndDate < MyEvent.StartDate)
+            //{
+            //    return RedirectToPage("./Edit");
+            //}
+            //Apelam UpdateMyEventMenues pentru a aplica informatiile din checkboxuri la entitatea MyEvents care
             //este editata
             UpdateMyEventMenues(_context, selectedMenues, myeventToUpdate);
             PopulateAssignedMenuData(_context, myeventToUpdate);
