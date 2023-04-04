@@ -2,9 +2,21 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using EventPlannerApp.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Google;
+using System.Configuration;
 using static NuGet.Packaging.PackagingConstants;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// pt conectarea cu google
+var services = builder.Services;
+var configuration = builder.Configuration;
+
+services.AddAuthentication().AddGoogle(googleOptions =>
+{
+    googleOptions.ClientId = configuration["Google:ClientId"];
+    googleOptions.ClientSecret = configuration["Google:ClientSecret"];
+});
 
 builder.Services.AddAuthorization(options =>
 {
@@ -39,19 +51,6 @@ builder.Services.AddDbContext<LibraryIdentityContext>(options =>
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
      .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<LibraryIdentityContext>();
-
-
-// Logare si cu contul de la google
-
-//var services = builder.Services;
-//var configuration = builder.Configuration;
-
-//services.AddAuthentication().AddGoogle(googleOptions =>
-//{
-//    googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
-//});
-
-
 
 
 

@@ -44,7 +44,7 @@ namespace EventPlannerApp.Pages.MyEvents
             {
                 return NotFound();
             }
-            PopulateAssignedMenuData(_context, MyEvent);
+            PopulateAssignedMenuData(_context, myevent);
             MyEvent = myevent;
 
             ViewData["EventTypeID"] = new SelectList(_context.Set<EventType>(), "ID", "EventTypeName");

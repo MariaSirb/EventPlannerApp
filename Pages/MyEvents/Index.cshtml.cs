@@ -26,7 +26,7 @@ namespace EventPlannerApp.Pages.MyEvents
             _context = context;
         }
 
-        public IList<MyEvent> MyEvent { get;set; } = default!;
+        public IList<MyEvent> MyEvent { get; set; } = default!;
         public MyEventData MyEventD { get; set; }
         public int MyEventID { get; set; }
         public int MenuID { get; set; }
@@ -35,7 +35,6 @@ namespace EventPlannerApp.Pages.MyEvents
         {
             MyEventD = new MyEventData();
 
-           
             var events = _context.MyEvent
                   .Include(b => b.EventType)
             .Include(b => b.Location)
@@ -45,7 +44,6 @@ namespace EventPlannerApp.Pages.MyEvents
             .ThenInclude(b => b.Menu)
             .Include(b => b.Client)
             .AsNoTracking();
-
 
             if (showFavourite != null && showFavourite == true)
             {
@@ -57,13 +55,28 @@ namespace EventPlannerApp.Pages.MyEvents
                 }).Select(entity => entity.MyEvent);
             }
 
-          
             MyEventD.MyEvents = await events.ToListAsync();
+
+            var userEmail = User.Identity.Name;
+            var logedinClientId = _context.Client.Where(c => c.Email == userEmail).Select(c => c.ID).FirstOrDefault();
+
+            //Verifcam in db Care din event sunt salvate in tabela de fav ( le aduce pe toate in fav event)
+            var favEvents = _context.FavouriteClientEvent.Where(x => x.ClientId == logedinClientId).ToList();
+
+            for (int i = 0; i < MyEventD.MyEvents.Count(); i++)
+            {
+                var currentEvent = MyEventD.MyEvents.ElementAt(i);
+
+                //Aici verifica...Pt event urile din Db se seteaza valoarea pt Addedtofav ca sa seteze Add/Remove to fav
+                currentEvent.AddedToFav = favEvents.Where(x => x.ClientId == logedinClientId &&
+                   x.MyEventId == currentEvent.ID
+                ).FirstOrDefault() != null;
+            }
 
 
             //urmatoarele 3 linii pentru client/admin - aia sa apara evenimentele fiecarui client in parte si adminul sa le vada pe toate
-            var userEmail = User.Identity.Name;
-            if (userEmail != ADMIN_EMAIL) 
+
+            if (userEmail != ADMIN_EMAIL)
                 MyEventD.MyEvents = MyEventD.MyEvents.Where(myEvent => myEvent.Client?.Email == userEmail);
 
             if (id != null)
@@ -74,15 +87,6 @@ namespace EventPlannerApp.Pages.MyEvents
                 MyEventD.Menues = myevent.MyEventMenues.Select(s => s.Menu);
             }
 
-            //if (_context.MyEvent != null)
-            //{
-            //    MyEvent = await _context.MyEvent
-            //        .Include(b=>b.EventType)
-            //        .Include(b=>b.Location)
-            //        .Include(b=>b.Music)
-            //        .Include(b=>b.Photograph)
-            //        .ToListAsync();
-            //}
         }
 
 
@@ -90,16 +94,24 @@ namespace EventPlannerApp.Pages.MyEvents
         {
             var EventID = Request.Form["EventID"];
             var ClientID = Request.Form["ClientID"];
+            var IsAddedtoFav = Request.Form["IsAddedtoFav"];
+
 
             var FavEvent = new FavouriteClientEvent();
             FavEvent.MyEventId = Int32.Parse(EventID);
             FavEvent.ClientId = Int32.Parse(ClientID);
 
-            if (!_context.FavouriteClientEvent.Contains(FavEvent))
+            if (!bool.Parse(IsAddedtoFav))
             {
                 _context.FavouriteClientEvent.Add(FavEvent);
-                _context.SaveChanges();
             }
+            else
+            {
+                _context.FavouriteClientEvent.Remove(FavEvent);
+            }
+
+            _context.SaveChanges();
+
 
             return RedirectToPage("./Index");
 

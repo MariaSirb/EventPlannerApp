@@ -65,6 +65,7 @@ namespace EventPlannerApp.Pages.Locations
         {
             var userEmail = User.Identity.Name;
             LogedinClientId = _context.Client.Where(c => c.Email == userEmail).Select(c => c.ID).FirstOrDefault();
+
             var LocationID = Request.Form["LocationID"];
             //var ClientID = Request.Form["ClientID"];
 

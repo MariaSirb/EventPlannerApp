@@ -23,7 +23,8 @@ namespace EventPlannerApp.Models.Services
 
         public ICollection<MyEvent>? MyEvents { get; set; }
 
-       
+        [NotMapped]
+        public bool AddedToFav { get; set; }
 
     }
 }

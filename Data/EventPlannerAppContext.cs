@@ -14,6 +14,7 @@ namespace EventPlannerApp.Data
         public EventPlannerAppContext (DbContextOptions<EventPlannerAppContext> options)
             : base(options)
         {
+           
         }
 
         public DbSet<EventPlannerApp.Models.Services.EventType> EventType { get; set; } = default!;

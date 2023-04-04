@@ -8,10 +8,11 @@
 <h1>My events</h1>
 
 <p>
-   @* <a asp-page="Create">Add a new event</a> | |
+    @* <a asp-page="Create">Add a new event</a> | |
     <a asp-page="Index" asp-route-showFavourite="@true">Show favourite</a> | |
     <a asp-page="./Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to List</a>
-*@
+    *@
+
     <button type="button" class="btn btn-outline-dark">
         <a class= asp-area ="" asp-page="Create">Add a new Event</a>
     </button> | |
@@ -47,7 +48,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.MyEvent[0].Photograph.PhotographName)
             </th>
-             <th>
+            <th>
                 @Html.DisplayNameFor(model => model.MyEvent[0].MyEventMenues)
             </th>
             <th>
@@ -57,22 +58,23 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.MyEventD.MyEvents) {
+        @foreach (var item in Model.MyEventD.MyEvents)
+        {
             string selectedRow = "";
             if (item.ID == Model.MyEventID)
             {
                 selectedRow = "table-success";
             }
-        <tr class="@selectedRow">
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mention)
-            </td>
+            <tr class="@selectedRow">
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mention)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.EventType.EventTypeName)
                 </td>
@@ -85,30 +87,40 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Photograph.PhotographName)
                 </td>
-                    <td>
+                <td>
                     @{
                         foreach (var menu in item.MyEventMenues)
                         {
-                           /* @menu.Menu.ID @:*/ @menu.Menu.ItemName <br/>
+                            /* @menu.Menu.ID @:*/
+                            @menu.Menu.ItemName <br />
                         }
                     }
-             </td>
-                  <td>
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.Client.FullName)
-                    </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID"><i class="bi bi-pencil-square fa-7x icon-yellow"></i></a> |
-                <a asp-page="./Details" asp-route-id="@item.ID"><i class="bi bi-clipboard-check-fill icon-green fa-10x"></i></a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID"><i class="bi bi-trash icon-red fa-10x"></i></a> |
-                
-            
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ID"><i class="bi bi-pencil-square fa-7x icon-yellow"></i></a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID"><i class="bi bi-clipboard-check-fill icon-green fa-10x"></i></a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID"><i class="bi bi-trash icon-red fa-10x"></i></a> |
+
+
                     <form method="post">
                         <input type="hidden" name="EventID" value="@item.ID" />
                         <input type="hidden" name="ClientID" value="@item.ClientID" />
-                        <input type="submit" value="Add to favourite" class="btn btn-primary" style="background-color:#a48f9b; border-color:#d8cfd4; width:150px; margin:20px auto 0; border-radius:30px">
+                        <input type="hidden" name="IsAddedtoFav" value="@item.AddedToFav.ToString()" />
+                        @if (item.AddedToFav == true)
+                        {
+                            <input type="submit" value="Remove from Favourite" class="btn btn-primary" style="background-color:#a48f9b; border-color:#d8cfd4; width:150px; margin:20px auto 0; border-radius:30px">
+                        }
+                        else
+                        {
+                            <input type="submit" value="Add to favourite" class="btn btn-primary" style="background-color:#a48f9b; border-color:#d8cfd4; width:150px; margin:20px auto 0; border-radius:30px">
+                        }
                     </form>
-            </td>
-        </tr>
-}
+
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

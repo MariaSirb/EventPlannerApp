@@ -11,9 +11,8 @@ namespace EventPlannerApp.Models.Services
         MyEvent myevent)
         {
             var allMenues = context.Menu;
-            var x = context.MyEvent;
             var myeventMenues = new HashSet<int>(
-            myevent.MyEventMenues.Select(c => c.MenuID)); 
+                myevent.MyEventMenues.Select(c => c.MenuID));
             AssignedMenuDataList = new List<AssignedMenuData>();
             foreach (var cat in allMenues)
             {
