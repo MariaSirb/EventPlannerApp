@@ -74,8 +74,7 @@ namespace EventPlannerApp.Pages.MyEvents
             }
 
 
-            //urmatoarele 3 linii pentru client/admin - aia sa apara evenimentele fiecarui client in parte si adminul sa le vada pe toate
-
+            //urmatoarele 2 linii pentru client/admin - aia sa apara evenimentele fiecarui client in parte si adminul sa le vada pe toate
             if (userEmail != ADMIN_EMAIL)
                 MyEventD.MyEvents = MyEventD.MyEvents.Where(myEvent => myEvent.Client?.Email == userEmail);
 
@@ -95,9 +94,8 @@ namespace EventPlannerApp.Pages.MyEvents
             var EventID = Request.Form["EventID"];
             var ClientID = Request.Form["ClientID"];
             var IsAddedtoFav = Request.Form["IsAddedtoFav"];
-
-
             var FavEvent = new FavouriteClientEvent();
+
             FavEvent.MyEventId = Int32.Parse(EventID);
             FavEvent.ClientId = Int32.Parse(ClientID);
 

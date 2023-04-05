@@ -34,8 +34,9 @@ namespace EventPlannerApp.Pages.Locations
             //SqlConnection conn = new SqlConnection();
             //conn.ConnectionString = _connectionString; 
             ////conn.Open();
+
             var userEmail = User.Identity.Name;
-            LogedinClientId = _context.Client.Where(c => c.Email == userEmail).Select(c => c.ID).FirstOrDefault();
+            var logedinClientId = _context.Client.Where(c => c.Email == userEmail).Select(c => c.ID).FirstOrDefault();
 
             if (_context.Location != null)
             {
@@ -58,28 +59,60 @@ namespace EventPlannerApp.Pages.Locations
 
                 Location = await locations.ToListAsync();
             }
+
+            //Verifcam in db Care din event sunt salvate in tabela de fav ( le aduce pe toate in fav event)
+            var favLocations = _context.FavouriteClientLocation.Where(x => x.ClientId == logedinClientId).ToList();
+
+            for (int i = 0; i < Location.Count(); i++)
+            {
+                var currentLocation = Location.ElementAt(i);
+
+                //Aici verifica...Pt event urile din Db se seteaza valoarea pt Addedtofav ca sa seteze Add/Remove to fav
+                currentLocation.AddedToFav = favLocations.Where(x => x.ClientId == logedinClientId &&
+                  x.LocationId == currentLocation.ID
+                ).FirstOrDefault() != null;
+            }
+
         }
 
         //Aici e metoda pentru butonul add to favourite
         public IActionResult OnPost()
         {
             var userEmail = User.Identity.Name;
-            LogedinClientId = _context.Client.Where(c => c.Email == userEmail).Select(c => c.ID).FirstOrDefault();
+            var LogedinClientId = _context.Client.Where(c => c.Email == userEmail).Select(c => c.ID).FirstOrDefault();
 
             var LocationID = Request.Form["LocationID"];
-            //var ClientID = Request.Form["ClientID"];
-
+            var IsAddedtoFav = Request.Form["IsAddedtoFav"];
             var FavLocation = new FavouriteClientLocation();
+
             FavLocation.LocationId = Int32.Parse(LocationID);
             FavLocation.ClientId = LogedinClientId;
 
-            if (!_context.FavouriteClientLocation.Contains(FavLocation))
-            {
-                _context.FavouriteClientLocation.Add(FavLocation);
-                _context.SaveChanges();
+            if (!bool.Parse(IsAddedtoFav)) 
+                {
+                    _context.FavouriteClientLocation.Add(FavLocation);
+                }
+            else
+                {
+                    _context.FavouriteClientLocation.Remove(FavLocation);
+                   
             }
 
+            _context.SaveChanges();
+
+
             return RedirectToPage("./Index");
+
+
+
+
+            //if (!_context.FavouriteClientLocation.Contains(FavLocation))
+            //{
+            //    _context.FavouriteClientLocation.Add(FavLocation);
+            //    _context.SaveChanges();
+            //}
+
+            //return RedirectToPage("./Index");
 
         }
     }

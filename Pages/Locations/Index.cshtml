@@ -71,7 +71,6 @@
 
                     <form method="post">
                         <input type="hidden" name="LocationID" value="@item.ID" />
-
                         <input type="hidden" name="IsAddedtoFav" value="@item.AddedToFav.ToString()" />
                         @if (item.AddedToFav == true)
                         {
@@ -82,9 +81,6 @@
                             <input type="submit" value="Add to favourite" class="btn btn-primary" style="background-color:#a48f9b; border-color:#d8cfd4; width:150px; margin:20px auto 0; border-radius:30px">
                         }
                     </form>
-
-
-
 
                 </td>
             </tr>

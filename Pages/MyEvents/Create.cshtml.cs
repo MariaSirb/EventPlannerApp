@@ -19,6 +19,7 @@ namespace EventPlannerApp.Pages.MyEvents
     public class CreateModel : MyEventMenuesPageModel
     {
         private readonly EventPlannerApp.Data.EventPlannerAppContext _context;
+
         public CreateModel(EventPlannerApp.Data.EventPlannerAppContext context)
         {
             _context = context;
@@ -29,6 +30,7 @@ namespace EventPlannerApp.Pages.MyEvents
             var userEmail = User.Identity.Name; //email of the connected user
             int currentClientID = _context.Client.First(client => client.Email == userEmail).ID;
 
+           
             ViewData["EventTypeID"] = new SelectList(_context.Set<EventType>(), "ID", "EventTypeName");
             ViewData["LocationID"] = new SelectList(_context.Set<Location>(), "ID", "LocationName");
             ViewData["MusicID"] = new SelectList(_context.Set<Music>(), "ID", "DjName");
