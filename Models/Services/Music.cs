@@ -18,5 +18,8 @@ namespace EventPlannerApp.Models.Services
         public IFormFile DjImageFile { get; set; }
 
         public ICollection<MyEvent>? MyEvents { get; set; }
+
+        [NotMapped]
+        public bool AddedToFav { get; set; }
     }
 }

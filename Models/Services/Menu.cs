@@ -22,5 +22,8 @@ namespace EventPlannerApp.Models.Services
         public MenuType? MenuType { get; set; }
 
         public ICollection<MyEventMenu>? MyEventMenues { get; set; }
+
+        [NotMapped]
+        public bool AddedToFav { get; set; }
     }
 }

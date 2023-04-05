@@ -53,11 +53,18 @@
                 <a asp-page="./Details" asp-route-id="@item.ID"><i class="bi bi-clipboard-check-fill icon-green fa-10x"></i></a> |
                 <a asp-page="./Delete" asp-route-id="@item.ID"><i class="bi bi-trash icon-red fa-10x"></i></a> |
 
-                   <form method="post" >
-                   <input type="hidden" name="PhotographID" value="@item.ID" />
-                   @*<input type="hidden" name="ClientID" value="@item.ClientID" />*@
-                   <input type="submit" value="Add to favourite" class="btn btn-primary" style="background-color:#a48f9b; border-color:#d8cfd4; width:150px; margin:20px auto 0; border-radius:30px">
-                   </form>
+                    <form method="post">
+                        <input type="hidden" name="PhotographID" value="@item.ID" />
+                        <input type="hidden" name="IsAddedtoFav" value="@item.AddedToFav.ToString()" />
+                        @if (item.AddedToFav == true)
+                        {
+                            <input type="submit" value="Remove from Favourite" class="btn btn-primary" style="background-color:#a48f9b; border-color:#d8cfd4; width:150px; margin:20px auto 0; border-radius:30px">
+                        }
+                        else
+                        {
+                            <input type="submit" value="Add to favourite" class="btn btn-primary" style="background-color:#a48f9b; border-color:#d8cfd4; width:150px; margin:20px auto 0; border-radius:30px">
+                        }
+                    </form>
             </td>
         </tr>
 }

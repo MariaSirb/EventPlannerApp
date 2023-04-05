@@ -35,11 +35,7 @@ namespace EventPlannerApp.Pages.MyEvents
                 return NotFound();
             }
 
-             /*var*/ MyEvent =  await _context.MyEvent
-                //.Include(b=>b.EventType)
-                //.Include(b=>b.Location)
-                //.Include(b=>b.Music)
-                //.Include(b=>b.Photograph)
+              MyEvent =  await _context.MyEvent
                 .Include(b=>b.Client)
                 .Include(b=>b.MyEventMenues).ThenInclude(b=>b.Menu)
                 .AsNoTracking()
@@ -49,16 +45,17 @@ namespace EventPlannerApp.Pages.MyEvents
             {
                 return NotFound();
             }
+
             PopulateAssignedMenuData(_context, MyEvent);
-            //MyEvent = myevent;
+            
 
             var userName = _userManager.GetUserName(User);
 
             var detaliiClient = _context.Client
                 .Where(c => c.Email == userName)
                 .Select(x => new
-                {
-                    x.ID,
+               {
+                   x.ID,
                     DetaliiClient = x.FirstName + " " + x.LastName
                 });
 
@@ -80,10 +77,6 @@ namespace EventPlannerApp.Pages.MyEvents
             }
             
             var myeventToUpdate = await _context.MyEvent
-            //.Include(i => i.EventType)
-            //.Include(b => b.Location)
-            //.Include(b => b.Music)
-            //.Include(b => b.Photograph)
             .Include(b=>b.Client)
             .Include(b => b.MyEventMenues).ThenInclude(b => b.Menu)
             .FirstOrDefaultAsync(s => s.ID == id);
@@ -96,7 +89,7 @@ namespace EventPlannerApp.Pages.MyEvents
             if (await TryUpdateModelAsync<MyEvent>(
             myeventToUpdate,
             "MyEvent",
-            i => i.ClientID,
+            i =>i.ClientID,
             i => i.StartDate, i => i.EndDate,
             i => i.Mention, i => i.EventTypeID, i => i.LocationID,
             i => i.MusicID, i => i.Photograph.ID))
@@ -104,7 +97,7 @@ namespace EventPlannerApp.Pages.MyEvents
                 // Restrictie 1 la Data
                 if (MyEvent.EndDate < MyEvent.StartDate)
                 {
-                    return RedirectToPage("./Create");
+                    return RedirectToPage("./Edit");
                 }
             {
                 UpdateMyEventMenues(_context, selectedMenues, myeventToUpdate);
@@ -112,7 +105,7 @@ namespace EventPlannerApp.Pages.MyEvents
                 return RedirectToPage("./Index");
             }
 
-           
+
             //Apelam UpdateMyEventMenues pentru a aplica informatiile din checkboxuri la entitatea MyEvents care
             //este editata
             UpdateMyEventMenues(_context, selectedMenues, myeventToUpdate);
@@ -121,9 +114,6 @@ namespace EventPlannerApp.Pages.MyEvents
         
     }
 
-        private bool MyEventExists(int id)
-        {
-          return _context.MyEvent.Any(e => e.ID == id);
-        }
+        
     }
 }

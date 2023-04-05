@@ -19,7 +19,6 @@ namespace EventPlannerApp.Pages.Locations
     public class IndexModel : PageModel
     {
         private readonly EventPlannerApp.Data.EventPlannerAppContext _context;
-        private int LogedinClientId;
 
         public IndexModel(EventPlannerApp.Data.EventPlannerAppContext context)
         {
@@ -35,18 +34,20 @@ namespace EventPlannerApp.Pages.Locations
             //conn.ConnectionString = _connectionString; 
             ////conn.Open();
 
-            var userEmail = User.Identity.Name;
-            var logedinClientId = _context.Client.Where(c => c.Email == userEmail).Select(c => c.ID).FirstOrDefault();
+           
 
             if (_context.Location != null)
             {
+                var userEmail = User.Identity.Name;
+                var logedinClientId = _context.Client.Where(c => c.Email == userEmail).Select(c => c.ID).FirstOrDefault();
+
                 var locations = _context.Location
                 .AsNoTracking();
 
                 if (showFavourite != null && showFavourite == true)
                 {
                     locations = locations.Join(
-                        _context.FavouriteClientLocation.Where(x=>x.ClientId==LogedinClientId),
+                        _context.FavouriteClientLocation.Where(x=>x.ClientId==logedinClientId),
                         e => e.ID,
                        f => f.LocationId, (firstentity, secondentity) => new
                 {
@@ -58,20 +59,20 @@ namespace EventPlannerApp.Pages.Locations
 
 
                 Location = await locations.ToListAsync();
-            }
 
-            //Verifcam in db Care din event sunt salvate in tabela de fav ( le aduce pe toate in fav event)
-            var favLocations = _context.FavouriteClientLocation.Where(x => x.ClientId == logedinClientId).ToList();
+                //Verifcam in db Care din event sunt salvate in tabela de fav ( le aduce pe toate in fav event)
+                var favLocations = _context.FavouriteClientLocation.Where(x => x.ClientId == logedinClientId).ToList();
 
-            for (int i = 0; i < Location.Count(); i++)
-            {
-                var currentLocation = Location.ElementAt(i);
+                for (int i = 0; i < Location.Count(); i++)
+                {
+                    var currentLocation = Location.ElementAt(i);
 
-                //Aici verifica...Pt event urile din Db se seteaza valoarea pt Addedtofav ca sa seteze Add/Remove to fav
-                currentLocation.AddedToFav = favLocations.Where(x => x.ClientId == logedinClientId &&
-                  x.LocationId == currentLocation.ID
-                ).FirstOrDefault() != null;
-            }
+                    //Aici verifica...Pt event urile din Db se seteaza valoarea pt Addedtofav ca sa seteze Add/Remove to fav
+                    currentLocation.AddedToFav = favLocations.Where(x => x.ClientId == logedinClientId &&
+                      x.LocationId == currentLocation.ID
+                    ).FirstOrDefault() != null;
+                }
+            }           
 
         }
 

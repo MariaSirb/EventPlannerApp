@@ -14,7 +14,6 @@ namespace EventPlannerApp.Pages.Menues
     public class IndexModel : PageModel
     {
         private readonly EventPlannerApp.Data.EventPlannerAppContext _context;
-        private int LogedinClientId;
         public IndexModel(EventPlannerApp.Data.EventPlannerAppContext context)
         {
             _context = context;
@@ -25,7 +24,7 @@ namespace EventPlannerApp.Pages.Menues
         public async Task OnGetAsync(bool? showFavourite)
         {
             var userEmail = User.Identity.Name;
-            LogedinClientId = _context.Client.Where(c => c.Email == userEmail).Select(c => c.ID).FirstOrDefault();
+            var logedinClientId = _context.Client.Where(c => c.Email == userEmail).Select(c => c.ID).FirstOrDefault();
 
             if (_context.Menu != null)
             {
@@ -36,7 +35,7 @@ namespace EventPlannerApp.Pages.Menues
                 if (showFavourite != null && showFavourite == true)
                 {
                     menues = menues.Join(
-                        _context.FavouriteClientMenu.Where(x => x.ClientId == LogedinClientId),
+                        _context.FavouriteClientMenu.Where(x => x.ClientId == logedinClientId),
                         e => e.ID,
                        f => f.MenuId, (firstentity, secondentity) => new
                        {
@@ -46,8 +45,19 @@ namespace EventPlannerApp.Pages.Menues
 
                 }
 
+                Menu = await menues.ToListAsync();
+                //Verifcam in db Care din event sunt salvate in tabela de fav ( le aduce pe toate in fav event)
+                var favMenues = _context.FavouriteClientMenu.Where(x => x.ClientId == logedinClientId).ToList();
 
-                Menu = await menues.ToListAsync();            
+                for (int i = 0; i < Menu.Count(); i++)
+                {
+                    var currentMenu = Menu.ElementAt(i);
+
+                    //Aici verifica...Pt event urile din Db se seteaza valoarea pt Addedtofav ca sa seteze Add/Remove to fav
+                    currentMenu.AddedToFav = favMenues.Where(x => x.ClientId == logedinClientId &&
+                      x.MenuId == currentMenu.ID
+                    ).FirstOrDefault() != null;
+                }
             }
         }
 
@@ -55,19 +65,27 @@ namespace EventPlannerApp.Pages.Menues
         public IActionResult OnPost()
         {
             var userEmail = User.Identity.Name;
-            LogedinClientId = _context.Client.Where(c => c.Email == userEmail).Select(c => c.ID).FirstOrDefault();
-            var MenuID = Request.Form["MenuID"];
-            //var ClientID = Request.Form["ClientID"];
+            var LogedinClientId = _context.Client.Where(c => c.Email == userEmail).Select(c => c.ID).FirstOrDefault();
 
+            var MenuID = Request.Form["MenuID"];
+            var IsAddedtoFav = Request.Form["IsAddedtoFav"];
             var FavMenu = new FavouriteClientMenu();
+
             FavMenu.MenuId = Int32.Parse(MenuID);
             FavMenu.ClientId = LogedinClientId;
 
-            if (!_context.FavouriteClientMenu.Contains(FavMenu))
+            if (!bool.Parse(IsAddedtoFav))
             {
                 _context.FavouriteClientMenu.Add(FavMenu);
-                _context.SaveChanges();
             }
+            else
+            {
+                _context.FavouriteClientMenu.Remove(FavMenu);
+
+            }
+
+            _context.SaveChanges();
+
 
             return RedirectToPage("./Index");
 
