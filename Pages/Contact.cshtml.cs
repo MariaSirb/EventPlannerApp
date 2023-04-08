@@ -9,8 +9,10 @@ namespace EventPlannerApp.Pages
     {
         public void OnGet()
         {
+       
+
         }
 
-       
+        
     }
 }

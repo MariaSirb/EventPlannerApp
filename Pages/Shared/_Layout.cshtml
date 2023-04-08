@@ -16,6 +16,18 @@
             width: 60px;
             height: 60px;
         }
+
+        .sigla2 {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+            .footer-item:hover
+
+        {
+            color: white;
+        }
+        
     </style>
 </head>
 <body>
@@ -66,7 +78,7 @@
                             </a>
                             <div class="dropdown-menu">
                                 <partial name="_LoginPartial" />
-                                <a class="dropdown-item" asp-area="" asp-page="/Profile"><i class="bi bi-person-lines-fill"></i>My profile</a>
+                                <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index"><i class="bi bi-person-lines-fill"></i>My profile</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -83,9 +95,9 @@
                     </ul>
                     <form class="d-flex">
                        
-                     <input class="form-control me-sm-2" style="color:#644c5a; font-weight:600; background-color:black; border-color:#7d5f71" type="search"  placeholder="Search">
-                     <button class="btn btn-secondary my-2 my-sm-0" style="color:black;background-color:#644c5a; border-color:#7d5f71" asp-area="" asp-page="/MyEvents/Index">
-                            <i class="bi bi-pencil-fill"></i>Create your event
+@*                     <input class="form-control me-sm-2" style="color:#644c5a; font-weight:600; background-color:black; border-color:#7d5f71" type="search"  placeholder="Search">
+*@                     <button class="btn btn-secondary my-2 my-sm-0" style="color:black;background-color:#644c5a; border-color:#7d5f71" asp-area="" asp-page="/MyEvents/Index">
+                            <i class="bi bi-pencil-fill"></i>My events
                         </button>
                     </form>
                 </div>
@@ -101,12 +113,35 @@
     </div>
 
 
-    <footer class="border-top footer text-muted" style="background-color: #a48f9b; ">
+    @*<footer class="border-top footer text-muted" style="background-color: #a48f9b; ">
         <div class="text-center" style="background-color: #a48f9b; color:#644c5a; font-weight:600">
             Event Planner @DateTime.Now.Year -
             <a class="text-decoration-underline" style="color:#644c5a" asp-area="" asp-page="/Index">  Select Event</a>
+
         </div>
+
+    </footer>*@
+    <footer class="border-top footer text-muted position-fixed" style="background-color: #a48f9b">
+        <div style="display: grid; grid-template-columns:  1fr 1fr 1fr 1fr">
+            <div style="color:#644c5a;  font-weight:600">
+                 &copy; @DateTime.Now.Year 
+            </div>
+            <div>
+                <a asp-area="" asp-page="/Privacy" class="footer-item"><i class="bi bi-shield-check"></i>Privacy Policy</a>
+
+            </div>
+            <div>
+                <a asp-area="" asp-page="/Contact" class="footer-item"><i class="bi bi-chat-text-fill"></i>Contact Us</a>
+
+            </div>
+            <div>
+                <a asp-area="" asp-page="/About" class="footer-item"><i class="bi bi-info-circle-fill"></i>About Us</a>
+
+            </div>
+            </div>
     </footer>
+    
+    
 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

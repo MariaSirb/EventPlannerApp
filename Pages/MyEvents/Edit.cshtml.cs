@@ -89,7 +89,6 @@ namespace EventPlannerApp.Pages.MyEvents
             if (await TryUpdateModelAsync<MyEvent>(
             myeventToUpdate,
             "MyEvent",
-            i =>i.ClientID,
             i => i.StartDate, i => i.EndDate,
             i => i.Mention, i => i.EventTypeID, i => i.LocationID,
             i => i.MusicID, i => i.Photograph.ID))
@@ -111,8 +110,8 @@ namespace EventPlannerApp.Pages.MyEvents
             UpdateMyEventMenues(_context, selectedMenues, myeventToUpdate);
             PopulateAssignedMenuData(_context, myeventToUpdate);
             return Page();
-        
-    }
+
+        }
 
         
     }
