@@ -36,7 +36,7 @@ namespace EventPlannerApp.Pages.MyEvents
             MyEventD = new MyEventData();
 
             var events = _context.MyEvent
-                  .Include(b => b.EventType)
+            .Include(b => b.EventType)
             .Include(b => b.Location)
             .Include(b => b.Music)
             .Include(b => b.Photograph)

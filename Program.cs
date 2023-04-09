@@ -28,9 +28,11 @@ builder.Services.AddAuthorization(options =>
 builder.Services.AddRazorPages(options =>
 {
     options.Conventions.AuthorizeFolder("/MyEvents");
+    options.Conventions.AuthorizeFolder("/Reviews");
     options.Conventions.AuthorizeFolder("/Clients", "AdminPolicy");
     options.Conventions.AuthorizeFolder("/MenuTypes");
     options.Conventions.AllowAnonymousToPage("/Eventypes/Delete");
+    options.Conventions.AllowAnonymousToPage("/Reviews/Delete");
     options.Conventions.AllowAnonymousToPage("/Locations/Delete");
     options.Conventions.AllowAnonymousToPage("/Menues/Delete");
     options.Conventions.AllowAnonymousToPage("/Musics/Delete");

@@ -1,0 +1,56 @@
+﻿@page
+@model EventPlannerApp.Pages.Reviews.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3>Reviews</h3>
+
+<p>
+    <button type="button" class="btn btn-outline-dark">
+        <a class= asp-area ="" asp-page="Create">Add Review</a>
+    </button>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Review[0].CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Review[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Review[0].ServiceQuality)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Review[0].PostDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Review) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServiceQuality)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostDate)
+            </td>
+            <td>
+                   <a asp-page="./Edit" asp-route-id="@item.ID"><i class="bi bi-pencil-square fa-7x icon-yellow"></i></a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID"><i class="bi bi-clipboard-check-fill icon-green fa-10x"></i></a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID"><i class="bi bi-trash icon-red fa-10x"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

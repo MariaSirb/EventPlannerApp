@@ -39,6 +39,8 @@ namespace EventPlannerApp.Data
         public DbSet<EventPlannerApp.Models.Favourite.FavouriteClientPhotograph> FavouriteClientPhotograph { get; set; }
         public DbSet<EventPlannerApp.Models.Favourite.FavouriteClientMenu> FavouriteClientMenu { get; set; }
 
+        public DbSet<EventPlannerApp.Models.Review> Review { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<FavouriteClientEvent>()

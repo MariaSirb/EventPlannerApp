@@ -36,7 +36,10 @@ namespace EventPlannerApp.Pages.MyEvents
             }
 
               MyEvent =  await _context.MyEvent
-                .Include(b=>b.Client)
+                .Include(b => b.EventType)
+                .Include(b => b.Location)
+                .Include(b => b.Music)
+                .Include(b => b.Photograph)
                 .Include(b=>b.MyEventMenues).ThenInclude(b=>b.Menu)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ID == id);
@@ -47,15 +50,15 @@ namespace EventPlannerApp.Pages.MyEvents
             }
 
             PopulateAssignedMenuData(_context, MyEvent);
-            
+
 
             var userName = _userManager.GetUserName(User);
 
             var detaliiClient = _context.Client
                 .Where(c => c.Email == userName)
                 .Select(x => new
-               {
-                   x.ID,
+                {
+                    x.ID,
                     DetaliiClient = x.FirstName + " " + x.LastName
                 });
 
@@ -77,7 +80,10 @@ namespace EventPlannerApp.Pages.MyEvents
             }
             
             var myeventToUpdate = await _context.MyEvent
-            .Include(b=>b.Client)
+            .Include(b => b.EventType)
+            .Include(b => b.Location)
+            .Include(b => b.Music)
+            .Include(b => b.Photograph)
             .Include(b => b.MyEventMenues).ThenInclude(b => b.Menu)
             .FirstOrDefaultAsync(s => s.ID == id);
             if (myeventToUpdate == null)
@@ -91,10 +97,10 @@ namespace EventPlannerApp.Pages.MyEvents
             "MyEvent",
             i => i.StartDate, i => i.EndDate,
             i => i.Mention, i => i.EventTypeID, i => i.LocationID,
-            i => i.MusicID, i => i.Photograph.ID))
+            i => i.MusicID, i => i.PhotographID))
 
                 // Restrictie 1 la Data
-                if (MyEvent.EndDate < MyEvent.StartDate)
+                if (MyEvent.EndDate <= MyEvent.StartDate)
                 {
                     return RedirectToPage("./Edit");
                 }
