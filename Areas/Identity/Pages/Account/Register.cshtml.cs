@@ -83,10 +83,23 @@ namespace EventPlannerApp.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
+            /// 
             [Required]
+            [Display(Name = "FirstName")]
+            public string FirstName { get; set; }
+
+            [Required]
+            [Display(Name = "LastName")]
+            public string LastName { get; set; }
+
+          
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
+
+            [Required]
+            [RegularExpression(@"^\(?([0-9]{4})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$", ErrorMessage = "Telefonul trebuie sa fie de forma '0722-123-123' sau '0722.123.123' sau '0722 123 123'")]
+            public string? Phone { get; set; }
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -123,11 +136,16 @@ namespace EventPlannerApp.Areas.Identity.Pages.Account
             var user = CreateUser();
             await _userStore.SetUserNameAsync(user, Input.Email,
            CancellationToken.None);
+
             await _emailStore.SetEmailAsync(user, Input.Email,
            CancellationToken.None);
+
             var result = await _userManager.CreateAsync(user,
            Input.Password);
             Client.Email = Input.Email;
+            Client.FirstName= Input.FirstName;
+            Client.LastName= Input.LastName;
+            Client.Phone= Input.Phone;
             _context.Client.Add(Client);
             await _context.SaveChangesAsync();
 

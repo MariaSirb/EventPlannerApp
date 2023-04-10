@@ -15,19 +15,19 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
+            <th style="width: 20%">
                 @Html.DisplayNameFor(model => model.Review[0].CompanyName)
             </th>
-            <th>
+            <th style="width: 20%">
                 @Html.DisplayNameFor(model => model.Review[0].Description)
             </th>
-            <th>
+            <th style="width: 20%">
                 @Html.DisplayNameFor(model => model.Review[0].ServiceQuality)
             </th>
-            <th>
+            <th style="width: 20%">
                 @Html.DisplayNameFor(model => model.Review[0].PostDate)
             </th>
-            <th></th>
+            <th style="width: 20%"></th>
         </tr>
     </thead>
     <tbody>
@@ -46,9 +46,9 @@
                 @Html.DisplayFor(modelItem => item.PostDate)
             </td>
             <td>
-                   <a asp-page="./Edit" asp-route-id="@item.ID"><i class="bi bi-pencil-square fa-7x icon-yellow"></i></a> |
-                    <a asp-page="./Details" asp-route-id="@item.ID"><i class="bi bi-clipboard-check-fill icon-green fa-10x"></i></a> |
-                    <a asp-page="./Delete" asp-route-id="@item.ID"><i class="bi bi-trash icon-red fa-10x"></i></a>
+                   <a asp-page="./Details" asp-route-id="@item.ID"><i class="bi bi-clipboard-check-fill icon-green fa-10x mx-1"></i></a>
+                   <a asp-page="./Edit" asp-route-id="@item.ID"><i class="bi bi-pencil-square fa-7x icon-yellow mx-1"></i></a>
+                   <a asp-page="./Delete" asp-route-id="@item.ID"><i class="bi bi-trash icon-red fa-10x"></i></a>
             </td>
         </tr>
 }

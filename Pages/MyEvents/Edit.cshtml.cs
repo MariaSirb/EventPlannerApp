@@ -53,6 +53,8 @@ namespace EventPlannerApp.Pages.MyEvents
 
 
             var userName = _userManager.GetUserName(User);
+            var user = _userManager.FindByEmailAsync(userName);
+            var detaliiUser = user.Result.Email;
 
             var detaliiClient = _context.Client
                 .Where(c => c.Email == userName)

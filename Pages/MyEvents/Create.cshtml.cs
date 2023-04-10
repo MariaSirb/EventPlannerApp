@@ -19,10 +19,12 @@ namespace EventPlannerApp.Pages.MyEvents
     public class CreateModel : MyEventMenuesPageModel
     {
         private readonly EventPlannerApp.Data.EventPlannerAppContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public CreateModel(EventPlannerApp.Data.EventPlannerAppContext context)
+        public CreateModel(EventPlannerApp.Data.EventPlannerAppContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public IActionResult OnGet()
