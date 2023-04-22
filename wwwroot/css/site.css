@@ -163,6 +163,10 @@ a {
     width: 70px;
     height: 70px;
     border: 2px solid #644c5a;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /*design pagina index*/
@@ -189,4 +193,76 @@ a {
     to {
         transform: rotate(359deg);
     }
+}
+/*pentru tabelele de la create si edit*/
+.form-control {
+    background-color: #cbbfc6;
+    color: #4b3943;
+    font-weight: bold;
+    border: dotted;
+}
+
+/*top up button*/
+#myBtn {
+    
+    position: fixed; /* Fixed/sticky position */
+    bottom: 50px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    background-color: black; /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+  /*  padding: 15px;  */
+    border-radius: 50px; /* Rounded corners */
+    border-color: black;
+    font-size: 20px; /* Increase font size */
+}
+
+    #myBtn:hover {
+        background-color: #4b3943; /* Add a dark-grey background on hover */
+    }
+
+
+/*Css pentru Gallery*/
+.photo-gallery {
+    color: #cbbfc6;
+}
+
+    .photo-gallery p {
+        color: #7d8285;
+        font-size: 30px;
+        font-style: oblique;
+    }
+
+.photo-gallery h2 {
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    color: inherit;
+}
+
+@media (max-width:767px) {
+    .photo-gallery h2 {
+        margin-bottom: 25px;
+        padding-top: 25px;
+        font-size: 24px;
+    }
+}
+
+.photo-gallery .intro {
+    font-size: 16px;
+    max-width: 500px;
+    margin: 0 auto 40px;
+}
+
+    .photo-gallery .intro p {
+        margin-bottom: 0;
+    }
+
+.photo-gallery .photos {
+    padding-bottom: 20px;
+}
+
+.photo-gallery .item {
+    padding-bottom: 30px;
 }

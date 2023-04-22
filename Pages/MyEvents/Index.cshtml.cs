@@ -58,6 +58,7 @@ namespace EventPlannerApp.Pages.MyEvents
             MyEventD.MyEvents = await events.ToListAsync();
 
             var userEmail = User.Identity.Name;
+
             var logedinClientId = _context.Client.Where(c => c.Email == userEmail).Select(c => c.ID).FirstOrDefault();
 
             //Verifcam in db Care din event sunt salvate in tabela de fav ( le aduce pe toate in fav event)

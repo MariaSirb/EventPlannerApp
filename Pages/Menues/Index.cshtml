@@ -21,7 +21,60 @@
         <a class= asp-area ="" asp-page="./Index">Back to List</a>
     </button>
 </p>
-<table class="table">
+
+
+<br />
+<div class="card" style="border-color:#7d5f71;">
+    <div style="display: flex ; flex-wrap: wrap; background-color: #7d5f71;" class="row-cols-sm-3">
+        @*asta cu row cols sm 4 imi pune pe un rand 3 chestii*@
+
+        @foreach (var item in Model.Menu)
+        {
+            <div>
+
+                <div style="width:50%; padding:5px">
+                    <span stlye="padding-bottom:5px;">
+                        <img src="data:image/jpg;base64 , @item.ItemImage" width="300px" height="300px" />
+                    </span>
+
+                    @Html.DisplayFor(modelItem => item.ItemName)
+
+                    <p> </p>
+                    @Html.DisplayNameFor(model => model.Menu[0].MenuType.TypeName)
+                    @Html.DisplayFor(modelItem => item.MenuType.TypeName)
+
+                </div>
+
+                <div>
+                    <a asp-page="./Edit" asp-route-id="@item.ID"><i class="bi bi-pencil-square fa-7x icon-yellow"></i></a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID"><i class="bi bi-clipboard-check-fill icon-green fa-10x"></i></a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID"><i class="bi bi-trash icon-red fa-10x"></i></a> |
+
+
+
+                    <form method="post">
+                        <input type="hidden" name="LocationID" value="@item.ID" />
+                        <input type="hidden" name="IsAddedtoFav" value="@item.AddedToFav.ToString()" />
+                        @if (item.AddedToFav == true)
+                        {
+                            <i class="bi bi-x-circle-fill"></i> <input type="submit" value="Remove from fav" class="btn btn-primary" style="background-color:#57424f; border-color:#d8cfd4; width:170px; margin:10px auto 0; border-radius:50px">
+                        }
+                        else
+                        {
+                            <i class="bi bi-chat-square-heart-fill"></i> <input type="submit" value="Add to fav" class="btn btn-primary" style="background-color:#beafb8; border-color:#d8cfd4; width:120px; margin:10px auto 0; border-radius:50px">
+
+                        }
+                    </form>
+                    <hr>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<button onclick="topFunction()" id="myBtn" title="Go to top"><i class="bi bi-arrow-up-circle"></i></button>
+
+@*<table class="table">
     <thead>
         <tr>
             <th>
@@ -75,4 +128,4 @@
         </tr>
 }
     </tbody>
-</table>
+</table>*@

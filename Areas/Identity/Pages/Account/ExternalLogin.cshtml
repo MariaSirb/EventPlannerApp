@@ -3,15 +3,22 @@
 @{
     ViewData["Title"] = "Register";
 }
-
+<style>
+    .form-control {
+        background-color: #cbbfc6;
+        color: #4b3943;
+        font-weight: bold;
+        border: dotted;
+    }
+</style>
 <h1>@ViewData["Title"]</h1>
 <h2 id="external-login-title">Associate your @Model.ProviderDisplayName account.</h2>
 <hr />
 
 <p id="external-login-description" class="text-info">
     You've successfully authenticated with <strong>@Model.ProviderDisplayName</strong>.
-    Please enter an email address for this site below and click the Register button to finish
-    logging in.
+    Please enter an email address for this site below and <u>click the Register button</u> <b>to finish
+    logging in.</b>
 </p>
 
 <div class="row">

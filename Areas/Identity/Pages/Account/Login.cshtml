@@ -4,7 +4,14 @@
 @{
     ViewData["Title"] = "Log in";
 }
-
+<style>
+    .form-control {
+        background-color: #cbbfc6;
+        color: #4b3943;
+        font-weight: bold;
+        border: dotted;
+    }
+</style>
 <h1>@ViewData["Title"]</h1>
 <div class="row">
     <div class="col-md-4">
@@ -32,7 +39,8 @@
                     </div>
                 </div>
                 <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+@*                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+*@                    <button id="login-submit" type="submit" class="btn btn-primary" style="background-color:#a48f9b; border-color:#d8cfd4; width:150px; margin:20px auto 0; border-radius:30px">Log in</button>
                 </div>
                 <div>
                     <p>
@@ -50,7 +58,10 @@
     </div>
     <div class="col-md-6 col-md-offset-2">
         <section>
+            <h1>Or...</h1>
             <h3>Use another service to log in.</h3>
+            <hr />
+            <h6> If you choose this method, you will can save automatically your events into your <b>Google Calendar!</b></h6>
             <hr />
             @{
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)

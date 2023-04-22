@@ -19,7 +19,7 @@ namespace EventPlannerApp.Pages.Locations
     public class IndexModel : PageModel
     {
         private readonly EventPlannerApp.Data.EventPlannerAppContext _context;
-
+        private readonly string ADMIN_EMAIL = "admin@gmail.com";
         public IndexModel(EventPlannerApp.Data.EventPlannerAppContext context)
         {
             _context = context;
@@ -39,11 +39,13 @@ namespace EventPlannerApp.Pages.Locations
             if (_context.Location != null)
             {
                 var userEmail = User.Identity.Name;
+               
                 var logedinClientId = _context.Client.Where(c => c.Email == userEmail).Select(c => c.ID).FirstOrDefault();
 
                 var locations = _context.Location
                 .AsNoTracking();
 
+               
                 if (showFavourite != null && showFavourite == true)
                 {
                     locations = locations.Join(
