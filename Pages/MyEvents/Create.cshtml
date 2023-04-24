@@ -12,6 +12,8 @@
     <a asp-page="./Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to List</a>
 </div>
 <br />
+
+    
 <div class="row">
     <div class="col-md-4">
         <form method="post">
@@ -74,7 +76,7 @@
                                         name="selectedMenues"
                                         value="@cat.MenuID"
                                         @(Html.Raw(cat.Assigned ? "checked=\"checked\"" : "")) />
-                                 /*@cat.MenuID @:*/ @cat.Name
+                                 @cat.MenuID @: @cat.Name
                              @:</td>
                        }
                        @:</tr>
@@ -83,8 +85,8 @@
           </div>
            </div>
            
-           <div class="form-group" style="display:none">  
-                <label asp-for="MyEvent.ClientID" class="control-label"></label>
+           <div class="form-group" @*style="display:none"*@>  
+                <label asp-for="MyEvent.ClientID" class="control-label">Numele clientului</label>
                 <select asp-for="MyEvent.ClientID" class ="form-control" asp-items="ViewBag.ClientID"></select>
             </div>
             <hr />
@@ -98,7 +100,6 @@
 
    
 </div>
-
 
 
 @*<div>

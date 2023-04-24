@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace EventPlannerApp.Pages.MyEvents
 {
@@ -32,12 +33,23 @@ namespace EventPlannerApp.Pages.MyEvents
             var userEmail = User.Identity.Name; //email of the connected user
             int currentClientID = _context.Client.First(client => client.Email == userEmail).ID;
 
-           
+            var userName = _userManager.GetUserName(User);
+
+            var detaliiClient = _context.Client
+                .Where(c => c.Email == userName)
+                .Select(x => new
+                {
+                    x.ID,
+                    DetaliiClient = x.FirstName + " " + x.LastName
+                });
+
+
+
             ViewData["EventTypeID"] = new SelectList(_context.Set<EventType>(), "ID", "EventTypeName");
             ViewData["LocationID"] = new SelectList(_context.Set<Location>(), "ID", "LocationName");
             ViewData["MusicID"] = new SelectList(_context.Set<Music>(), "ID", "DjName");
             ViewData["PhotographID"] = new SelectList(_context.Set<Photograph>(), "ID", "PhotographName");
-            ViewData["ClientID"] = new SelectList(_context.Client, "ID", "FullName", currentClientID);
+            ViewData["ClientID"] = new SelectList(detaliiClient, "ID", "DetaliiClient", currentClientID);
 
             var myevent = new MyEvent();
             
@@ -67,8 +79,8 @@ namespace EventPlannerApp.Pages.MyEvents
                     newMyEvent.MyEventMenues.Add(catToAdd);
                 }
             }
-
-            // Restrictie 1 la Data
+            
+             //Restrictie 1 la Data
             if (MyEvent.EndDate < MyEvent.StartDate)
             {
               return RedirectToPage("./Create");

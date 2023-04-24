@@ -6,15 +6,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EventPlannerApp.Models
 {
-    public class MyEvent
+    public class MyEvent/*: IValidatableObject*/
     {
         public int ID { get; set; }
-
+        [Required(ErrorMessage = "Please add StartDate to the request.")]
         [DataType(DataType.Date)]
-        public DateTime StartDate { get; set; }
-
+        public DateTime? StartDate { get; set; }
+        [Required(ErrorMessage = "Please add EndDate to the request.")]
         [DataType(DataType.Date)]
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }   
 
         [Display(Name = "Alte Mentiuni ( ex. flori, culori, tematica etc)")]
         public string Mention { get; set; }
@@ -49,6 +49,16 @@ namespace EventPlannerApp.Models
         [NotMapped]
         public bool AddedToFav { get; set; }
 
+
+        //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        //{
+        //    if (EndDate <= StartDate)
+        //    {
+        //        yield return new ValidationResult(
+        //            $"End date must be greater than the start date.",
+        //            new[] { nameof(EndDate) });
+        //    }
+        //}
 
     }
 }

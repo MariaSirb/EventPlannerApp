@@ -29,7 +29,7 @@
 <br />
 <div class="card" style="border-color:#7d5f71;">
     <div style="display: flex ; flex-wrap: wrap; background-color: #7d5f71;" class="row-cols-sm-3">
-        @*asta cu row cols sm 4 imi pune pe un rand 3 chestii*@
+        @*asta cu row cols sm 3 imi pune pe un rand 3 chestii*@
 
         @foreach (var item in Model.Location)
         {
@@ -37,7 +37,7 @@
 
                 <div style="width:50%; padding:5px">
                     <span stlye="padding-bottom:5px;">
-                        <img src="data:image/jpg;base64 , @item.LocationImage" width="300px" height="300px" />
+                        <img src="data:image/jpg;base64 , @item.LocationImage" width="400px" height="300px" />
                     </span>
 
                     @Html.DisplayFor(modelItem => item.LocationName)
