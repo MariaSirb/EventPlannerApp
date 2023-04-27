@@ -46,11 +46,24 @@
                 @Html.DisplayFor(modelItem => item.PostDate)
             </td>
             <td>
+                    @*<a asp-route-id="@item.ID"><i class="bi bi-clipboard-check-fill icon-green fa-10x mx-1" onclick="myFunction()"></i></a>
+                    <p id="demo"></p>
+*@
                    <a asp-page="./Details" asp-route-id="@item.ID"><i class="bi bi-clipboard-check-fill icon-green fa-10x mx-1"></i></a>
-                   <a asp-page="./Edit" asp-route-id="@item.ID"><i class="bi bi-pencil-square fa-7x icon-yellow mx-1"></i></a>
+                    <a asp-page="./Edit" asp-route-id="@item.ID"><i class="bi bi-info-circle-fill fa-10x"></i></a>
                    <a asp-page="./Delete" asp-route-id="@item.ID"><i class="bi bi-trash icon-red fa-10x"></i></a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+
+
+@*<script>
+   var count = 0;
+function myFunction() {
+  document.getElementById("demo").innerHTML = count++;
+}
+</script>*@
+

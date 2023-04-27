@@ -43,7 +43,9 @@
     <hr />
 </div>
 <div>
-    <button type="button" class="btn btn-outline-dark">
-        <a class= asp-area ="" asp-page="./Edit" asp-route-id="@Model.Menu?.ID">Edit</a>
-    </button>
+    @if (User.IsInRole("Admin"))
+    {
+        <button type="button" class="btn btn-outline-dark">
+            <a class= asp-area ="" asp-page="./Edit" asp-route-id="@Model.Menu?.ID">Edit</a>
+    </button>}
 </div>

@@ -4,16 +4,54 @@
 @{
     ViewData["Title"] = "Index";
 }
-<h1>Menu</h1>
+@*<h1>Menu</h1>*@
+<div class="about-section mb-0 mt-0">
+        <h2 style="font-weight:bold; color:#cbbfc6"> - Menu -  </h2>
+        <img align="center" src="~/image/FoodSigla.png" alt="sigla" class="sigla1" />
+    </div>
+    <br />
 
+<div class="container align-content-center" style="font-size:20px; font-weight:bold; color:white"> Food Category: 
+    <div class="row" style="font-size:18px; font-style:italic">
+        <div class="col-6 col-sm-3">Romanian Food</div>
+        <div class="col-6 col-sm-3">Italian Food</div>
+        <div class="col-6 col-sm-3">Chinese Food</div>
+        <div class="col-6 col-sm-3">American Food</div>
+
+        <!-- Force next columns to break to new line -->
+        <div class="w-100" style="font-size:18px; font-style:italic"></div>
+
+        <div class="col-6 col-sm-3">Starters</div>
+        <div class="col-6 col-sm-3">Dessert</div>
+        <div class="col-6 col-sm-3">Soft Drink</div>
+        <div class="col-6 col-sm-3">Alcoholic Drinks</div>
+    </div>
+</div>
+<br />
+<form>
+
+    <div class="row">
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Search by Food Name or Category:" asp-for="SearchString">
+        </div>
+        <div class="col">
+            <button class="btn btn-outline-dark" type="submit">Search</button>
+        </div>
+    </div>
+
+</form>
+<br />
 <p>
-   @* <a asp-page="Create">Add a new item in the menu</a> | |
+    @* <a asp-page="Create">Add a new item in the menu</a> | |
     <a asp-page="Index" asp-route-showFavourite="@true">Show favourite</a> | |
     <a asp-page="./Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to List</a>
-*@
-    <button type="button" class="btn btn-outline-dark">
-        <a class= asp-area ="" asp-page="Create">Add a new Item</a>
-    </button> | |
+    *@
+    @if (User.IsInRole("Admin"))
+    {
+        <button type="button" class="btn btn-outline-dark">
+            <a class= asp-area ="" asp-page="Create">Add a new Item</a>
+        </button>
+    }
     <button type="button" class="btn btn-outline-dark">
         <a class= asp-area ="" asp-page="Index" asp-route-showFavourite="@true">Show favourites</a>
     </button> | |
@@ -21,6 +59,7 @@
         <a class= asp-area ="" asp-page="./Index">Back to List</a>
     </button>
 </p>
+
 
 
 <br />
@@ -47,14 +86,20 @@
                 </div>
 
                 <div>
-                    <a asp-page="./Edit" asp-route-id="@item.ID"><i class="bi bi-pencil-square fa-7x icon-yellow"></i></a> |
-                    <a asp-page="./Details" asp-route-id="@item.ID"><i class="bi bi-clipboard-check-fill icon-green fa-10x"></i></a> |
-                    <a asp-page="./Delete" asp-route-id="@item.ID"><i class="bi bi-trash icon-red fa-10x"></i></a> |
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.ID"><i class="bi bi-pencil-square fa-7x icon-yellow"></i></a>
+                    }
+                    <a asp-page="./Details" asp-route-id="@item.ID"><i class="bi bi-info-circle-fill fa-10x"></i>See more about...</a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-page="./Delete" asp-route-id="@item.ID"><i class="bi bi-trash icon-red fa-10x"></i></a>
+                    }
 
 
 
                     <form method="post">
-                        <input type="hidden" name="LocationID" value="@item.ID" />
+                        <input type="hidden" name="MenuID" value="@item.ID" />
                         <input type="hidden" name="IsAddedtoFav" value="@item.AddedToFav.ToString()" />
                         @if (item.AddedToFav == true)
                         {

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using EventPlannerApp.Data;
 using EventPlannerApp.Models.Services;
 using EventPlannerApp.Models.Favourite;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EventPlannerApp.Pages.Menues
 {
@@ -18,11 +19,22 @@ namespace EventPlannerApp.Pages.Menues
         {
             _context = context;
         }
+       
 
         public IList<Menu> Menu { get;set; } = default!;
 
+        [BindProperty(SupportsGet = true)]
+        public string? SearchString { get; set; }
+
+        public SelectList? Type { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string? FoodType { get; set; }
+
         public async Task OnGetAsync(bool? showFavourite)
         {
+        
+
             var userEmail = User.Identity.Name;
             var logedinClientId = _context.Client.Where(c => c.Email == userEmail).Select(c => c.ID).FirstOrDefault();
 
@@ -31,6 +43,7 @@ namespace EventPlannerApp.Pages.Menues
                 var menues = _context.Menu
                     .Include(b=>b.MenuType)
                     .AsNoTracking();
+
 
                 if (showFavourite != null && showFavourite == true)
                 {
@@ -45,7 +58,20 @@ namespace EventPlannerApp.Pages.Menues
 
                 }
 
+                
+                //Pentru search bar
+                if (!String.IsNullOrEmpty(SearchString))
+                {
+                    menues = menues.Where(s => s.ItemName.Contains(SearchString)
+                    ||
+                    s.MenuType.TypeName.Contains(SearchString)
+
+                    );
+                }
+
+
                 Menu = await menues.ToListAsync();
+
                 //Verifcam in db Care din event sunt salvate in tabela de fav ( le aduce pe toate in fav event)
                 var favMenues = _context.FavouriteClientMenu.Where(x => x.ClientId == logedinClientId).ToList();
 
@@ -58,7 +84,11 @@ namespace EventPlannerApp.Pages.Menues
                       x.MenuId == currentMenu.ID
                     ).FirstOrDefault() != null;
                 }
+
+               
             }
+
+            
         }
 
         //Aici e metoda pentru butonul add to favourite

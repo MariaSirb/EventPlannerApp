@@ -7,16 +7,22 @@
 
 
 
-<h3>Locations</h3>
+@*<h3>Locations</h3>*@
+
+<div class="about-section mb-0 mt-0">
+    <h2 style="font-weight:bold; color:#cbbfc6"> - Locations -  </h2>
+    <img align="center" src="~/image/LocationSigla.png" alt="sigla" class="sigla1" />
+</div>
 
 <p>
     @* <a asp-page="Create">Add a new location</a> | |
     <a asp-page="Index" asp-route-showFavourite="@true">Show favourite</a> | |
     <a asp-page="./Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to List</a>*@
-
-    <button type="button" class="btn btn-outline-dark">
-        <a class= asp-area ="" asp-page="Create">Add a location</a>
-    </button> | |
+    @if (User.IsInRole("Admin"))
+    {
+        <button type="button" class="btn btn-outline-dark">
+            <a class= asp-area ="" asp-page="Create">Add a location</a>
+    </button>}
     <button type="button" class="btn btn-outline-dark">
         <a class= asp-area ="" asp-page="Index" asp-route-showFavourite="@true">Show favourites</a>
     </button> | |
@@ -45,9 +51,16 @@
                 </div>
 
                 <div>
-                    <a asp-page="./Edit" asp-route-id="@item.ID"><i class="bi bi-pencil-square fa-7x icon-yellow"></i></a> |
-                    <a asp-page="./Details" asp-route-id="@item.ID"><i class="bi bi-clipboard-check-fill icon-green fa-10x"></i></a> |
-                    <a asp-page="./Delete" asp-route-id="@item.ID"><i class="bi bi-trash icon-red fa-10x"></i></a> |
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.ID"><i class="bi bi-pencil-square fa-7x icon-yellow"></i></a>
+                    }
+                    
+                    <a asp-page="./Details" asp-route-id="@item.ID"><i class="bi bi-clipboard-check-fill icon-green fa-10x"></i></a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-page="./Delete" asp-route-id="@item.ID"><i class="bi bi-trash icon-red fa-10x"></i></a>
+                    }
 
 
 

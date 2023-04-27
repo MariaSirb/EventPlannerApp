@@ -4,16 +4,22 @@
 @{
     ViewData["Title"] = "Index";
 }
-<h1>Music</h1>
-
+@*<h1>Music</h1>*@
+<div class="about-section mb-0 mt-0">
+    <h2 style="font-weight:bold; color:#cbbfc6"> - Music -  </h2>
+    <img align="center" src="~/image/MusicSigla.png" alt="sigla" class="sigla1" />
+</div>
+<br />
 <p>
     @*<a asp-page="Create">Add a new Dj</a> | |
     <a asp-page="Index" asp-route-showFavourite="@true">Show favourite</a> | |
     <a asp-page="./Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to List</a>
 *@
-<button type="button" class="btn btn-outline-dark">
-        <a class= asp-area ="" asp-page="Create">Add a Dj</a> 
-    </button> | | 
+    @if (User.IsInRole("Admin"))
+    {
+        <button type="button" class="btn btn-outline-dark">
+            <a class= asp-area ="" asp-page="Create">Add a Dj</a> 
+    </button> }
     <button type="button" class="btn btn-outline-dark">
         <a class= asp-area="" asp-page="Index" asp-route-showFavourite="@true">Show favourites</a>
     </button> | |
@@ -41,14 +47,19 @@
                 </div>
 
                 <div>
-                    <a asp-page="./Edit" asp-route-id="@item.ID"><i class="bi bi-pencil-square fa-7x icon-yellow"></i></a> |
-                    <a asp-page="./Details" asp-route-id="@item.ID"><i class="bi bi-clipboard-check-fill icon-green fa-10x"></i></a> |
-                    <a asp-page="./Delete" asp-route-id="@item.ID"><i class="bi bi-trash icon-red fa-10x"></i></a> |
-
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.ID"><i class="bi bi-pencil-square fa-7x icon-yellow"></i></a>
+                    }
+                    <a asp-page="./Details" asp-route-id="@item.ID"><i class="bi bi-info-circle-fill fa-10x"></i>Details</a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-page="./Delete" asp-route-id="@item.ID"><i class="bi bi-trash icon-red fa-10x"></i></a>
+                    }
 
 
                     <form method="post">
-                        <input type="hidden" name="LocationID" value="@item.ID" />
+                        <input type="hidden" name="MusicID" value="@item.ID" />
                         <input type="hidden" name="IsAddedtoFav" value="@item.AddedToFav.ToString()" />
                         @if (item.AddedToFav == true)
                         {

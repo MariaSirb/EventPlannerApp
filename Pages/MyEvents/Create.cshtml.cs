@@ -27,7 +27,10 @@ namespace EventPlannerApp.Pages.MyEvents
             _context = context;
             _userManager = userManager;
         }
-
+        private Boolean IsOverlapping (MyEvent a, MyEvent b)
+        {
+            return a.StartDate <= b.EndDate && a.EndDate >= b.StartDate;
+        }
         public IActionResult OnGet()
         {   // urm 2 linii pentru client - aia sa apara evenimentele fiecarui client in parte si adminul sa le vada pe toate
             var userEmail = User.Identity.Name; //email of the connected user
@@ -43,8 +46,6 @@ namespace EventPlannerApp.Pages.MyEvents
                     DetaliiClient = x.FirstName + " " + x.LastName
                 });
 
-
-
             ViewData["EventTypeID"] = new SelectList(_context.Set<EventType>(), "ID", "EventTypeName");
             ViewData["LocationID"] = new SelectList(_context.Set<Location>(), "ID", "LocationName");
             ViewData["MusicID"] = new SelectList(_context.Set<Music>(), "ID", "DjName");
@@ -52,7 +53,7 @@ namespace EventPlannerApp.Pages.MyEvents
             ViewData["ClientID"] = new SelectList(detaliiClient, "ID", "DetaliiClient", currentClientID);
 
             var myevent = new MyEvent();
-            
+
             myevent.MyEventMenues = new List<MyEventMenu>();
             PopulateAssignedMenuData(_context, myevent);
 
@@ -79,14 +80,28 @@ namespace EventPlannerApp.Pages.MyEvents
                     newMyEvent.MyEventMenues.Add(catToAdd);
                 }
             }
-            
-             //Restrictie 1 la Data
+
+            //Restrictie 1 la Data
             if (MyEvent.EndDate < MyEvent.StartDate)
             {
-              return RedirectToPage("./Create");
+                return RedirectToPage("./Create");
             }
 
-            MyEvent.MyEventMenues = newMyEvent.MyEventMenues;
+            var events = _context.MyEvent
+
+            .AsNoTracking()
+            .ToList();
+            
+
+            for (int i = 0; i < events.Count(); i++)
+            {
+                if(IsOverlapping(MyEvent, events.ElementAt(i)))
+                {
+                    return RedirectToPage("./Create");
+                }
+            }
+
+                MyEvent.MyEventMenues = newMyEvent.MyEventMenues;
             _context.MyEvent.Add(MyEvent);
             await _context.SaveChangesAsync();
               return RedirectToPage("./Index");

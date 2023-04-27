@@ -5,8 +5,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>My events</h1>
-
+@*<h1>My events</h1>*@
+<div class="about-section mb-0 mt-0">
+    <h2 style="font-weight:bold; color:#cbbfc6"> - My events -  </h2>
+    <img align="center" src="~/image/logo.png" alt="sigla" class="sigla1" />
+</div>
+<br />
 <p>
     @* <a asp-page="Create">Add a new event</a> | |
     <a asp-page="Index" asp-route-showFavourite="@true">Show favourite</a> | |
@@ -101,7 +105,7 @@
                 </td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.ID"><i class="bi bi-pencil-square fa-7x icon-yellow"></i></a> |
-                    <a asp-page="./Details" asp-route-id="@item.ID"><i class="bi bi-clipboard-check-fill icon-green fa-10x"></i></a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID"><i class="bi bi-info-circle-fill fa-10x"></i></a> |
                     <a asp-page="./Delete" asp-route-id="@item.ID"><i class="bi bi-trash icon-red fa-10x"></i></a> |
 
 
