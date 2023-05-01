@@ -14,6 +14,16 @@
 <br />
 
     
+
+
+
+@*<div>
+    <a asp-page="Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to the list</a>
+</div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
 <div class="row">
     <div class="col-md-4">
         <form method="post">
@@ -63,28 +73,28 @@
                     Alege sortimentele de mancare:
                     <table>
                        <tr>
-                          @{
-                             int cnt = 0;
-                             foreach (var cat in Model.AssignedMenuDataList)
-                             {
-                             if (cnt++ % 3 == 0)
-                             {
-                             @:</tr><tr>
-                             }
-                             @:<td>
-                                 <input type="checkbox"
-                                        name="selectedMenues"
-                                        value="@cat.MenuID"
-                                        @(Html.Raw(cat.Assigned ? "checked=\"checked\"" : "")) />
-                                 @cat.MenuID @: @cat.Name
-                             @:</td>
-                       }
-                       @:</tr>
-                 }
+                            @{
+                                int cnt = 0;
+                                foreach (var cat in Model.AssignedMenuDataList)
+                                {
+                                    if (cnt++ % 3 == 0)
+                                    {
+                                        @:</tr><tr>
+                                    }
+                                    @:<td>
+                                         <input type="checkbox"
+                                            name="selectedMenues"
+                                            value="@cat.MenuID"
+                                            @(Html.Raw(cat.Assigned ? "checked=\"checked\"" : "")) />
+                                    @cat.MenuID @: @cat.Name
+                                    @:</td>
+                                }
+                                @:</tr>
+                            }
              </table>
           </div>
            </div>
-           
+
            <div class="form-group" @*style="display:none"*@>  
                 <label asp-for="MyEvent.ClientID" class="control-label">Numele clientului</label>
                 <select asp-for="MyEvent.ClientID" class ="form-control" asp-items="ViewBag.ClientID"></select>
@@ -93,19 +103,10 @@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" style="background-color:#a48f9b; border-color:#d8cfd4; width:150px; margin:20px auto 0; border-radius:30px"/>
             </div>
-            
+
         </form>
 
     </div>
 
-   
+
 </div>
-
-
-@*<div>
-    <a asp-page="Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to the list</a>
-</div>*@
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

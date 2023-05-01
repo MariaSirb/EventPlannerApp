@@ -28,7 +28,61 @@
     </button>
 
 </p>
-<table class="table">
+
+<div class="card" style="border-color:#7d5f71;">
+    <div style="display: flex ; flex-wrap: wrap; background-color: #7d5f71;" class="row-cols-sm-3">
+        @*asta cu row cols sm 4 imi pune pe un rand 3 chestii*@
+
+        @foreach (var item in Model.MyEventD.MyEvents)
+        {
+            <div style="width:70%; padding:5px; color: #d8cfd4; background-color:#705565;">
+
+
+                @Html.DisplayNameFor(model => model.MyEvent[0].EventType.EventTypeName)
+                @Html.DisplayFor(modelItem => item.EventType.EventTypeName)
+                <br>
+                @Html.DisplayNameFor(model => model.MyEvent[0].StartDate)
+                @Html.DisplayFor(modelItem => item.StartDate)
+                <br>
+                @Html.DisplayNameFor(model => model.MyEvent[0].EndDate)
+                @Html.DisplayFor(modelItem => item.EndDate)
+                <br>
+                @Html.DisplayNameFor(model => model.MyEvent[0].Client):
+                @Html.DisplayFor(modelItem => item.Client.FullName)
+                
+
+                <div>
+
+
+                    <a asp-page="./Edit" asp-route-id="@item.ID"><i class="bi bi-pencil-square fa-7x icon-yellow"></i></a>
+
+                    <a asp-page="./Details" asp-route-id="@item.ID"><i class="bi bi-info-circle-fill fa-10x"></i></a>
+
+
+                    <a asp-page="./Delete" asp-route-id="@item.ID"><i class="bi bi-trash icon-red fa-10x"></i></a>
+
+
+@*
+                    <form method="post">
+                        <input type="hidden" name="EventID" value="@item.ID" />
+                        <input type="hidden" name="IsAddedtoFav" value="@item.AddedToFav.ToString()" />
+                        @if (item.AddedToFav == true)
+                        {
+                            <i class="bi bi-x-circle-fill"></i> <input type="submit" value="Remove from fav" class="btn btn-primary" style="background-color:#57424f; border-color:#d8cfd4; width:170px; margin:10px auto 0; border-radius:50px">
+                        }
+                        else
+                        {
+                            <i class="bi bi-chat-square-heart-fill"></i> <input type="submit" value="Add to fav" class="btn btn-primary" style="background-color:#beafb8; border-color:#d8cfd4; width:120px; margin:10px auto 0; border-radius:50px">
+
+                        }
+                    </form>*@
+                    <hr>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@*<table class="table">
     <thead>
         <tr>
             <th>
@@ -127,4 +181,4 @@
             </tr>
         }
     </tbody>
-</table>
+</table>*@

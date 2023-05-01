@@ -9,9 +9,12 @@
 
 @*<h3>Locations</h3>*@
 
-<div class="about-section mb-0 mt-0">
+<div class="about-section mb-0 mt-2" style="background-color:#705565; opacity:0.8;">
     <h2 style="font-weight:bold; color:#cbbfc6"> - Locations -  </h2>
     <img align="center" src="~/image/LocationSigla.png" alt="sigla" class="sigla1" />
+    <p>
+        "Some people look for a beautiful place. Others make a place beautiful.”
+    </p>
 </div>
 
 <p>
@@ -41,11 +44,12 @@
         {
             <div>
 
-                <div style="width:50%; padding:5px">
+                <div style="width:70%; padding:5px; font-family:Arial; text-decoration:underline; color: #d8cfd4; background-color:#705565;">
                     <span stlye="padding-bottom:5px;">
                         <img src="data:image/jpg;base64 , @item.LocationImage" width="400px" height="300px" />
                     </span>
-
+                    <br>
+                    <br>
                     @Html.DisplayFor(modelItem => item.LocationName)
 
                 </div>
@@ -55,8 +59,8 @@
                     {
                         <a asp-page="./Edit" asp-route-id="@item.ID"><i class="bi bi-pencil-square fa-7x icon-yellow"></i></a>
                     }
-                    
-                    <a asp-page="./Details" asp-route-id="@item.ID"><i class="bi bi-clipboard-check-fill icon-green fa-10x"></i></a>
+
+                    <a asp-page="./Details" asp-route-id="@item.ID"><i class="bi bi-info-circle-fill fa-10x"></i>Details</a>
                     @if (User.IsInRole("Admin"))
                     {
                         <a asp-page="./Delete" asp-route-id="@item.ID"><i class="bi bi-trash icon-red fa-10x"></i></a>

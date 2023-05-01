@@ -19,7 +19,42 @@
     }
     @*<a asp-page="Create">Add a new event type</a>*@
 </p>
-<table class="table">
+
+
+<div class="card" style="border-color:#7d5f71;">
+    <div style="display: flex ; flex-wrap: wrap; background-color: #7d5f71;" class="row-cols-sm-3">
+        @*asta cu row cols sm 4 imi pune pe un rand 3 chestii*@
+
+        @foreach (var item in Model.EventType)
+        {
+            <div>
+
+                <div style="width:70%; padding:5px; font-family:Arial; text-decoration:underline; color: #d8cfd4; background-color:#705565;">
+                    
+
+                    @Html.DisplayFor(modelItem => item.EventTypeName)
+
+                </div>
+
+                <div>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.ID"><i class="bi bi-pencil-square fa-7x icon-yellow"></i></a>
+                    }
+                    <a asp-page="./Details" asp-route-id="@item.ID"><i class="bi bi-info-circle-fill fa-10x"></i>View Description</a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-page="./Delete" asp-route-id="@item.ID"><i class="bi bi-trash icon-red fa-10x"></i></a>
+                    }
+                    <hr>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+@*<table class="table">
     <thead>
         <tr>
             <th>
@@ -58,4 +93,4 @@
         </tr>
 }
     </tbody>
-</table>
+</table>*@

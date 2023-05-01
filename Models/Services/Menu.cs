@@ -9,7 +9,10 @@ namespace EventPlannerApp.Models.Services
         public int ID { get; set; }
         [Display(Name = "Item Name")]
         public string ItemName { get; set; }
-        [Display(Name = "Item Price")]
+        [Display(Name = "Item Price ( euro ")]
+        [Column(TypeName = "decimal(6, 2)")]
+        [Range(0.01, 500)]
+
         public decimal ItemPrice { get; set; }
         [Display(Name = "Photo")]
         public string ItemImage { get; set; }

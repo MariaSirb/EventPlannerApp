@@ -12,13 +12,16 @@ namespace EventPlannerApp.Models.Services
 
         [NotMapped]
         public IFormFile LocationImageFile { get; set; }
-        [Display(Name = "Location name")]
+        [Display(Name = "Location name: ")]
         public string LocationName { get; set; }
-        [Display(Name = "Location Adress")]
+        [Display(Name = "Location Adress: ")]
         public string Adress { get; set; }
-        [Display(Name = "Maximum Capacity")]
+        [Display(Name = "Maximum Capacity: ")]
         public int MaximumCapacity { get; set; }
-        [Display(Name = "Location Price/event")]
+        [Display(Name = "Location Price/event( euro )")]
+        [Column(TypeName = "decimal(6, 2)")]
+        [Range(0.01, 500)]
+
         public decimal LocationPrice { get; set; }
 
         public ICollection<MyEvent>? MyEvents { get; set; }

@@ -202,6 +202,11 @@ a {
     border: dotted;
 }
 
+/*pentru paginile de index de la Services*/
+.card {
+    font-weight:600;
+    font-family:cursive;
+}
 /*top up button*/
 #myBtn {
     

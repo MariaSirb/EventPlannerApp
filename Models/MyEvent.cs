@@ -9,14 +9,16 @@ namespace EventPlannerApp.Models
     public class MyEvent/*: IValidatableObject*/
     {
         public int ID { get; set; }
+        [Display(Name = "Start Date: ")]
         [Required(ErrorMessage = "Please add StartDate to the request.")]
         [DataType(DataType.Date)]
         public DateTime? StartDate { get; set; }
+        [Display(Name = "End Date: ")]
         [Required(ErrorMessage = "Please add EndDate to the request.")]
         [DataType(DataType.Date)]
         public DateTime? EndDate { get; set; }   
 
-        [Display(Name = "Alte Mentiuni ( ex. flori, culori, tematica etc)")]
+        [Display(Name = "Mention ( ex. flowers, colors, topics etc)")]
         public string Mention { get; set; }
 
         //Relatia cu Tipul de eveniment
