@@ -5,7 +5,6 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details about locations</h1>
 
 <div>
    
@@ -14,13 +13,27 @@
         <a asp-page="Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to List</a>
     </div>
     <br />
-    <dl class="row">
-        @*<dt class="col-sm-2">
+     <div class="container">
+        <div class="box">
+            <h2><label class="my-label">Description of @Html.DisplayFor(model => model.Location.LocationName):</label></h2>
+            <p> <label class="my-label">Addres: </label> @Html.DisplayFor(model => model.Location.Adress)</p>
+            <p> <label class="my-label">Maximum capacity(nr. people): </label> @Html.DisplayFor(model => model.Location.MaximumCapacity)</p>
+            <p> <label class="my-label">Price/day (euro): </label> @Html.DisplayFor(model => model.Location.LocationPrice)</p>
+        </div>
+    </div>
+    <br />
+    <div class="image-container">
+        <img src="~/image/location/loc1.jpg" />
+        <img src="~/image/location/loc2.jpg" />
+        <img src="~/image/location/loc3.jpg" />
+    </div>
+    @*<dl class="row">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Location.LocationImage)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Location.LocationImage)
-        </dd>*@
+        </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Location.LocationName)
         </dt>
@@ -45,7 +58,7 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Location.LocationPrice)
         </dd>
-    </dl>
+    </dl>*@
     <hr />
 </div>
 <div>

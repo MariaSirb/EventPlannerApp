@@ -5,7 +5,6 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details about event types</h1>
 
 <div>
     
@@ -15,7 +14,20 @@
         <a asp-page="Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to the list</a>
     </div>
     <br />
-    <dl class="row">
+
+    <div class="container">
+        <div class="box">
+            <h2><label class="my-label">Description of @Html.DisplayFor(model => model.EventType.EventTypeName):</label></h2>
+            <p> @Html.DisplayFor(model => model.EventType.EventDescription)</p>
+        </div>
+    </div>
+    <br />
+    <div class="image-container">
+        <img src="~/image/eventtype/detail1.jpg" />
+        <img src="~/image/eventtype/detail2.jpg" />
+        <img src="~/image/eventtype/detail3.jpg" />
+    </div>
+    @*<dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.EventType.EventTypeName)
         </dt>
@@ -28,7 +40,7 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.EventType.EventDescription)
         </dd>
-    </dl>
+    </dl>*@
     <hr />
 </div>
 <div>

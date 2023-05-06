@@ -4,8 +4,83 @@
 @{
     ViewData["Title"] = "Index";
 }
-@*<h1>Music</h1>*@
-<div class="about-section mb-0 mt-2" style="background-color:#705565; opacity:0.8;">
+<style>
+    <style>
+    .gallery {
+       /* border-color: #7d5f71;*/
+    }
+
+    .row-cols-sm-3 {
+        display: flex;
+        flex-wrap: wrap;
+        background-color: #7d5f71;
+        justify-content: space-between;
+    }
+
+    .photo {
+        position: relative;
+        width: calc(33.33% - 20px);
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+        .photo img {
+            /*width: 100%;
+            height: auto;*/
+            object-fit: cover;
+            transition: filter 0.3s ease;
+        }
+
+        .photo:hover img {
+            filter: blur(5px);
+        }
+
+    .details {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: none;
+        background-color: #fff;
+        color: #333;
+        width: 80%;
+        max-height: 80%;
+        padding: 20px;
+        box-sizing: border-box;
+        transition: opacity 0.3s ease;
+        opacity: 0;
+        overflow: auto;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .photo:hover .details {
+        display: block;
+        opacity: 1;
+    }
+
+    .details h3 {
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .details p {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .details form {
+        text-align: center;
+    }
+
+        .details form input[type="submit"] {
+            display: inline-block;
+            margin-top: 10px;
+        }
+</style>
+</style>
+<div class="about-section mb-0 mt-0" style="background-color:#705565; opacity:0.8;">
     <h2 style="font-weight:bold; color:#cbbfc6"> - Music -  </h2>
     <img align="center" src="~/image/MusicSigla.png" alt="sigla" class="sigla1" />
     <p>There's nothing better than live music. It's raw energy, and raw energy feeds the soul.</p>
@@ -21,18 +96,72 @@
         <button type="button" class="btn btn-outline-dark">
             <a class= asp-area ="" asp-page="Create">Add a Dj</a> 
     </button> }
-    <button type="button" class="btn btn-outline-dark">
-        <a class= asp-area="" asp-page="Index" asp-route-showFavourite="@true">Show favourites</a>
-    </button> | |
-    <button type="button" class="btn btn-outline-dark">
-        <a class= asp-area ="" asp-page="./Index">Back to List</a> 
-    </button>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <button type="button" class="btn btn-outline-dark">
+            <a class= asp-area="" asp-page="Index" asp-route-showFavourite="@true">Show favourites</a>
+    </button> }
+    @if (User.Identity.IsAuthenticated)
+    {
+        <button type="button" class="btn btn-outline-dark">
+            <a class= asp-area ="" asp-page="./Index">Back to List</a> 
+    </button>}
 </p>
 
 <br />
-<div class="card" style="border-color:#7d5f71;">
+
+
+<div class="gallery" style="border-color:#7d5f71;">
+    <div style="display: flex; flex-wrap: wrap; background-color: #7d5f71;" class="row-cols-sm-3">
+        @foreach (var item in Model.Music)
+        {
+            <div class="photo">
+                <img src="data:image/jpg;base64 , @item.DjImage" width="400px" height="300px" />
+                <div class="details">
+                    <h3>@Html.DisplayFor(modelItem => item.DjName)</h3>
+
+                    <p>
+                        <label class="my-label">Price/event (euro): </label>
+                        @Html.DisplayFor(modelItem => item.DjPrice)
+                    </p>
+
+                    <form method="post">
+                        <input type="hidden" name="MusicID" value="@item.ID" />
+                        <input type="hidden" name="IsAddedtoFav" value="@item.AddedToFav.ToString()" />
+                        @if (item.AddedToFav == true)
+                        {
+                            @if (User.Identity.IsAuthenticated)
+                            {
+
+                                <i class="bi bi-x-circle-fill"></i> <input type="submit" value="Remove from fav" class="btn btn-primary" style="background-color:#57424f; border-color:#d8cfd4; width:170px; margin:10px auto 0; border-radius:50px">
+                            }
+
+                        }
+                        else
+                        { @if (User.Identity.IsAuthenticated)
+                            {
+
+                                <i class="bi bi-chat-square-heart-fill"></i> <input type="submit" value="Add to fav" class="btn btn-primary" style="background-color:#beafb8; border-color:#d8cfd4; width:120px; margin:10px auto 0; border-radius:50px">
+                            }}
+                    </form>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.ID"><i class="bi bi-pencil-square fa-7x icon-yellow"></i></a>
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-page="./Delete" asp-route-id="@item.ID"><i class="bi bi-trash icon-red fa-10x"></i></a>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@*<div class="card" style="border-color:#7d5f71;">
     <div style="display: flex ; flex-wrap: wrap; background-color: #7d5f71;" class="row-cols-sm-3">
-        @*asta cu row cols sm 4 imi pune pe un rand 3 chestii*@
+       
 
         @foreach (var item in Model.Music)
         {
@@ -77,11 +206,54 @@
             </div>
         }
     </div>
-</div>
+</div>*@
 
 <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="bi bi-arrow-up-circle"></i></button>
 
 
+<script>
+   // Selectează toate elementele cu clasa "photo"
+var photos = document.getElementsByClassName('photo');
+
+// Parcurge fiecare element "photo"
+for (var i = 0; i < photos.length; i++) {
+  // Adaugă evenimentul de click pe fiecare imagine
+  photos[i].addEventListener('click', function(event) {
+    // Selectează elementul "details" asociat imaginii curente
+    var details = this.querySelector('.details');
+    
+    // Verifică starea curentă a afișării detaliilor
+    var isVisible = window.getComputedStyle(details).display === 'block';
+
+    // Ascunde toate detaliile
+    var allDetails = document.getElementsByClassName('details');
+    for (var j = 0; j < allDetails.length; j++) {
+      allDetails[j].style.display = 'none';
+    }
+
+    // Afisează sau ascunde detaliile în funcție de starea curentă
+    details.style.display = isVisible ? 'none' : 'block';
+
+    // Opțional: Deschide un pop-up personalizat cu detaliile și butoanele aferente
+    // Aici poți adăuga codul necesar pentru a deschide un pop-up cu conținutul dorit
+    // de exemplu, folosind librării de modal/modalitate, sau creând un pop-up personalizat în JavaScript
+  });
+}
+
+// Ascunde detaliile atunci când se face clic în afara pop-up-ului
+document.addEventListener('click', function(event) {
+  var target = event.target;
+  var isPhoto = target.classList.contains('photo');
+  var isChildOfPhoto = target.closest('.photo');
+
+  if (!isPhoto && !isChildOfPhoto) {
+    var details = document.getElementsByClassName('details');
+    for (var i = 0; i < details.length; i++) {
+      details[i].style.display = 'none';
+    }
+  }
+});
+      </script>
 
 
 

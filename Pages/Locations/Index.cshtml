@@ -4,41 +4,150 @@
 @{
     ViewData["Title"] = "Index";
 }
+<style>
+    .gallery {
+        border-color: #7d5f71;
+    }
 
+    .row-cols-sm-3 {
+        display: flex;
+        flex-wrap: wrap;
+        background-color: #7d5f71;
+       /* justify-content: flex-start;*/
+        justify-content: space-between;
+    }
 
+    .photo {
+        position: relative;
+        width: calc(33.33% - 20px);
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+    }
+
+        .photo img {
+            /*width: 100%;
+            height: auto;*/
+            object-fit: cover;
+        }
+
+    .details {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 10px;
+        box-sizing: border-box;
+        transform: translateY(100%);
+        opacity: 0;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .photo:hover {
+        transform: translateY(-20px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+        .photo:hover .details {
+            transform: translateY(0);
+            opacity: 1;
+        }
+</style>
 
 @*<h3>Locations</h3>*@
 
-<div class="about-section mb-0 mt-2" style="background-color:#705565; opacity:0.8;">
+<div class="about-section mb-0 mt-0" style="background-color:#705565; opacity:0.8;">
     <h2 style="font-weight:bold; color:#cbbfc6"> - Locations -  </h2>
     <img align="center" src="~/image/LocationSigla.png" alt="sigla" class="sigla1" />
-    <p>
+    <p> 
         "Some people look for a beautiful place. Others make a place beautiful.”
     </p>
 </div>
 
 <p>
-    @* <a asp-page="Create">Add a new location</a> | |
-    <a asp-page="Index" asp-route-showFavourite="@true">Show favourite</a> | |
-    <a asp-page="./Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to List</a>*@
     @if (User.IsInRole("Admin"))
     {
         <button type="button" class="btn btn-outline-dark">
             <a class= asp-area ="" asp-page="Create">Add a location</a>
     </button>}
+    @if (User.Identity.IsAuthenticated){
     <button type="button" class="btn btn-outline-dark">
         <a class= asp-area ="" asp-page="Index" asp-route-showFavourite="@true">Show favourites</a>
-    </button> | |
-    <button type="button" class="btn btn-outline-dark">
-        <a class= asp-area ="" asp-page="./Index">Back to List</a>
-    </button>
+    </button> }
+    @if (User.Identity.IsAuthenticated)
+    {
+        <button type="button" class="btn btn-outline-dark">
+            <a class= asp-area ="" asp-page="./Index">Back to List</a>
+    </button>}
 
 </p>
 
 <br />
-<div class="card" style="border-color:#7d5f71;">
+
+<div class="gallery" style="border-color:#7d5f71;">
+    <div style="display: flex; flex-wrap: wrap; background-color: #7d5f71;" class="row-cols-sm-3">
+        @foreach (var item in Model.Location)
+        {
+            <div class="photo">
+                <img src="data:image/jpg;base64 , @item.LocationImage" width="400px" height="300px" />
+                <div class="details">
+                    <h3>@Html.DisplayFor(modelItem => item.LocationName)</h3>
+
+                    <p>
+                        <label class="my-label">Price/day (euro): </label>
+                        @Html.DisplayFor(modelItem => item.LocationPrice)
+                    </p>
+
+                    <form method="post">
+                        <input type="hidden" name="LocationID" value="@item.ID" />
+                        <input type="hidden" name="IsAddedtoFav" value="@item.AddedToFav.ToString()" />
+                        @if (item.AddedToFav == true)
+                        {
+                            @if (User.Identity.IsAuthenticated)
+                            {
+
+                                <i class="bi bi-x-circle-fill"></i> <input type="submit" value="Remove from fav" class="btn btn-primary" style="background-color:#57424f; border-color:#d8cfd4; width:170px; margin:10px auto 0; border-radius:50px">
+                            }
+
+                        }
+                        else
+                        { @if (User.Identity.IsAuthenticated)
+                            {
+
+                                <i class="bi bi-chat-square-heart-fill"></i> <input type="submit" value="Add to fav" class="btn btn-primary" style="background-color:#beafb8; border-color:#d8cfd4; width:120px; margin:10px auto 0; border-radius:50px">
+                            }}
+                    </form>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.ID"><i class="bi bi-pencil-square fa-7x icon-yellow"></i></a>
+                    }
+                    <a asp-page="./Details" asp-route-id="@item.ID"><i class="bi bi-info-circle-fill fa-10x"></i>More details...</a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-page="./Delete" asp-route-id="@item.ID"><i class="bi bi-trash icon-red fa-10x"></i></a>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.photo').click(function () {
+            $(this).toggleClass('active');
+            $('.photo').not(this).toggleClass('inactive');
+        });
+    });
+
+    
+</script>
+
+@*<div class="card" style="border-color:#7d5f71;">
     <div style="display: flex ; flex-wrap: wrap; background-color: #7d5f71;" class="row-cols-sm-3">
-        @*asta cu row cols sm 3 imi pune pe un rand 3 chestii*@
+       
 
         @foreach (var item in Model.Location)
         {
@@ -73,12 +182,16 @@
                         <input type="hidden" name="IsAddedtoFav" value="@item.AddedToFav.ToString()" />
                         @if (item.AddedToFav == true)
                         {
-                            <i class="bi bi-x-circle-fill"></i> <input type="submit" value="Remove from fav" class="btn btn-primary" style="background-color:#57424f; border-color:#d8cfd4; width:170px; margin:10px auto 0; border-radius:50px">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <i class="bi bi-x-circle-fill"></i> <input type="submit" value="Remove from fav" class="btn btn-primary" style="background-color:#57424f; border-color:#d8cfd4; width:170px; margin:10px auto 0; border-radius:50px">
+                            }
+
                         }
                         else
-                        {
+                        {@if (User.Identity.IsAuthenticated){
                             <i class="bi bi-chat-square-heart-fill"></i> <input type="submit" value="Add to fav" class="btn btn-primary" style="background-color:#beafb8; border-color:#d8cfd4; width:120px; margin:10px auto 0; border-radius:50px">
-
+                        }
                         }
                     </form>
                     <hr>
@@ -86,7 +199,7 @@
             </div>
         }
     </div>
-</div>
+</div>*@
 
 <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="bi bi-arrow-up-circle"></i></button>
 

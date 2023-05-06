@@ -11,6 +11,7 @@ using EventPlannerApp.Models.Services;
 using System.Net;
 using Microsoft.AspNetCore.Identity;
 using EventPlannerApp.Models.Favourite;
+using System.Globalization;
 
 namespace EventPlannerApp.Pages.MyEvents
 {
@@ -25,7 +26,7 @@ namespace EventPlannerApp.Pages.MyEvents
         {
             _context = context;
         }
-
+    
         public IList<MyEvent> MyEvent { get; set; } = default!;
         public MyEventData MyEventD { get; set; }
         public int MyEventID { get; set; }

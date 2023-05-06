@@ -84,6 +84,7 @@ namespace EventPlannerApp.Pages.MyEvents
             //Restrictie 1 la Data
             if (MyEvent.EndDate < MyEvent.StartDate)
             {
+                TempData["ErrorMessage"] = "End date should be after the start date!!!";
                 return RedirectToPage("./Create");
             }
 
@@ -97,6 +98,7 @@ namespace EventPlannerApp.Pages.MyEvents
             {
                 if(IsOverlapping(MyEvent, events.ElementAt(i)))
                 {
+                    TempData["ErrorMessage"] = "The date is already booked. Please choose another date";
                     return RedirectToPage("./Create");
                 }
             }

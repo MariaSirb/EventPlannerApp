@@ -5,15 +5,49 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details about this event</h1>
+@*<h1>Details about this event</h1>*@
 
 <div>
     <hr />
-    <div>
+    @*<div>
         <a asp-page="./Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to List</a>
-    </div>
+    </div>*@
     <br />
-    <dl class="row">
+
+    <div class="event-box">
+        <h2>Details about your event</h2>
+        <p> @Html.DisplayNameFor(model => model.MyEvent.StartDate)
+            @Html.DisplayFor(model => model.MyEvent.StartDate)
+        </p>
+        <p>
+            @Html.DisplayNameFor(model => model.MyEvent.EndDate)
+            @Html.DisplayFor(model => model.MyEvent.EndDate)
+        </p>
+
+        <p>
+            @Html.DisplayNameFor(model => model.MyEvent.Mention)
+            @Html.DisplayFor(model => model.MyEvent.Mention)
+        </p>
+        <p>@Html.DisplayNameFor(model => model.MyEvent.EventType.EventTypeName)
+            @Html.DisplayFor(model => model.MyEvent.EventType.EventTypeName)
+        </p>
+        <p>
+            @Html.DisplayNameFor(model => model.MyEvent.Location.LocationName)
+            @Html.DisplayFor(model => model.MyEvent.Location.LocationName)
+        </p>
+      <p>
+            @Html.DisplayNameFor(model => model.MyEvent.Music.DjName)
+            @Html.DisplayFor(model => model.MyEvent.Music.DjName)
+      </p>
+      <p>
+            @Html.DisplayNameFor(model => model.MyEvent.Photograph.PhotographName)
+            @Html.DisplayFor(model => model.MyEvent.Photograph.PhotographName)
+      </p>
+      <p>
+
+      </p>
+    </div>
+   @* <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.MyEvent.StartDate)
         </dt>
@@ -68,11 +102,13 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.MyEvent.Client.FullName)
         </dd>
-    </dl>
+    </dl>*@
     <hr />
 </div>
 <div>
     <button type="button" class="btn btn-outline-dark">
         <a class= asp-area ="" asp-page="./Edit" asp-route-id="@Model.MyEvent?.ID">Edit</a>
     </button>
+
+    <a asp-page="./Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to List</a>
  </div>

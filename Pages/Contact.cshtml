@@ -26,12 +26,30 @@
             <a href="#"><i class="bi bi-facebook"></i></a>
         </div>
         <!--contact-box------------->
+       @* <div class="contact-box">
+            <!--heading---------->
+            <div class="c-heading">
+                <h1>Get In Touch</h1>
+            </div>
+            <!--inputs------------------>
+            <div class="c-inputs">
+                <form action="mailto:sirbmaria27@gmail.com" method="post" enctype="text/plain">
+                    <textarea type="text"  placeholder="FullName" name="Nume"  required></textarea>
+                    <textarea type="text"  placeholder="Telefon" name="Telefon"  required></textarea>
+                    <textarea type:"text"  placeholder="Mesaj" name="Mesaj" required></textarea>
+                    <!--sumbit-btn----------->
+                    <button>SEND</button>
+                </form>
+            </div>
+
+        </div>*@
+
         <div class="contact-box">
 
             <div class="content" style="width:350px;">
                 <h4 class="subtitle" style="color:#4b3943; font-weight:bold"> Where can you find us:  </h4>
                 <i class="fas fa-phone mt-3" style="color:black"></i> <a href="tel:+" style="color:#32262d"> 0756429081</a><br>
-                <i class="fa fa-envelope mt-3" style="color:black"></i> <a href="" style="color:#32262d">Select_event@office.ro</a><br>
+                <i class="fa fa-envelope mt-3" style="color:black"></i> <a href="mailto:sirbmaria27@gmail.com" style="color:#32262d">Select_event@office.ro</a><br>
                 <i class="bi bi-buildings-fill mt-3" style="color:black"></i> <a style="color:#32262d">Iulius Mall, Cluj-Napoca, 407280</a><br>
             </div>
 
@@ -46,3 +64,11 @@
 </body>
 </html>
 
+<script>
+    document.querySelector('#contact-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        e.target.elements.name.value = '';
+        e.target.elements.email.value = '';
+        e.target.elements.message.value = '';
+    });
+</script>

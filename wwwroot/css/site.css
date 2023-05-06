@@ -16,7 +16,7 @@ html {
 body {
     margin-bottom: 60px;
     background-color: #7d5f71;
-    font-family: sans-serif;
+    font-family: monospace;
     color: /*lightgray*/ #32262d;
 }
 .table {
@@ -77,6 +77,7 @@ a {
     padding: 30px 20px;
     /*box-shadow: 2px 0px 50px rgba(0,0,0,0.1);*/
 }
+
    
 .map {
     filter: grayscale(0.2);
@@ -369,3 +370,119 @@ a {
     margin-left: auto;
     margin-right: auto;
 }
+
+/*Pagina index de la MyEvents
+*/
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+.card {
+    flex: 1 1 45%; /* 45% width for each card */
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f5f5f5;
+
+}
+.my-label{
+    color: #251c21;
+    text-decoration:underline;
+    font-weight:bold;
+}
+
+
+/*Pentru pagina Corporate Event*/
+
+#quad {
+    font-size: 0;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+figure {
+    margin: 0;
+    width: calc(33.33% - 10px);
+    height: auto;
+    transition: 1s;
+    position: relative;
+    overflow: hidden;
+}
+
+    figure:hover {
+        cursor: pointer;
+        z-index: 4;
+    }
+
+    figure img {
+        width: 100%;
+        height: auto;
+    }
+
+    figure figcaption {
+        margin: 0;
+        opacity: 0;
+        background: rgba(0, 0, 0, 0.3);
+        color: #fff;
+        padding: .3rem;
+        font-size: 1.2rem;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        transition: 1s 1s opacity;
+    }
+
+.expanded {
+    transform: scale(2);
+    z-index: 5;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+    .expanded figcaption {
+        opacity: 1;
+    }
+
+.full figure:not(.expanded) {
+    pointer-events: none;
+}
+
+/* Adăugăm un mic spațiu între poze */
+figure:not(:last-child) {
+    margin-right: 10px;
+    margin-bottom:10px;
+}
+
+
+/*Pentru paginile de detail:
+*/
+
+
+
+.box {
+    background-color: #beafb8;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .image-container img {
+        width: 300px;
+        height: 200px; 
+        margin-right: 20px; 
+    }

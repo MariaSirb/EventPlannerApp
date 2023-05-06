@@ -13,10 +13,15 @@ var services = builder.Services;
 var configuration = builder.Configuration;
 
 services.AddAuthentication().AddGoogle(googleOptions =>
-{
+{   
     googleOptions.ClientId = configuration["Google:ClientId"];
     googleOptions.ClientSecret = configuration["Google:ClientSecret"];
+    
 });
+
+
+
+
 
 builder.Services.AddAuthorization(options =>
 {

@@ -5,7 +5,6 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details about this item</h1>
 
 <div>
     
@@ -14,7 +13,21 @@
         <a asp-page="./Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to List</a>
     </div>
     <br />
-    <dl class="row">
+    <div class="container">
+        <div class="box">
+            <h2><label class="my-label">Description of @Html.DisplayFor(model => model.Menu.ItemName):</label></h2>
+            <p> <label class="my-label">Category: </label> @Html.DisplayFor(model => model.Menu.MenuType.TypeName)</p>
+            <p> <label class="my-label">Item price: </label> @Html.DisplayFor(model => model.Menu.ItemPrice)</p>
+        </div>
+    </div>
+
+    <br />
+    <div class="image-container">
+        <img src="~/image/menu/r1.jpg" />
+        <img src="~/image/menu/r2.jpg" />
+        <img src="~/image/menu/r3.jpg" />
+    </div>
+    @*<dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Menu.ItemName)
         </dt>
@@ -27,19 +40,14 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Menu.ItemPrice)
         </dd>
-       @* <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Menu.ItemImage)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Menu.ItemImage)
-        </dd>*@
+      
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Menu.MenuType.TypeName)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Menu.MenuType.TypeName)
         </dd>
-    </dl>
+    </dl>*@
     <hr />
 </div>
 <div>

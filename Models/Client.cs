@@ -1,10 +1,11 @@
 ﻿using EventPlannerApp.Models.Services;
+using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
 namespace EventPlannerApp.Models
 {
-    public class Client
+    public class Client 
     {
         public int ID { get; set; }
         [Display(Name = "First Name")]

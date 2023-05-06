@@ -5,30 +5,14 @@
     ViewData["Title"] = "Index";
 }
 @*<h1>Menu</h1>*@
-<div class="about-section mb-0 mt-2" style="background-color:#705565; opacity:0.8;">
+<div class="about-section mb-0 mt-0" style="background-color:#705565; opacity:0.8;">
         <h2 style="font-weight:bold; color:#cbbfc6"> - Menu -  </h2>
         <img align="center" src="~/image/FoodSigla.png" alt="sigla" class="sigla1" />
     <p>Delicious food with good service makes your day.</p>
     </div>
     <br />
 
-@*<div class="container align-content-center" style="font-size:20px; font-weight:bold; color:white"> Food Category: 
-    <div class="row" style="font-size:18px; font-style:italic">
-        <div class="col-6 col-sm-3">Romanian Food</div>
-        <div class="col-6 col-sm-3">Italian Food</div>
-        <div class="col-6 col-sm-3">Chinese Food</div>
-        <div class="col-6 col-sm-3">American Food</div>
 
-        <!-- Force next columns to break to new line -->
-        <div class="w-100" style="font-size:18px; font-style:italic"></div>
-
-        <div class="col-6 col-sm-3">Starters</div>
-        <div class="col-6 col-sm-3">Dessert</div>
-        <div class="col-6 col-sm-3">Soft Drink</div>
-        <div class="col-6 col-sm-3">Alcoholic Drinks</div>
-    </div>
-</div>
-<br />*@
 <form>
 
     <div class="row">
@@ -43,22 +27,23 @@
 </form>
 <br />
 <p>
-    @* <a asp-page="Create">Add a new item in the menu</a> | |
-    <a asp-page="Index" asp-route-showFavourite="@true">Show favourite</a> | |
-    <a asp-page="./Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to List</a>
-    *@
+   
     @if (User.IsInRole("Admin"))
     {
         <button type="button" class="btn btn-outline-dark">
             <a class= asp-area ="" asp-page="Create">Add a new Item</a>
         </button>
     }
-    <button type="button" class="btn btn-outline-dark">
-        <a class= asp-area ="" asp-page="Index" asp-route-showFavourite="@true">Show favourites</a>
-    </button> | |
+    @if (User.Identity.IsAuthenticated)
+    {
+        <button type="button" class="btn btn-outline-dark">
+            <a class= asp-area ="" asp-page="Index" asp-route-showFavourite="@true">Show favourites</a>
+    </button>} 
+     @if (User.Identity.IsAuthenticated){
     <button type="button" class="btn btn-outline-dark">
         <a class= asp-area ="" asp-page="./Index">Back to List</a>
     </button>
+     }
 </p>
 
 
@@ -104,12 +89,18 @@
                         <input type="hidden" name="IsAddedtoFav" value="@item.AddedToFav.ToString()" />
                         @if (item.AddedToFav == true)
                         {
-                            <i class="bi bi-x-circle-fill"></i> <input type="submit" value="Remove from fav" class="btn btn-primary" style="background-color:#57424f; border-color:#d8cfd4; width:170px; margin:10px auto 0; border-radius:50px">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <i class="bi bi-x-circle-fill"></i> <input type="submit" value="Remove from fav" class="btn btn-primary" style="background-color:#57424f; border-color:#d8cfd4; width:170px; margin:10px auto 0; border-radius:50px">
+                            }
+
                         }
                         else
                         {
-                            <i class="bi bi-chat-square-heart-fill"></i> <input type="submit" value="Add to fav" class="btn btn-primary" style="background-color:#beafb8; border-color:#d8cfd4; width:120px; margin:10px auto 0; border-radius:50px">
-
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <i class="bi bi-chat-square-heart-fill"></i> <input type="submit" value="Add to fav" class="btn btn-primary" style="background-color:#beafb8; border-color:#d8cfd4; width:120px; margin:10px auto 0; border-radius:50px">
+                            }
                         }
                     </form>
                     <hr>
