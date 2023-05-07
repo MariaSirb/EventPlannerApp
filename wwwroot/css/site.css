@@ -122,7 +122,7 @@ a {
 /*Pentru butoanele de label CRUD
 */
 .icon-yellow {
-    color: yellow;
+    color: dimgray;
 }
 
 .icon-green {
@@ -133,24 +133,21 @@ a {
     color: red;
 }
 
-.icon-pink {
-    color: lightpink;
-}
 
 /* Css pentru About Us page */
 
-.carousel-inner img {
-    width: auto; /*100%;*/ /* Set width to 100% */
-    margin: auto;
+/*.carousel-inner img {
+    width: auto;*/ /*100%;*/ /* Set width to 100% */
+    /*margin: auto;
     min-height: 200px; 
-}
+}*/
 
 /* Hide the carousel text when the screen is less than 600 pixels wide */
-@media (max-width: 600px) {
+/*@media (max-width: 600px) {
     .carousel-caption {
         display: none;
     }
-}
+}*/
 
 
 /*titlurile de la pagini cu sigla*/
@@ -200,18 +197,20 @@ a {
     }
 }
 /*pentru tabelele de la create si edit*/
-.form-control {
+/*.form-control {
     background-color: #cbbfc6;
     color: #4b3943;
     font-weight: bold;
     border: dotted;
-}
+}*/
 
 /*pentru paginile de index de la Services*/
-.card {
+/*.card {
     font-weight:600;
     font-family:cursive;
-}
+}*/
+
+
 /*top up button*/
 #myBtn {
     
@@ -277,9 +276,10 @@ a {
     padding-bottom: 30px;
 }*/
 
+
 /*partea cursor membri de label about*/
 
-.timeline-page {
+/*.timeline-page {
     padding: 10px 0;
     position: relative;
     margin-top: 35px;
@@ -308,9 +308,9 @@ a {
 }
 
     .timeline-page .timeline-item .date-label-left::after,
-    .timeline-page .timeline-item .duration-right::after {
+    .timeline-page .timeline-item .duration-right::after {*/
        /* border: 3px solid rgba(255, 255, 255, 0.8);*/
-        border-radius: 50%;
+        /*border-radius: 50%;
         content: "";
         height: 20px;
         position: absolute;
@@ -373,7 +373,7 @@ a {
     display: block;
     margin-left: auto;
     margin-right: auto;
-}
+}*/
 
 /*Pagina index de la MyEvents
 */
@@ -400,70 +400,242 @@ a {
 
 /*Pentru pagina Corporate Event*/
 
-#quad {
-    font-size: 0;
-    width: 100%;
-    margin: 0;
+/*1. Partea chiar de sus*/
+
+.center {
+    align-content: center;
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    width: auto;
+    justify-content: center;
+    height: 100%;
+}
+
+.flip-card {
+    width:1000px;
+    height: 216px;
+    perspective: 1000px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    margin-left:2px;
+    margin-top:1px;
+    
+}
+
+.flip-card-front {
+    background-size: cover;
+    color: white;
+    background-color: black;
+    opacity: 0.8;
+    text-align: center;
+    margin-top:10px;
+   
+}
+
+.flip-card-back {
+    color: black;
+    background-size: cover;
+    transform: rotateY(180deg);
+    background-color: #cbbfc6;
+}
+
+/*2. a doua parte unde samp pozele
+*/
+.gallery {
+    display: flex;
     flex-wrap: wrap;
-    position: relative;
 }
 
-figure {
-    margin: 0;
-    width: calc(33.33% - 10px);
-    height: auto;
-    transition: 1s;
-    position: relative;
-    overflow: hidden;
+.image {
+    width: 400px;
+    height: 300px;
+    object-fit: cover;
+    margin: 10px;
+    cursor: pointer;
 }
 
-    figure:hover {
-        cursor: pointer;
-        z-index: 4;
-    }
-
-    figure img {
-        width: 100%;
-        height: auto;
-    }
-
-    figure figcaption {
-        margin: 0;
-        opacity: 0;
-        background: rgba(0, 0, 0, 0.3);
-        color: #fff;
-        padding: .3rem;
-        font-size: 1.2rem;
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        transition: 1s 1s opacity;
-    }
-
-.expanded {
-    transform: scale(2);
-    z-index: 5;
+.modal {
+    display: none;
     position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-image {
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    max-width: 80%;
+    max-height: 80%;
 }
 
-    .expanded figcaption {
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+}
+/*3. Ultima parte chiar de jos cu membrii echipei*/
+.wrap {
+    margin: 50px auto 0 auto;
+    width: 100%;
+    display: flex;
+    align-items: space-around;
+    max-width: 1200px;
+}
+
+.tile {
+    width: 380px;
+    height: 380px;
+    margin: 10px;
+    background-color: #e9e1eb;
+    display: inline-block;
+    background-size: cover;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.4s ease-out;
+    box-shadow: 0px 35px 77px -17px rgba(0,0,0,0.44);
+    overflow: hidden;
+    color: black;
+    font-family: 'Roboto';
+    /*height: 300px;*/ /* Set the desired height */
+    overflow: auto; /* Enable the scroll bar */
+}
+
+/* Stilizarea scrollbar-ului */
+.tile::-webkit-scrollbar {
+    width: 2px; /* Lățimea scrollbar-ului */
+    height:2px;
+}
+
+.tile::-webkit-scrollbar-track {
+    background: #3e2f38; /* Culoarea fundalului scrollbar-ului */
+}
+
+.tile::-webkit-scrollbar-thumb {
+    background: #e5dfe2; /* Culoarea mânerului scrollbar-ului */
+}
+
+    .tile::-webkit-scrollbar-thumb:hover {
+        background: #e5dfe2; /* Culoarea mânerului scrollbar-ului la hover */
+    }
+
+    .tile img {
+        height: 300px;
+        width: 400px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        transition: all 0.4s ease-out;
+    }
+
+    .tile .text {
+        /*   z-index:99; */
+        position: absolute;
+        padding: 30px;
+        height: calc(100% - 60px);
+    }
+
+    .tile h3 {
+        font-weight: bold;
+        margin: 0;
+        text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        background-color:#d8cfd4;
+        opacity:0.8;
+       
+    }
+
+    .tile h2 {
+        font-weight: 100;
+        margin: 20px 0 0 0;
+        font-style: italic;
+        transform: translateX(200px);
+        
+    }
+
+    .tile p {
+        font-weight: 300;
+        margin: 20px 0 0 0;
+        line-height: 25px;
+        /*   opacity:0; */
+        transform: translateX(-200px);
+        transition-delay: 0.2s;
+        color: #32262d;
+    }
+
+.animate-text {
+    opacity: 0;
+    transition: all 0.6s ease-in-out;
+
+}
+
+.tile:hover {
+    /*   background-color:#99aeff; */
+    box-shadow: 0px 35px 77px -17px rgba(0,0,0,0.64);
+    transform: scale(1.05);
+}
+
+    .tile:hover img {
+        opacity: 0.2;
+    }
+
+    .tile:hover .animate-text {
+        transform: translateX(0);
         opacity: 1;
     }
 
-.full figure:not(.expanded) {
-    pointer-events: none;
+
+.tile:hover span {
+    opacity: 1;
+    transform: translateY(0px);
 }
 
-/* Adăugăm un mic spațiu între poze */
-figure:not(:last-child) {
-    margin-right: 10px;
-    margin-bottom:10px;
+.dots span:nth-child(1) {
+    transition-delay: 0.05s;
+}
+
+.dots span:nth-child(2) {
+    transition-delay: 0.1s;
+}
+
+.dots span:nth-child(3) {
+    transition-delay: 0.15s;
+}
+
+
+@media (max-width: 1000px) {
+    .wrap {
+        flex-direction: column;
+        width: 400px;
+    }
 }
 
 

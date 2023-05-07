@@ -72,7 +72,7 @@
     <h3 style="font-weight:bold; color:#cbbfc6; font-family:monospace"> A part of your story is here... because we are passionate about creating memories of your magic event  </h3>
     <br />
     <div class="gallery">
-       
+
         <div class="gallery-item">
             <img src="~/image/corporateEvent/c 1.jpg" alt="Imagine 1">
             <div class="overlay">
@@ -169,47 +169,166 @@
     </div>
     <br />
 
-    
+
 </body>
 </html>*@
-<style>
-  
-</style>
 
-<div id="quad">
-    <figure>
-        <img src="~/image/corporateEvent/c 1.jpg" alt="Imagine 1">
-       
-    </figure>
-    <figure>
-        <img src="~/image/corporateEvent/c 2.jpg" alt="Imagine 1">
-       
-    </figure>
-    <figure>
-        <img src="~/image/corporateEvent/c 3.jpg" alt="Imagine 1">
-       
-    </figure>
-    <figure>
-        <img src="~/image/corporateEvent/c 4.jpg" alt="Imagine 1">
-        
-    </figure>
-    <figure>
-        <img src="~/image/corporateEvent/c 5.jpg" alt="Imagine 1">
 
-    </figure>
-    <figure>
-        <img src="~/image/corporateEvent/c 6.jpg" alt="Imagine 1">
-    </figure>
-    <figure>
-         <img src="~/image/corporateEvent/c 7.jpg" alt="Imagine 1">
-    </figure>
+@*Prima parte de sus de pe pagina:
+*@
+
+<div class="center">
+
+    <div class="flip-card">
+
+        <div class="flip-card-inner">
+
+            <div class="flip-card-front">
+                <h3 style=" text-align: center; display: flex;justify-content: center;align-items: center;height: 80%;">
+                    Share your photos today and be a part of our vibrant community!
+                </h3>
+
+                <img align="center" src="~/image/logo.png" alt="sigla" class="sigla1" />
+            </div>
+
+            <div class="flip-card-back">
+                <h4>Join us in celebrating and preserving memories together!</h4>
+                <br />
+                <h6>-We invite you to share your special moments and cherished memories with our vibrant community-</h6>
+                <br />
+                <p style="color:black;">Sharing your photos is easy. Simply send us here  <a href="mailto:sirbmaria27@gmail.com"><i class="bi bi-globe2"></i><b>Select_event@gmail.com</b></a> your favorite images from your events. You can add captions, tag teamates collegues, and even explore and engage with other contributors' photos. It's a chance to relive your special moments while allowing others to be a part of them.</p>
+
+                <img align="center" src="~/image/logo.png" alt="sigla" class="sigla1" />
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<br />
+<br />
+<br />
+<p>
+
+</p>
+
+
+@*A doua parte cu pozele
+*@
+
+<div class="gallery">
+
+    <img src="~/image/corporateevent/c 1.jpg" alt="Image 1" class="image" />
+    <img src="~/image/corporateevent/c 10.jpg" alt="Image 1" class="image" />
+    <img src="~/image/corporateevent/c 11.jpg" alt="Image 1" class="image" />
+    <img src="~/image/corporateevent/c 12.jpg" alt="Image 1" class="image" />
+    <img src="~/image/corporateevent/c 13.jpg" alt="Image 1" class="image" />
+    <img src="~/image/corporateevent/c 14.jpg" alt="Image 1" class="image" />
+    <img src="~/image/corporateevent/c 15.jpg" alt="Image 1" class="image" />
+    <img src="~/image/corporateevent/c 16.jpg" alt="Image 1" class="image" />
+    <img src="~/image/corporateevent/c 17.jpg" alt="Image 1" class="image" />
+    <img src="~/image/corporateevent/c 18.jpg" alt="Image 1" class="image" />
+    <img src="~/image/corporateevent/c 19.jpg" alt="Image 1" class="image" />
+    <img src="~/image/corporateevent/c 2.jpg" alt="Image 1" class="image" />
+    <img src="~/image/corporateevent/c 20.jpg" alt="Image 1" class="image" />
+    <img src="~/image/corporateevent/c 3.jpg" alt="Image 1" class="image" />
+    <img src="~/image/corporateevent/c 4.jpg" alt="Image 1" class="image" />
+    <img src="~/image/corporateevent/c 5.jpg" alt="Image 1" class="image" />
+    <img src="~/image/corporateevent/c 6.jpg" alt="Image 1" class="image" />
+    <img src="~/image/corporateevent/c 7.jpg" alt="Image 1" class="image" />
+    <img src="~/image/corporateevent/c 8.jpg" alt="Image 1" class="image" />
+    <img src="~/image/corporateevent/c 9.jpg" alt="Image 1" class="image" />
+<div class="modal">
+    <span class="close">&times;</span>
+    <img src="" alt="Modal Image" class="modal-image">
 </div>
 
+</div>
 <script>
-    var quadimages = document.querySelectorAll("#quad figure");
-for(i=0; i<quadimages.length; i++) {
-  quadimages[i].addEventListener('click', function(){ this.classList.toggle("expanded"); quad.classList.toggle("full") }); 
-}
+    const gallery = document.querySelector('.gallery');
+    const images = document.querySelectorAll('.image');
+    const modal = document.querySelector('.modal');
+    const modalImage = document.querySelector('.modal-image');
+    const closeModal = document.querySelector('.close');
+
+    // Open modal with clicked image
+    function openModal(imageSrc) {
+        modal.style.display = 'block';
+        modalImage.src = imageSrc;
+    }
+
+    // Close modal
+    function closeModalHandler() {
+        modal.style.display = 'none';
+        modalImage.src = '';
+    }
+
+    // Add click event listeners to images
+    images.forEach(image => {
+        image.addEventListener('click', () => {
+            const imageSrc = image.getAttribute('src');
+            openModal(imageSrc);
+        });
+    });
+
+    // Add click event listener to close modal button
+    closeModal.addEventListener('click', closeModalHandler);
 </script>
 
-<button onclick="topFunction()" id="myBtn" title="Go to top"><i class="bi bi-arrow-up-circle"></i></button>
+
+
+
+<br />
+<br />
+@*Partea 3 cu echipa*@
+
+<div style=" display: flex;
+    justify-content: center;
+    align-items: center;
+   ">
+        <h3 class="font-300" style="font-weight:bold; color:#cbbfc6; font-family:monospace; /*text-align:center;*/ ">Meet the people who bring life to your events</h3>
+
+    </div>
+    <br />
+<div class="wrap">
+    <div class="tile">
+        <img src="~/image/aboutpage/member4.jpg">
+        <div class="text">
+            <h3>Antonia Grigore </h3>
+            <h2 class="animate-text">- the main manager -</h2>
+            <p class="animate-text">
+                As a manager in the event planner industry, my primary responsibility is to oversee the planning and execution of events, ensuring that they meet the needs and expectations of clients. I am responsible for managing a team of planners, coordinators, and support staff, assigning tasks and ensuring that deadlines are met.
+            </p>
+
+        </div>
+    </div>
+
+
+    <div class="tile">
+        <img src="~/image/aboutpage/member1.jpg">
+        <div class="text">
+            <h3>Linda Ross</h3>
+            <h2 class="animate-text">- the event designer -</h2>
+            <p class="animate-text">
+                This position requires creativity, attention to detail, and excellent communication skills to work with clients, vendors, and the event planning team to bring the vision to life.
+                I am responsible for managing the design process from conception to execution, ensuring the event meets the highest standards of quality and exceeds the client's expectations.
+
+            </p>
+
+        </div>
+    </div>
+
+    <div class="tile">
+        <img src="~/image/aboutpage/member3.jpg">
+        <div class="text">
+            <h3>Leonardo Luk</h3>
+            <h2 class="animate-text">- marketing and communication manager -</h2>
+            <p class="animate-text">
+                I am  in charge of creating and executing effective marketing campaigns that promote the company's services, including event planning, venue management, and other related services.
+            </p>
+
+        </div>
+    </div>
+</div>
+
+    <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="bi bi-arrow-up-circle"></i></button>

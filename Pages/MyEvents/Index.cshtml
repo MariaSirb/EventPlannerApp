@@ -4,19 +4,29 @@
 @{
     ViewData["Title"] = "Index";
 }
+<style>
+    .event-message {
+        position: absolute;
+        background-color:#32262d;
+        border: 1px solid black;
+       
+        display: none;
 
-@*<h1>My events</h1>*@
+        top: 50%;
+        left: 50%;
+        
+        padding: 20px;
+       
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+    }
+</style>
 <div class="about-section mb-0 mt-0" style="background-color:#705565; opacity:0.8;">
     <h2 style="font-weight:bold; color:#cbbfc6"> - My events -  </h2>
     <img align="center" src="~/image/logo.png" alt="sigla" class="sigla1" />
 </div>
 <br />
 <p>
-    @* <a asp-page="Create">Add a new event</a> | |
-    <a asp-page="Index" asp-route-showFavourite="@true">Show favourite</a> | |
-    <a asp-page="./Index" style="color:#3e2f38; font-weight:bolder; text-decoration:none"><i class="bi bi-arrow-90deg-right" style="color:#32262d"></i>Back to List</a>
-    *@
-
+    
     <button type="button" class="btn btn-outline-dark">
         <a class= asp-area ="" asp-page="Create">Add a new Event</a>
     </button> | |
@@ -86,6 +96,18 @@
                 @Html.DisplayFor(modelItem => item.Client.FullName)
 
             </p>}
+
+                 <div class="event-message">
+                @if (item.EndDate < DateTime.Now)
+                {
+                    <span style="color:#d8cfd4">Status: <b>COMPLETED event</b></span>
+                }
+                else
+                {
+                    <span style="color:#d8cfd4">Status: <b>ONGOING event</b></span>
+                }
+                </div>
+
 
             <div>
             <a asp-page="./Edit" asp-route-id="@item.ID"><i class="bi bi-pencil-square fa-7x icon-yellow"></i></a> |
@@ -196,3 +218,38 @@
         }
     </tbody>
 </table>*@
+<script>
+    function toggleMessage(element) {
+        var message = element.querySelector('.event-message');
+        if (message.style.display === 'none') {
+            message.style.display = 'block';
+        } else {
+            message.style.display = 'none';
+        }
+    }
+
+    document.addEventListener('click', function (event) {
+        var targetElement = event.target;
+        var eventCard = targetElement.closest('.card');
+
+        var messages = document.querySelectorAll('.event-message');
+        messages.forEach(function (message) {
+            message.style.display = 'none';
+        });
+
+        if (eventCard) {
+            var message = eventCard.querySelector('.event-message');
+            if (targetElement.classList.contains('card') || targetElement.parentElement.classList.contains('card')) {
+                message.style.display = 'block';
+            }
+        }
+    });
+</script>
+
+
+@*    Funcția toggleMessage este apelată atunci când se face clic pe un eveniment 
+și inversează vizibilitatea mesajului corespunzător.*@
+
+        @*Evenimentul 'click' este ascultat la nivelul întregului document,
+        iar mesajele sunt ascunse când se face clic în afara evenimentelor. 
+        Acest lucru este realizat verificând dacă elementul țintă (targetElement) al evenimentului nu se află în interiorul unui card de eveniment.*@
