@@ -160,48 +160,7 @@
 </div>
 
 
-@*<div class="gallery" style="border-color:#7d5f71;">
-    <div style="display: flex ; flex-wrap: wrap; background-color: #7d5f71;" class="row-cols-sm-3" ">
-        @foreach (var item in Model.Photograph){
-            <img src="data:image/jpg;base64 , @item.PhotographImage" width="400px" height="300px" />
-    <div class="details">
-            <h3>@Html.DisplayFor(modelItem => item.PhotographName)</h3>
 
-            <p>@Html.DisplayNameFor(model => model.Photograph[0].PhotographPrice)
-                @Html.DisplayFor(modelItem => item.PhotographPrice)
-            </p>
-
-            
-
-
-
-            <form method="post">
-                <input type="hidden" name="PhotographID" value="@item.ID" />
-                <input type="hidden" name="IsAddedtoFav" value="@item.AddedToFav.ToString()" />
-                @if (item.AddedToFav == true)
-                {
-                <i class="bi bi-x-circle-fill"></i> <input type="submit" value="Remove from fav" class="btn btn-primary" style="background-color:#57424f; border-color:#d8cfd4; width:170px; margin:10px auto 0; border-radius:50px">
-                }
-                else
-                {
-                <i class="bi bi-chat-square-heart-fill"></i> <input type="submit" value="Add to fav" class="btn btn-primary" style="background-color:#beafb8; border-color:#d8cfd4; width:120px; margin:10px auto 0; border-radius:50px">
-
-                }
-            </form>
-
-      @if (User.IsInRole("Admin"))
-                    {
-                        <a asp-page="./Edit" asp-route-id="@item.ID"><i class="bi bi-pencil-square fa-7x icon-yellow"></i></a>
-                    }
-                    @if (User.IsInRole("Admin")){
-                        <a asp-page="./Delete" asp-route-id="@item.ID"><i class="bi bi-trash icon-red fa-10x"></i></a> 
-                    }
-    </div>
-        }
-  </div>
-        
-  
-  </div>*@
 
 
   <script>
@@ -227,9 +186,7 @@ for (var i = 0; i < photos.length; i++) {
     // Afisează sau ascunde detaliile în funcție de starea curentă
     details.style.display = isVisible ? 'none' : 'block';
 
-    // Opțional: Deschide un pop-up personalizat cu detaliile și butoanele aferente
-    // Aici poți adăuga codul necesar pentru a deschide un pop-up cu conținutul dorit
-    // de exemplu, folosind librării de modal/modalitate, sau creând un pop-up personalizat în JavaScript
+    
   });
 }
 
@@ -249,105 +206,10 @@ document.addEventListener('click', function(event) {
       </script>
 
 
-@*<div class="card" style="border-color:#7d5f71;">
-    <div style="display: flex ; flex-wrap: wrap; background-color: #7d5f71;" class="row-cols-sm-3">
-        
 
-        @foreach (var item in Model.Photograph)
-        {
-                <div>
-
-                <div style="width:70%; padding:5px; font-family:Arial; text-decoration:underline; color: #d8cfd4; background-color:#705565;">
-                        <span stlye="padding-bottom:5px;">
-                        <img src="data:image/jpg;base64 , @item.PhotographImage" width="400px" height="300px"  />
-                        </span>
-
-                    @Html.DisplayFor(modelItem => item.PhotographName)
-
-                    </div>
-
-                    <div>
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <a asp-page="./Edit" asp-route-id="@item.ID"><i class="bi bi-pencil-square fa-7x icon-yellow"></i></a>
-                    }
-                    <a asp-page="./Details" asp-route-id="@item.ID"><i class="bi bi-info-circle-fill fa-10x"></i>Details</a>
-                    @if (User.IsInRole("Admin")){
-                        <a asp-page="./Delete" asp-route-id="@item.ID"><i class="bi bi-trash icon-red fa-10x"></i></a> 
-                    }
-
-
-                        <form method="post">
-                            <input type="hidden" name="PhotographID" value="@item.ID" />
-                            <input type="hidden" name="IsAddedtoFav" value="@item.AddedToFav.ToString()" />
-                        @if (item.AddedToFav == true)
-                        {
-                                    <i class="bi bi-x-circle-fill"></i> <input type="submit" value="Remove from fav" class="btn btn-primary" style="background-color:#57424f; border-color:#d8cfd4; width:170px; margin:10px auto 0; border-radius:50px">
-                        }
-                        else
-                        {
-                                    <i class="bi bi-chat-square-heart-fill"></i> <input type="submit" value="Add to fav" class="btn btn-primary" style="background-color:#beafb8; border-color:#d8cfd4; width:120px; margin:10px auto 0; border-radius:50px">
-
-                        }
-                        </form>
-                        <hr>
-                    </div>
-                </div>
-        }
-    </div>
-</div>*@
 
 <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="bi bi-arrow-up-circle"></i></button>
 
 
 
 
-@*<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Photograph[0].PhotographName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Photograph[0].PhotographPrice)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Photograph[0].PhotographImage)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Photograph) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhotographName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhotographPrice)
-            </td>
-            <td>
-               <img src="data:image/jpg;base64, @item.PhotographImage" width="120px" height="120px" />
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID"><i class="bi bi-pencil-square fa-7x icon-yellow"></i></a> |
-                <a asp-page="./Details" asp-route-id="@item.ID"><i class="bi bi-clipboard-check-fill icon-green fa-10x"></i></a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID"><i class="bi bi-trash icon-red fa-10x"></i></a> |
-
-                    <form method="post">
-                        <input type="hidden" name="PhotographID" value="@item.ID" />
-                        <input type="hidden" name="IsAddedtoFav" value="@item.AddedToFav.ToString()" />
-                        @if (item.AddedToFav == true)
-                        {
-                            <input type="submit" value="Remove from Favourite" class="btn btn-primary" style="background-color:#a48f9b; border-color:#d8cfd4; width:150px; margin:20px auto 0; border-radius:30px">
-                        }
-                        else
-                        {
-                            <input type="submit" value="Add to favourite" class="btn btn-primary" style="background-color:#a48f9b; border-color:#d8cfd4; width:150px; margin:20px auto 0; border-radius:30px">
-                        }
-                    </form>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>*@
