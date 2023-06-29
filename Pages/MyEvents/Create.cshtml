@@ -165,9 +165,7 @@
 
                 <div class="form-group mb-3">
                       <label class="my-label">Choose your type for the event: </label> <br />
-
-@*                    <label asp-for="MyEvent.EventTypeID" class="control-label">Tipul evenimentului</label>
-*@                    <select asp-for="MyEvent.EventTypeID" class="form-control" asp-items="ViewBag.EventTypeID">
+                    <select asp-for="MyEvent.EventTypeID" class="form-control" asp-items="ViewBag.EventTypeID">
                     </select>
                     <span asp-validation-for="MyEvent.EventTypeID" class="text-danger"></span>
                 </div>

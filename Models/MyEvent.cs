@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EventPlannerApp.Models
 {
-    public class MyEvent/*: IValidatableObject*/
+    public class MyEvent
     {
         public int ID { get; set; }
         [Display(Name = "Start Date: ")]
@@ -21,16 +21,15 @@ namespace EventPlannerApp.Models
         [Display(Name = "Mention ( ex. flowers, colors, topics etc)")]
         public string Mention { get; set; }
 
-        //Relatia cu Tipul de eveniment
+        
         public int? EventTypeID { get; set; }
         public EventType? EventType { get; set; }
 
-        //Relatia cu Locatiile
+        
         public int? LocationID { get; set; }
         public Location? Location { get; set; }
 
-        //Relatie cu Muzica
-
+        
         public int? MusicID { get; set; }
         public Music? Music { get; set; }
 
@@ -50,17 +49,6 @@ namespace EventPlannerApp.Models
 
         [NotMapped]
         public bool AddedToFav { get; set; }
-
-
-        //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        //{
-        //    if (EndDate <= StartDate)
-        //    {
-        //        yield return new ValidationResult(
-        //            $"End date must be greater than the start date.",
-        //            new[] { nameof(EndDate) });
-        //    }
-        //}
 
     }
 }

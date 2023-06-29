@@ -107,15 +107,18 @@
                             @if (User.Identity.IsAuthenticated)
                             {
 
-                                <i class="bi bi-x-circle-fill"></i> <input type="submit" value="Remove from fav" class="btn btn-primary" style="background-color:#57424f; border-color:#d8cfd4; width:170px; margin:10px auto 0; border-radius:50px">
+                                <i class="bi bi-x-circle-fill"></i> <input type="submit" value="Remove from fav" 
+                                   class="btn btn-primary" 
+                                   style="background-color:#57424f; border-color:#d8cfd4; width:170px; margin:10px auto 0; border-radius:50px">
                             }
-
                         }
                         else
                         { @if (User.Identity.IsAuthenticated)
                             {
 
-                                <i class="bi bi-chat-square-heart-fill"></i> <input type="submit" value="Add to fav" class="btn btn-primary" style="background-color:#beafb8; border-color:#d8cfd4; width:120px; margin:10px auto 0; border-radius:50px">
+                                <i class="bi bi-chat-square-heart-fill"></i> <input type="submit" value="Add to fav" 
+                                   class="btn btn-primary" 
+                                   style="background-color:#beafb8; border-color:#d8cfd4; width:120px; margin:10px auto 0; border-radius:50px">
                             }}
                     </form>
 

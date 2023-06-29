@@ -20,9 +20,6 @@ services.AddAuthentication().AddGoogle(googleOptions =>
 });
 
 
-
-
-
 builder.Services.AddAuthorization(options =>
 {
   options.AddPolicy("AdminPolicy", policy =>

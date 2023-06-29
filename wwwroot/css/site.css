@@ -512,9 +512,9 @@ a {
 }
 
 .tile {
-    width: 380px;
-    height: 380px;
-    margin: 10px;
+    width: 350px;
+    height: 350px;
+    margin: 5px;
     background-color: #e9e1eb;
     display: inline-block;
     background-size: cover;

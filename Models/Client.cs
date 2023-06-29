@@ -12,12 +12,12 @@ namespace EventPlannerApp.Models
         [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage = "Your first name must start with capital letter(ex.Ana or Ana Maria or Ana - Maria")]
         [StringLength(30, MinimumLength = 3)]
 
-        public string? FirstName { get; set; }
+        public string FirstName { get; set; }
         [Display(Name = "Last Name")]
         [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage = "Your last name must start with capital letter(ex.Pop or Popovici")]
         [StringLength(30, MinimumLength = 3)]
 
-        public string? LastName { get; set; }
+        public string LastName { get; set; }
         [StringLength(70)]
 
         public string? Adress { get; set; }
